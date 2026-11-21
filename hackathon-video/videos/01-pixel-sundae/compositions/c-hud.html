@@ -1,0 +1,31 @@
+<template>
+  <style>
+    @font-face { font-family: "VT323"; src: url("assets/fonts/VT323-Regular.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .hud { position: absolute; left: 200px; top: 118px; min-width: 560px; padding: 14px 26px 10px; background: rgba(11, 15, 30, 0.88); border: 4px solid #8f7fd6; opacity: 0; }
+    .hud .k { font-family: "Space Mono", monospace; font-size: 28px; letter-spacing: 0.12em; color: #8f7fd6; }
+    .hud .v { font-family: "VT323", monospace; font-size: 76px; line-height: 0.95; color: #fff; }
+    .hud .v b { font-weight: 400; color: #f6b04a; }
+  </style>
+  <div id="root" data-composition-id="c-hud" data-width="1920" data-height="1080">
+    <div id="hud-1" class="hud"><div class="k">SIM 01 · BOSTON, MA</div><div class="v"><b>1,240</b> CARS/MIN</div></div>
+    <div id="hud-2" class="hud"><div class="k">SIM 02 · STORM CELL</div><div class="v">WIND <b>88</b> KM/H</div></div>
+    <div id="hud-3" class="hud"><div class="k">SIM 03 · ORBITS</div><div class="v"><b>6</b> PLANETS</div></div>
+    <div id="hud-4" class="hud"><div class="k">SIM 04 · PARTICLES</div><div class="v"><b id="hud-count">0</b> / 1,000</div></div>
+  </div>
+  <script>
+    (function () {
+      const S = '[data-composition-id="c-hud"] ';
+      const tl = gsap.timeline({ paused: true }); // local t = abs - 30.8
+      const spans = [["#hud-1", 0.75, 2.5], ["#hud-2", 2.62, 4.3], ["#hud-3", 4.4, 5.6], ["#hud-4", 5.65, 8.25]];
+      spans.forEach(([id, a, b]) => {
+        tl.fromTo(S + id, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.2, ease: "steps(4)" }, a);
+        tl.to(S + id, { opacity: 0, duration: 0.08, ease: "steps(2)" }, b - 0.08);
+      });
+      const el = document.querySelector(S + "#hud-count"), o = { v: 0 };
+      tl.fromTo(o, { v: 0 }, { v: 1000, duration: 1.0, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(o.v).toLocaleString("en-US"); } }, 6.1);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["c-hud"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,372 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .cap { position: absolute; left: 190px; width: 700px; top: 810px; height: 300px; display: flex; align-items: center; justify-content: center; text-align: center; visibility: hidden; }
+    .cap .ln { display: inline-block; font:700 58px Inter,sans-serif;color:#fff;background:rgba(10,10,12,.86);padding:18px 34px;border-radius:26px;line-height:1.15; }
+    .cap .w { display: inline-block; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920">
+    <div class="cap" id="c0"><span class="ln"><span class="w" id="w0">AI</span> <span class="w" id="w1">is</span> <span class="w" id="w2">honestly</span></span></div>
+    <div class="cap" id="c1"><span class="ln"><span class="w" id="w3">starting</span> <span class="w" id="w4">to</span> <span class="w" id="w5">scare</span></span></div>
+    <div class="cap" id="c2"><span class="ln"><span class="w" id="w6">me</span> <span class="w" id="w7">a</span> <span class="w" id="w8">little</span></span></div>
+    <div class="cap" id="c3"><span class="ln"><span class="w" id="w9">You</span> <span class="w" id="w10">can</span> <span class="w" id="w11">now</span></span></div>
+    <div class="cap" id="c4"><span class="ln"><span class="w" id="w12">run</span> <span class="w" id="w13">every</span> <span class="w" id="w14">part</span></span></div>
+    <div class="cap" id="c5"><span class="ln"><span class="w" id="w15">of</span> <span class="w" id="w16">a</span> <span class="w" id="w17">six-figure</span></span></div>
+    <div class="cap" id="c6"><span class="ln"><span class="w" id="w18">business</span> <span class="w" id="w19">entirely</span></span></div>
+    <div class="cap" id="c7"><span class="ln"><span class="w" id="w20">through</span> <span class="w" id="w21">agents</span></span></div>
+    <div class="cap" id="c8"><span class="ln"><span class="w" id="w22">Because</span> <span class="w" id="w23">it</span> <span class="w" id="w24">has</span></span></div>
+    <div class="cap" id="c9"><span class="ln"><span class="w" id="w25">access</span> <span class="w" id="w26">to</span> <span class="w" id="w27">its</span></span></div>
+    <div class="cap" id="c10"><span class="ln"><span class="w" id="w28">own</span> <span class="w" id="w29">computer</span> <span class="w" id="w30">that</span></span></div>
+    <div class="cap" id="c11"><span class="ln"><span class="w" id="w31">runs</span> <span class="w" id="w32">on</span> <span class="w" id="w33">the</span></span></div>
+    <div class="cap" id="c12"><span class="ln"><span class="w" id="w34">cloud</span></span></div>
+    <div class="cap" id="c13"><span class="ln"><span class="w" id="w35">it</span> <span class="w" id="w36">can</span> <span class="w" id="w37">use</span></span></div>
+    <div class="cap" id="c14"><span class="ln"><span class="w" id="w38">any</span> <span class="w" id="w39">website</span> <span class="w" id="w40">or</span></span></div>
+    <div class="cap" id="c15"><span class="ln"><span class="w" id="w41">app</span> <span class="w" id="w42">exactly</span> <span class="w" id="w43">like</span></span></div>
+    <div class="cap" id="c16"><span class="ln"><span class="w" id="w44">a</span> <span class="w" id="w45">human</span> <span class="w" id="w46">would</span></span></div>
+    <div class="cap" id="c17"><span class="ln"><span class="w" id="w47">meaning</span> <span class="w" id="w48">it</span> <span class="w" id="w49">does</span></span></div>
+    <div class="cap" id="c18"><span class="ln"><span class="w" id="w50">exceptionally</span> <span class="w" id="w51">well</span></span></div>
+    <div class="cap" id="c19"><span class="ln"><span class="w" id="w52">at</span> <span class="w" id="w53">testing</span> <span class="w" id="w54">products</span></span></div>
+    <div class="cap" id="c20"><span class="ln"><span class="w" id="w55">end-to-end</span></span></div>
+    <div class="cap" id="c21"><span class="ln"><span class="w" id="w56">managing</span></span></div>
+    <div class="cap" id="c22"><span class="ln"><span class="w" id="w57">communications</span> <span class="w" id="w58">on</span></span></div>
+    <div class="cap" id="c23"><span class="ln"><span class="w" id="w59">all</span> <span class="w" id="w60">platforms</span></span></div>
+    <div class="cap" id="c24"><span class="ln"><span class="w" id="w61">and</span> <span class="w" id="w62">more</span></span></div>
+    <div class="cap" id="c25"><span class="ln"><span class="w" id="w63">This</span> <span class="w" id="w64">is</span> <span class="w" id="w65">our</span></span></div>
+    <div class="cap" id="c26"><span class="ln"><span class="w" id="w66">recruiter</span> <span class="w" id="w67">bot</span></span></div>
+    <div class="cap" id="c27"><span class="ln"><span class="w" id="w68">a.k.a</span></span></div>
+    <div class="cap" id="c28"><span class="ln"><span class="w" id="w69">our</span> <span class="w" id="w70">official</span> <span class="w" id="w71">HR</span></span></div>
+    <div class="cap" id="c29"><span class="ln"><span class="w" id="w72">department</span></span></div>
+    <div class="cap" id="c30"><span class="ln"><span class="w" id="w73">and</span> <span class="w" id="w74">every</span> <span class="w" id="w75">day</span></span></div>
+    <div class="cap" id="c31"><span class="ln"><span class="w" id="w76">its</span> <span class="w" id="w77">job</span> <span class="w" id="w78">is</span></span></div>
+    <div class="cap" id="c32"><span class="ln"><span class="w" id="w79">to</span> <span class="w" id="w80">scout</span> <span class="w" id="w81">talent</span></span></div>
+    <div class="cap" id="c33"><span class="ln"><span class="w" id="w82">on</span> <span class="w" id="w83">LinkedIn</span></span></div>
+    <div class="cap" id="c34"><span class="ln"><span class="w" id="w84">send</span> <span class="w" id="w85">connection</span></span></div>
+    <div class="cap" id="c35"><span class="ln"><span class="w" id="w86">requests</span></span></div>
+    <div class="cap" id="c36"><span class="ln"><span class="w" id="w87">and</span> <span class="w" id="w88">book</span> <span class="w" id="w89">qualified</span></span></div>
+    <div class="cap" id="c37"><span class="ln"><span class="w" id="w90">candidates</span> <span class="w" id="w91">on</span> <span class="w" id="w92">my</span></span></div>
+    <div class="cap" id="c38"><span class="ln"><span class="w" id="w93">calendar</span></span></div>
+    <div class="cap" id="c39"><span class="ln"><span class="w" id="w94">I</span> <span class="w" id="w95">also</span> <span class="w" id="w96">have</span></span></div>
+    <div class="cap" id="c40"><span class="ln"><span class="w" id="w97">my</span> <span class="w" id="w98">recruiter</span></span></div>
+    <div class="cap" id="c41"><span class="ln"><span class="w" id="w99">interact</span> <span class="w" id="w100">with</span> <span class="w" id="w101">our</span></span></div>
+    <div class="cap" id="c42"><span class="ln"><span class="w" id="w102">CEO</span> <span class="w" id="w103">bot</span> <span class="w" id="w104">in</span></span></div>
+    <div class="cap" id="c43"><span class="ln"><span class="w" id="w105">a</span> <span class="w" id="w106">group</span> <span class="w" id="w107">chat</span></span></div>
+    <div class="cap" id="c44"><span class="ln"><span class="w" id="w108">who</span> <span class="w" id="w109">not</span> <span class="w" id="w110">only</span></span></div>
+    <div class="cap" id="c45"><span class="ln"><span class="w" id="w111">understands</span> <span class="w" id="w112">the</span></span></div>
+    <div class="cap" id="c46"><span class="ln"><span class="w" id="w113">vision</span> <span class="w" id="w114">of</span> <span class="w" id="w115">our</span></span></div>
+    <div class="cap" id="c47"><span class="ln"><span class="w" id="w116">company</span></span></div>
+    <div class="cap" id="c48"><span class="ln"><span class="w" id="w117">but</span> <span class="w" id="w118">overlooks</span> <span class="w" id="w119">the</span></span></div>
+    <div class="cap" id="c49"><span class="ln"><span class="w" id="w120">performance</span></span></div>
+    <div class="cap" id="c50"><span class="ln"><span class="w" id="w121">dashboard</span></span></div>
+    <div class="cap" id="c51"><span class="ln"><span class="w" id="w122">Asana</span></span></div>
+    <div class="cap" id="c52"><span class="ln"><span class="w" id="w123">Slack</span></span></div>
+    <div class="cap" id="c53"><span class="ln"><span class="w" id="w124">and</span> <span class="w" id="w125">everything</span> <span class="w" id="w126">that</span></span></div>
+    <div class="cap" id="c54"><span class="ln"><span class="w" id="w127">normally</span> <span class="w" id="w128">gives</span> <span class="w" id="w129">me</span></span></div>
+    <div class="cap" id="c55"><span class="ln"><span class="w" id="w130">a</span> <span class="w" id="w131">headache</span></span></div>
+    <div class="cap" id="c56"><span class="ln"><span class="w" id="w132">It's</span> <span class="w" id="w133">crazy</span> <span class="w" id="w134">to</span></span></div>
+    <div class="cap" id="c57"><span class="ln"><span class="w" id="w135">me</span> <span class="w" id="w136">that</span> <span class="w" id="w137">I</span></span></div>
+    <div class="cap" id="c58"><span class="ln"><span class="w" id="w138">set</span> <span class="w" id="w139">up</span> <span class="w" id="w140">my</span></span></div>
+    <div class="cap" id="c59"><span class="ln"><span class="w" id="w141">whole</span> <span class="w" id="w142">team</span> <span class="w" id="w143">in</span></span></div>
+    <div class="cap" id="c60"><span class="ln"><span class="w" id="w144">a</span> <span class="w" id="w145">single</span> <span class="w" id="w146">night</span></span></div>
+    <div class="cap" id="c61"><span class="ln"><span class="w" id="w147">and</span> <span class="w" id="w148">now</span> <span class="w" id="w149">you</span></span></div>
+    <div class="cap" id="c62"><span class="ln"><span class="w" id="w150">can</span> <span class="w" id="w151">too</span></span></div>
+    <div class="cap" id="c63"><span class="ln"><span class="w" id="w152">Comment</span> <span class="w" id="w153">"Solid"</span> <span class="w" id="w154">and</span></span></div>
+    <div class="cap" id="c64"><span class="ln"><span class="w" id="w155">I'll</span> <span class="w" id="w156">send</span> <span class="w" id="w157">you</span></span></div>
+    <div class="cap" id="c65"><span class="ln"><span class="w" id="w158">the</span> <span class="w" id="w159">link</span></span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#w0",{color:"#12D3E0"},0.05);tl.set("#w0",{color:"inherit"},0.53);
+    tl.set("#w1",{color:"#12D3E0"},0.53);tl.set("#w1",{color:"inherit"},0.85);
+    tl.set("#w2",{color:"#12D3E0"},0.85);
+    tl.set("#c0",{visibility:"visible"},0);tl.set("#c0",{visibility:"hidden"},1.25);
+    tl.fromTo("#c0 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},0);
+    tl.set("#w3",{color:"#12D3E0"},1.25);tl.set("#w3",{color:"inherit"},1.77);
+    tl.set("#w4",{color:"#12D3E0"},1.77);tl.set("#w4",{color:"inherit"},2.01);
+    tl.set("#w5",{color:"#12D3E0"},2.01);
+    tl.set("#c1",{visibility:"visible"},1.25);tl.set("#c1",{visibility:"hidden"},2.33);
+    tl.fromTo("#c1 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},1.25);
+    tl.set("#w6",{color:"#12D3E0"},2.33);tl.set("#w6",{color:"inherit"},2.51);
+    tl.set("#w7",{color:"#12D3E0"},2.51);tl.set("#w7",{color:"inherit"},2.65);
+    tl.set("#w8",{color:"#12D3E0"},2.65);
+    tl.set("#c2",{visibility:"visible"},2.33);tl.set("#c2",{visibility:"hidden"},2.91);
+    tl.fromTo("#c2 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},2.33);
+    tl.set("#w9",{color:"#12D3E0"},2.91);tl.set("#w9",{color:"inherit"},3.01);
+    tl.set("#w10",{color:"#12D3E0"},3.01);tl.set("#w10",{color:"inherit"},3.15);
+    tl.set("#w11",{color:"#12D3E0"},3.15);
+    tl.set("#c3",{visibility:"visible"},2.91);tl.set("#c3",{visibility:"hidden"},3.31);
+    tl.fromTo("#c3 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},2.91);
+    tl.set("#w12",{color:"#12D3E0"},3.31);tl.set("#w12",{color:"inherit"},3.49);
+    tl.set("#w13",{color:"#12D3E0"},3.49);tl.set("#w13",{color:"inherit"},3.77);
+    tl.set("#w14",{color:"#12D3E0"},3.77);
+    tl.set("#c4",{visibility:"visible"},3.31);tl.set("#c4",{visibility:"hidden"},4.03);
+    tl.fromTo("#c4 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},3.31);
+    tl.set("#w15",{color:"#12D3E0"},4.03);tl.set("#w15",{color:"inherit"},4.15);
+    tl.set("#w16",{color:"#12D3E0"},4.15);tl.set("#w16",{color:"inherit"},4.27);
+    tl.set("#w17",{color:"#12D3E0"},4.27);
+    tl.set("#c5",{visibility:"visible"},4.03);tl.set("#c5",{visibility:"hidden"},4.89);
+    tl.fromTo("#c5 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},4.03);
+    tl.set("#w18",{color:"#12D3E0"},4.89);tl.set("#w18",{color:"inherit"},5.23);
+    tl.set("#w19",{color:"#12D3E0"},5.23);
+    tl.set("#c6",{visibility:"visible"},4.89);tl.set("#c6",{visibility:"hidden"},5.79);
+    tl.fromTo("#c6 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},4.89);
+    tl.set("#w20",{color:"#12D3E0"},5.79);tl.set("#w20",{color:"inherit"},6.21);
+    tl.set("#w21",{color:"#12D3E0"},6.21);
+    tl.set("#c7",{visibility:"visible"},5.79);tl.set("#c7",{visibility:"hidden"},6.83);
+    tl.fromTo("#c7 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},5.79);
+    tl.set("#w22",{color:"#12D3E0"},6.83);tl.set("#w22",{color:"inherit"},7.21);
+    tl.set("#w23",{color:"#12D3E0"},7.21);tl.set("#w23",{color:"inherit"},7.39);
+    tl.set("#w24",{color:"#12D3E0"},7.39);
+    tl.set("#c8",{visibility:"visible"},6.83);tl.set("#c8",{visibility:"hidden"},7.55);
+    tl.fromTo("#c8 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},6.83);
+    tl.set("#w25",{color:"#12D3E0"},7.55);tl.set("#w25",{color:"inherit"},7.93);
+    tl.set("#w26",{color:"#12D3E0"},7.93);tl.set("#w26",{color:"inherit"},8.15);
+    tl.set("#w27",{color:"#12D3E0"},8.15);
+    tl.set("#c9",{visibility:"visible"},7.55);tl.set("#c9",{visibility:"hidden"},8.27);
+    tl.fromTo("#c9 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},7.55);
+    tl.set("#w28",{color:"#12D3E0"},8.27);tl.set("#w28",{color:"inherit"},8.47);
+    tl.set("#w29",{color:"#12D3E0"},8.47);tl.set("#w29",{color:"inherit"},8.81);
+    tl.set("#w30",{color:"#12D3E0"},8.81);
+    tl.set("#c10",{visibility:"visible"},8.27);tl.set("#c10",{visibility:"hidden"},9.01);
+    tl.fromTo("#c10 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},8.27);
+    tl.set("#w31",{color:"#12D3E0"},9.01);tl.set("#w31",{color:"inherit"},9.27);
+    tl.set("#w32",{color:"#12D3E0"},9.27);tl.set("#w32",{color:"inherit"},9.41);
+    tl.set("#w33",{color:"#12D3E0"},9.41);
+    tl.set("#c11",{visibility:"visible"},9.01);tl.set("#c11",{visibility:"hidden"},9.51);
+    tl.fromTo("#c11 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},9.01);
+    tl.set("#w34",{color:"#12D3E0"},9.51);
+    tl.set("#c12",{visibility:"visible"},9.51);tl.set("#c12",{visibility:"hidden"},9.89);
+    tl.fromTo("#c12 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},9.51);
+    tl.set("#w35",{color:"#12D3E0"},9.89);tl.set("#w35",{color:"inherit"},9.99);
+    tl.set("#w36",{color:"#12D3E0"},9.99);tl.set("#w36",{color:"inherit"},10.13);
+    tl.set("#w37",{color:"#12D3E0"},10.13);
+    tl.set("#c13",{visibility:"visible"},9.89);tl.set("#c13",{visibility:"hidden"},10.37);
+    tl.fromTo("#c13 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},9.89);
+    tl.set("#w38",{color:"#12D3E0"},10.37);tl.set("#w38",{color:"inherit"},10.69);
+    tl.set("#w39",{color:"#12D3E0"},10.69);tl.set("#w39",{color:"inherit"},11.03);
+    tl.set("#w40",{color:"#12D3E0"},11.03);
+    tl.set("#c14",{visibility:"visible"},10.37);tl.set("#c14",{visibility:"hidden"},11.23);
+    tl.fromTo("#c14 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},10.37);
+    tl.set("#w41",{color:"#12D3E0"},11.23);tl.set("#w41",{color:"inherit"},11.43);
+    tl.set("#w42",{color:"#12D3E0"},11.43);tl.set("#w42",{color:"inherit"},11.89);
+    tl.set("#w43",{color:"#12D3E0"},11.89);
+    tl.set("#c15",{visibility:"visible"},11.23);tl.set("#c15",{visibility:"hidden"},12.15);
+    tl.fromTo("#c15 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},11.23);
+    tl.set("#w44",{color:"#12D3E0"},12.15);tl.set("#w44",{color:"inherit"},12.27);
+    tl.set("#w45",{color:"#12D3E0"},12.27);tl.set("#w45",{color:"inherit"},12.49);
+    tl.set("#w46",{color:"#12D3E0"},12.49);
+    tl.set("#c16",{visibility:"visible"},12.15);tl.set("#c16",{visibility:"hidden"},12.87);
+    tl.fromTo("#c16 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},12.15);
+    tl.set("#w47",{color:"#12D3E0"},12.87);tl.set("#w47",{color:"inherit"},13.21);
+    tl.set("#w48",{color:"#12D3E0"},13.21);tl.set("#w48",{color:"inherit"},13.37);
+    tl.set("#w49",{color:"#12D3E0"},13.37);
+    tl.set("#c17",{visibility:"visible"},12.87);tl.set("#c17",{visibility:"hidden"},13.51);
+    tl.fromTo("#c17 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},12.87);
+    tl.set("#w50",{color:"#12D3E0"},13.51);tl.set("#w50",{color:"inherit"},14.09);
+    tl.set("#w51",{color:"#12D3E0"},14.09);
+    tl.set("#c18",{visibility:"visible"},13.51);tl.set("#c18",{visibility:"hidden"},14.37);
+    tl.fromTo("#c18 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},13.51);
+    tl.set("#w52",{color:"#12D3E0"},14.37);tl.set("#w52",{color:"inherit"},14.53);
+    tl.set("#w53",{color:"#12D3E0"},14.53);tl.set("#w53",{color:"inherit"},14.85);
+    tl.set("#w54",{color:"#12D3E0"},14.85);
+    tl.set("#c19",{visibility:"visible"},14.37);tl.set("#c19",{visibility:"hidden"},15.25);
+    tl.fromTo("#c19 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},14.37);
+    tl.set("#w55",{color:"#12D3E0"},15.25);
+    tl.set("#c20",{visibility:"visible"},15.25);tl.set("#c20",{visibility:"hidden"},16.13);
+    tl.fromTo("#c20 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},15.25);
+    tl.set("#w56",{color:"#12D3E0"},16.13);
+    tl.set("#c21",{visibility:"visible"},16.13);tl.set("#c21",{visibility:"hidden"},16.61);
+    tl.fromTo("#c21 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},16.13);
+    tl.set("#w57",{color:"#12D3E0"},16.61);tl.set("#w57",{color:"inherit"},17.23);
+    tl.set("#w58",{color:"#12D3E0"},17.23);
+    tl.set("#c22",{visibility:"visible"},16.61);tl.set("#c22",{visibility:"hidden"},17.49);
+    tl.fromTo("#c22 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},16.61);
+    tl.set("#w59",{color:"#12D3E0"},17.49);tl.set("#w59",{color:"inherit"},17.65);
+    tl.set("#w60",{color:"#12D3E0"},17.65);
+    tl.set("#c23",{visibility:"visible"},17.49);tl.set("#c23",{visibility:"hidden"},18.31);
+    tl.fromTo("#c23 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},17.49);
+    tl.set("#w61",{color:"#12D3E0"},18.31);tl.set("#w61",{color:"inherit"},18.39);
+    tl.set("#w62",{color:"#12D3E0"},18.39);
+    tl.set("#c24",{visibility:"visible"},18.31);tl.set("#c24",{visibility:"hidden"},18.81);
+    tl.fromTo("#c24 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},18.31);
+    tl.set("#w63",{color:"#12D3E0"},18.81);tl.set("#w63",{color:"inherit"},19.29);
+    tl.set("#w64",{color:"#12D3E0"},19.29);tl.set("#w64",{color:"inherit"},19.45);
+    tl.set("#w65",{color:"#12D3E0"},19.45);
+    tl.set("#c25",{visibility:"visible"},18.81);tl.set("#c25",{visibility:"hidden"},19.59);
+    tl.fromTo("#c25 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},18.81);
+    tl.set("#w66",{color:"#12D3E0"},19.59);tl.set("#w66",{color:"inherit"},19.91);
+    tl.set("#w67",{color:"#12D3E0"},19.91);
+    tl.set("#c26",{visibility:"visible"},19.59);tl.set("#c26",{visibility:"hidden"},20.45);
+    tl.fromTo("#c26 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},19.59);
+    tl.set("#w68",{color:"#12D3E0"},20.45);
+    tl.set("#c27",{visibility:"visible"},20.45);tl.set("#c27",{visibility:"hidden"},20.71);
+    tl.fromTo("#c27 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},20.45);
+    tl.set("#w69",{color:"#12D3E0"},20.71);tl.set("#w69",{color:"inherit"},21.03);
+    tl.set("#w70",{color:"#12D3E0"},21.03);tl.set("#w70",{color:"inherit"},21.35);
+    tl.set("#w71",{color:"#12D3E0"},21.35);
+    tl.set("#c28",{visibility:"visible"},20.71);tl.set("#c28",{visibility:"hidden"},21.71);
+    tl.fromTo("#c28 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},20.71);
+    tl.set("#w72",{color:"#12D3E0"},21.71);
+    tl.set("#c29",{visibility:"visible"},21.71);tl.set("#c29",{visibility:"hidden"},22.23);
+    tl.fromTo("#c29 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},21.71);
+    tl.set("#w73",{color:"#12D3E0"},22.23);tl.set("#w73",{color:"inherit"},22.45);
+    tl.set("#w74",{color:"#12D3E0"},22.45);tl.set("#w74",{color:"inherit"},22.63);
+    tl.set("#w75",{color:"#12D3E0"},22.63);
+    tl.set("#c30",{visibility:"visible"},22.23);tl.set("#c30",{visibility:"hidden"},22.75);
+    tl.fromTo("#c30 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},22.23);
+    tl.set("#w76",{color:"#12D3E0"},22.75);tl.set("#w76",{color:"inherit"},22.89);
+    tl.set("#w77",{color:"#12D3E0"},22.89);tl.set("#w77",{color:"inherit"},23.07);
+    tl.set("#w78",{color:"#12D3E0"},23.07);
+    tl.set("#c31",{visibility:"visible"},22.75);tl.set("#c31",{visibility:"hidden"},23.25);
+    tl.fromTo("#c31 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},22.75);
+    tl.set("#w79",{color:"#12D3E0"},23.25);tl.set("#w79",{color:"inherit"},23.37);
+    tl.set("#w80",{color:"#12D3E0"},23.37);tl.set("#w80",{color:"inherit"},23.71);
+    tl.set("#w81",{color:"#12D3E0"},23.71);
+    tl.set("#c32",{visibility:"visible"},23.25);tl.set("#c32",{visibility:"hidden"},23.99);
+    tl.fromTo("#c32 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},23.25);
+    tl.set("#w82",{color:"#12D3E0"},23.99);tl.set("#w82",{color:"inherit"},24.21);
+    tl.set("#w83",{color:"#12D3E0"},24.21);
+    tl.set("#c33",{visibility:"visible"},23.99);tl.set("#c33",{visibility:"hidden"},24.79);
+    tl.fromTo("#c33 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},23.99);
+    tl.set("#w84",{color:"#12D3E0"},24.79);tl.set("#w84",{color:"inherit"},25.03);
+    tl.set("#w85",{color:"#12D3E0"},25.03);
+    tl.set("#c34",{visibility:"visible"},24.79);tl.set("#c34",{visibility:"hidden"},25.33);
+    tl.fromTo("#c34 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},24.79);
+    tl.set("#w86",{color:"#12D3E0"},25.33);
+    tl.set("#c35",{visibility:"visible"},25.33);tl.set("#c35",{visibility:"hidden"},25.75);
+    tl.fromTo("#c35 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},25.33);
+    tl.set("#w87",{color:"#12D3E0"},25.75);tl.set("#w87",{color:"inherit"},25.93);
+    tl.set("#w88",{color:"#12D3E0"},25.93);tl.set("#w88",{color:"inherit"},26.13);
+    tl.set("#w89",{color:"#12D3E0"},26.13);
+    tl.set("#c36",{visibility:"visible"},25.75);tl.set("#c36",{visibility:"hidden"},26.61);
+    tl.fromTo("#c36 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},25.75);
+    tl.set("#w90",{color:"#12D3E0"},26.61);tl.set("#w90",{color:"inherit"},27.09);
+    tl.set("#w91",{color:"#12D3E0"},27.09);tl.set("#w91",{color:"inherit"},27.41);
+    tl.set("#w92",{color:"#12D3E0"},27.41);
+    tl.set("#c37",{visibility:"visible"},26.61);tl.set("#c37",{visibility:"hidden"},27.57);
+    tl.fromTo("#c37 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},26.61);
+    tl.set("#w93",{color:"#12D3E0"},27.57);
+    tl.set("#c38",{visibility:"visible"},27.57);tl.set("#c38",{visibility:"hidden"},27.91);
+    tl.fromTo("#c38 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},27.57);
+    tl.set("#w94",{color:"#12D3E0"},27.91);tl.set("#w94",{color:"inherit"},28.47);
+    tl.set("#w95",{color:"#12D3E0"},28.47);tl.set("#w95",{color:"inherit"},28.73);
+    tl.set("#w96",{color:"#12D3E0"},28.73);
+    tl.set("#c39",{visibility:"visible"},27.91);tl.set("#c39",{visibility:"hidden"},28.91);
+    tl.fromTo("#c39 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},27.91);
+    tl.set("#w97",{color:"#12D3E0"},28.91);tl.set("#w97",{color:"inherit"},29.07);
+    tl.set("#w98",{color:"#12D3E0"},29.07);
+    tl.set("#c40",{visibility:"visible"},28.91);tl.set("#c40",{visibility:"hidden"},29.47);
+    tl.fromTo("#c40 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},28.91);
+    tl.set("#w99",{color:"#12D3E0"},29.47);tl.set("#w99",{color:"inherit"},29.79);
+    tl.set("#w100",{color:"#12D3E0"},29.79);tl.set("#w100",{color:"inherit"},30.03);
+    tl.set("#w101",{color:"#12D3E0"},30.03);
+    tl.set("#c41",{visibility:"visible"},29.47);tl.set("#c41",{visibility:"hidden"},30.17);
+    tl.fromTo("#c41 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},29.47);
+    tl.set("#w102",{color:"#12D3E0"},30.17);tl.set("#w102",{color:"inherit"},30.57);
+    tl.set("#w103",{color:"#12D3E0"},30.57);tl.set("#w103",{color:"inherit"},30.85);
+    tl.set("#w104",{color:"#12D3E0"},30.85);
+    tl.set("#c42",{visibility:"visible"},30.17);tl.set("#c42",{visibility:"hidden"},30.99);
+    tl.fromTo("#c42 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},30.17);
+    tl.set("#w105",{color:"#12D3E0"},30.99);tl.set("#w105",{color:"inherit"},31.09);
+    tl.set("#w106",{color:"#12D3E0"},31.09);tl.set("#w106",{color:"inherit"},31.19);
+    tl.set("#w107",{color:"#12D3E0"},31.19);
+    tl.set("#c43",{visibility:"visible"},30.99);tl.set("#c43",{visibility:"hidden"},31.47);
+    tl.fromTo("#c43 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},30.99);
+    tl.set("#w108",{color:"#12D3E0"},31.47);tl.set("#w108",{color:"inherit"},31.85);
+    tl.set("#w109",{color:"#12D3E0"},31.85);tl.set("#w109",{color:"inherit"},31.99);
+    tl.set("#w110",{color:"#12D3E0"},31.99);
+    tl.set("#c44",{visibility:"visible"},31.47);tl.set("#c44",{visibility:"hidden"},32.17);
+    tl.fromTo("#c44 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},31.47);
+    tl.set("#w111",{color:"#12D3E0"},32.17);tl.set("#w111",{color:"inherit"},32.63);
+    tl.set("#w112",{color:"#12D3E0"},32.63);
+    tl.set("#c45",{visibility:"visible"},32.17);tl.set("#c45",{visibility:"hidden"},32.81);
+    tl.fromTo("#c45 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},32.17);
+    tl.set("#w113",{color:"#12D3E0"},32.81);tl.set("#w113",{color:"inherit"},33.01);
+    tl.set("#w114",{color:"#12D3E0"},33.01);tl.set("#w114",{color:"inherit"},33.15);
+    tl.set("#w115",{color:"#12D3E0"},33.15);
+    tl.set("#c46",{visibility:"visible"},32.81);tl.set("#c46",{visibility:"hidden"},33.21);
+    tl.fromTo("#c46 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},32.81);
+    tl.set("#w116",{color:"#12D3E0"},33.21);
+    tl.set("#c47",{visibility:"visible"},33.21);tl.set("#c47",{visibility:"hidden"},33.65);
+    tl.fromTo("#c47 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},33.21);
+    tl.set("#w117",{color:"#12D3E0"},33.65);tl.set("#w117",{color:"inherit"},34.07);
+    tl.set("#w118",{color:"#12D3E0"},34.07);tl.set("#w118",{color:"inherit"},34.63);
+    tl.set("#w119",{color:"#12D3E0"},34.63);
+    tl.set("#c48",{visibility:"visible"},33.65);tl.set("#c48",{visibility:"hidden"},34.75);
+    tl.fromTo("#c48 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},33.65);
+    tl.set("#w120",{color:"#12D3E0"},34.75);
+    tl.set("#c49",{visibility:"visible"},34.75);tl.set("#c49",{visibility:"hidden"},35.13);
+    tl.fromTo("#c49 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},34.75);
+    tl.set("#w121",{color:"#12D3E0"},35.13);
+    tl.set("#c50",{visibility:"visible"},35.13);tl.set("#c50",{visibility:"hidden"},35.71);
+    tl.fromTo("#c50 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},35.13);
+    tl.set("#w122",{color:"#12D3E0"},35.71);
+    tl.set("#c51",{visibility:"visible"},35.71);tl.set("#c51",{visibility:"hidden"},35.99);
+    tl.fromTo("#c51 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},35.71);
+    tl.set("#w123",{color:"#12D3E0"},35.99);
+    tl.set("#c52",{visibility:"visible"},35.99);tl.set("#c52",{visibility:"hidden"},36.31);
+    tl.fromTo("#c52 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},35.99);
+    tl.set("#w124",{color:"#12D3E0"},36.31);tl.set("#w124",{color:"inherit"},36.43);
+    tl.set("#w125",{color:"#12D3E0"},36.43);tl.set("#w125",{color:"inherit"},36.69);
+    tl.set("#w126",{color:"#12D3E0"},36.69);
+    tl.set("#c53",{visibility:"visible"},36.31);tl.set("#c53",{visibility:"hidden"},36.87);
+    tl.fromTo("#c53 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},36.31);
+    tl.set("#w127",{color:"#12D3E0"},36.87);tl.set("#w127",{color:"inherit"},37.13);
+    tl.set("#w128",{color:"#12D3E0"},37.13);tl.set("#w128",{color:"inherit"},37.37);
+    tl.set("#w129",{color:"#12D3E0"},37.37);
+    tl.set("#c54",{visibility:"visible"},36.87);tl.set("#c54",{visibility:"hidden"},37.53);
+    tl.fromTo("#c54 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},36.87);
+    tl.set("#w130",{color:"#12D3E0"},37.53);tl.set("#w130",{color:"inherit"},37.67);
+    tl.set("#w131",{color:"#12D3E0"},37.67);
+    tl.set("#c55",{visibility:"visible"},37.53);tl.set("#c55",{visibility:"hidden"},38.15);
+    tl.fromTo("#c55 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},37.53);
+    tl.set("#w132",{color:"#12D3E0"},38.15);tl.set("#w132",{color:"inherit"},38.55);
+    tl.set("#w133",{color:"#12D3E0"},38.55);tl.set("#w133",{color:"inherit"},38.81);
+    tl.set("#w134",{color:"#12D3E0"},38.81);
+    tl.set("#c56",{visibility:"visible"},38.15);tl.set("#c56",{visibility:"hidden"},38.93);
+    tl.fromTo("#c56 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},38.15);
+    tl.set("#w135",{color:"#12D3E0"},38.93);tl.set("#w135",{color:"inherit"},39.03);
+    tl.set("#w136",{color:"#12D3E0"},39.03);tl.set("#w136",{color:"inherit"},39.17);
+    tl.set("#w137",{color:"#12D3E0"},39.17);
+    tl.set("#c57",{visibility:"visible"},38.93);tl.set("#c57",{visibility:"hidden"},39.27);
+    tl.fromTo("#c57 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},38.93);
+    tl.set("#w138",{color:"#12D3E0"},39.27);tl.set("#w138",{color:"inherit"},39.45);
+    tl.set("#w139",{color:"#12D3E0"},39.45);tl.set("#w139",{color:"inherit"},39.55);
+    tl.set("#w140",{color:"#12D3E0"},39.55);
+    tl.set("#c58",{visibility:"visible"},39.27);tl.set("#c58",{visibility:"hidden"},39.69);
+    tl.fromTo("#c58 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},39.27);
+    tl.set("#w141",{color:"#12D3E0"},39.69);tl.set("#w141",{color:"inherit"},39.93);
+    tl.set("#w142",{color:"#12D3E0"},39.93);tl.set("#w142",{color:"inherit"},40.17);
+    tl.set("#w143",{color:"#12D3E0"},40.17);
+    tl.set("#c59",{visibility:"visible"},39.69);tl.set("#c59",{visibility:"hidden"},40.33);
+    tl.fromTo("#c59 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},39.69);
+    tl.set("#w144",{color:"#12D3E0"},40.33);tl.set("#w144",{color:"inherit"},40.45);
+    tl.set("#w145",{color:"#12D3E0"},40.45);tl.set("#w145",{color:"inherit"},40.73);
+    tl.set("#w146",{color:"#12D3E0"},40.73);
+    tl.set("#c60",{visibility:"visible"},40.33);tl.set("#c60",{visibility:"hidden"},41.07);
+    tl.fromTo("#c60 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},40.33);
+    tl.set("#w147",{color:"#12D3E0"},41.07);tl.set("#w147",{color:"inherit"},41.15);
+    tl.set("#w148",{color:"#12D3E0"},41.15);tl.set("#w148",{color:"inherit"},41.33);
+    tl.set("#w149",{color:"#12D3E0"},41.33);
+    tl.set("#c61",{visibility:"visible"},41.07);tl.set("#c61",{visibility:"hidden"},41.51);
+    tl.fromTo("#c61 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},41.07);
+    tl.set("#w150",{color:"#12D3E0"},41.51);tl.set("#w150",{color:"inherit"},41.77);
+    tl.set("#w151",{color:"#12D3E0"},41.77);
+    tl.set("#c62",{visibility:"visible"},41.51);tl.set("#c62",{visibility:"hidden"},42.21);
+    tl.fromTo("#c62 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},41.51);
+    tl.set("#w152",{color:"#12D3E0"},42.21);tl.set("#w152",{color:"inherit"},42.55);
+    tl.set("#w153",{color:"#12D3E0"},42.55);tl.set("#w153",{color:"inherit"},42.99);
+    tl.set("#w154",{color:"#12D3E0"},42.99);
+    tl.set("#c63",{visibility:"visible"},42.21);tl.set("#c63",{visibility:"hidden"},43.19);
+    tl.fromTo("#c63 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},42.21);
+    tl.set("#w155",{color:"#12D3E0"},43.19);tl.set("#w155",{color:"inherit"},43.35);
+    tl.set("#w156",{color:"#12D3E0"},43.35);tl.set("#w156",{color:"inherit"},43.57);
+    tl.set("#w157",{color:"#12D3E0"},43.57);
+    tl.set("#c64",{visibility:"visible"},43.19);tl.set("#c64",{visibility:"hidden"},43.71);
+    tl.fromTo("#c64 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},43.19);
+    tl.set("#w158",{color:"#12D3E0"},43.71);tl.set("#w158",{color:"inherit"},43.81);
+    tl.set("#w159",{color:"#12D3E0"},43.81);
+    tl.set("#c65",{visibility:"visible"},43.71);tl.set("#c65",{visibility:"hidden"},44.4);
+    tl.fromTo("#c65 .ln",{scale:0.86},{scale:1,duration:0.14,ease:"power3.out"},43.71);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

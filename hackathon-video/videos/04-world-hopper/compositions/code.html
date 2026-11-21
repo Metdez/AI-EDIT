@@ -1,0 +1,52 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #cd-card { position: absolute; left: 150px; top: 240px; width: 820px; height: 560px; border-radius: 22px; opacity: 0; overflow: hidden;
+      background: rgba(10,12,24,.88); border: 1.5px solid rgba(255,255,255,.16); box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+    #cd-head { height: 64px; display: flex; align-items: center; padding: 0 28px; gap: 14px; border-bottom: 1.5px solid rgba(255,255,255,.1);
+      font: 700 28px "Space Mono", monospace; color: #c9c3f2; letter-spacing: .08em; }
+    #cd-head .dot { width: 14px; height: 14px; border-radius: 50%; background: #8f7fd6; }
+    #cd-ask { margin: 26px 32px 14px; padding: 16px 22px; border-radius: 14px; background: rgba(143,127,214,.18); font: 400 28px/1.35 Inter, sans-serif; color: #fff; opacity: 0; }
+    #cd-ask b { color: #ec8796; }
+    #cd-code { margin: 6px 32px; font: 400 24px/1.6 "JetBrains Mono", monospace; color: #d8dcf0; white-space: pre; }
+    #cd-code .ln { display: block; clip-path: inset(0 100% 0 0); }
+    #cd-code .m { padding: 0 4px; border-radius: 6px; }
+    #cd-code .kw { color: #8f7fd6; } #cd-code .num { color: #f6b04a; } #cd-code .cm { color: #7ee0a8; }
+    #cd-idea { position: absolute; left: 32px; right: 32px; top: 100px; font: 400 54px/1.18 "Archivo Black", sans-serif; color: #fff; opacity: 0; }
+    #cd-idea span { color: #f6b04a; }
+    #cd-run { position: absolute; right: 32px; bottom: 30px; height: 64px; padding: 0 30px; border-radius: 14px; background: #2a2d44; display: flex; align-items: center;
+      font: 700 32px "Space Mono", monospace; color: #f6b04a; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="code" data-width="1920" data-height="1080">
+    <div id="cd-card">
+      <div id="cd-head"><span class="dot"></span><span id="cd-title">AI ASSISTANT</span></div>
+      <div id="cd-ask">"Make the planets orbit the sun with <b>real gravity</b>."</div>
+      <div id="cd-code"><span class="ln"><span class="cm">// AI wrote this in 4 seconds</span></span><span class="ln"><span class="kw">const</span> G = <span class="num">6.674e-11</span>;</span><span class="ln"><span class="kw">for</span> (<span class="kw">const</span> p <span class="kw">of</span> planets) {</span><span class="ln">  <span class="kw">const</span> r = p.pos.distanceTo(sun.pos);</span><span class="ln">  <span class="kw">const</span> a = <span class="m" id="cd-f">G * sun.mass / (r * r)</span>;</span><span class="ln">  p.vel.addScaledVector(toSun(p), a * dt);</span><span class="ln">  p.pos.addScaledVector(p.vel, dt);</span><span class="ln">}</span></div>
+      <div id="cd-idea">your idea:<br /><span>planets that leave trails of light</span></div>
+      <div id="cd-run">&#9654; RUN</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const O = 43, T = (g) => g - O;
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#cd-card", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, T(43.6));
+      tl.fromTo("#cd-ask", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, T(43.95));
+      document.querySelectorAll("#cd-code .ln").forEach((l, i) => {
+        tl.fromTo(l, { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "steps(14)" }, T(44.6 + i * 0.34));
+      });
+      // "physics and math": the formula lights up, then we're told we can skip it
+      tl.fromTo("#cd-f", { backgroundColor: "rgba(246,176,74,0)", color: "#d8dcf0" }, { backgroundColor: "rgba(246,176,74,1)", color: "#111827", duration: 0.2, ease: "power2.out" }, T(47.48));
+      // ideas: code dims, the idea takes over the card
+      tl.to(["#cd-code", "#cd-ask"], { opacity: 0, filter: "blur(6px)", duration: 0.25, ease: "power2.in" }, T(49.1));
+      tl.set("#cd-title", { textContent: "IDEA.MD" }, T(49.2));
+      tl.fromTo("#cd-idea", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "expo.out" }, T(49.3));
+      tl.fromTo("#cd-run", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, T(50.2));
+      tl.to("#cd-run", { backgroundColor: "#f6b04a", color: "#111827", scale: 0.94, duration: 0.08, ease: "power2.out" }, T(50.76));
+      tl.to("#cd-run", { scale: 1, duration: 0.25, ease: "power2.inOut" }, T(50.86));
+      tl.to("#cd-card", { opacity: 0, x: -40, duration: 0.3, ease: "power2.in" }, T(52.6));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["code"] = tl;
+    })();
+  </script>
+</template>

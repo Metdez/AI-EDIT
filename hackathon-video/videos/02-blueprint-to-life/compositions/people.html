@@ -1,0 +1,79 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Space Mono", monospace; color: #fff; }
+    .pp-glass { position: absolute; background: rgba(10,16,34,.84); backdrop-filter: blur(18px); border: 1px solid rgba(156,194,255,.22); padding: 18px 26px; }
+    .pp-k { position: absolute; inset: -7px;
+      background:
+        linear-gradient(#9cc2ff,#9cc2ff) left top / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left top / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right top / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right top / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) left bottom / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left bottom / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right bottom / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right bottom / 3px 22px no-repeat; }
+    .pp-h { font-size: 22px; font-weight: 700; letter-spacing: .16em; color: #9cc2ff; margin-bottom: 6px; white-space: nowrap; }
+    .pp-row { font-size: 28px; font-weight: 700; line-height: 1.5; white-space: nowrap; position: relative; height: 42px; }
+    .pp-row b { color: #f6b04a; }
+    #pp-net { left: 192px; top: 140px; width: 470px; }
+    #pp-cx { left: 192px; top: 140px; width: 520px; }
+    #pp-meter { position: relative; width: 466px; height: 16px; background: rgba(156,194,255,.15); margin: 8px 0 12px; }
+    #pp-fill { position: absolute; left: 0; top: 0; width: 466px; height: 16px; background: #f6b04a; transform-origin: 0 50%; }
+    #pp-day { left: 192px; top: 286px; width: 620px; height: 74px; padding: 0; }
+    #pp-line { position: absolute; left: 110px; right: 110px; top: 36px; height: 3px; background: rgba(156,194,255,.4); }
+    #pp-sun { position: absolute; left: 104px; top: 26px; width: 22px; height: 22px; border-radius: 50%; background: #f6b04a; }
+    .pp-tm { position: absolute; top: 20px; font-size: 24px; font-weight: 700; color: #9cc2ff; }
+    .pp-sw { position: absolute; left: 0; top: 0; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="people" data-width="1920" data-height="1080">
+    <div id="pp-net" class="pp-glass"><i class="pp-k"></i>
+      <div class="pp-h">HACKATHON · NETWORK</div>
+      <div class="pp-row">PEOPLE <b id="pp-n1">0</b></div>
+      <div class="pp-row">CONNECTIONS <b id="pp-n2">0</b></div>
+      <div class="pp-row"><span class="pp-sw" id="pp-st1">SHAPE <b>SCATTERED</b></span><span class="pp-sw" id="pp-st2">SHAPE <b>GEODESIC DOME</b></span></div>
+    </div>
+    <div id="pp-cx" class="pp-glass"><i class="pp-k"></i>
+      <div class="pp-h">PROJECT · COMPLEXITY</div>
+      <div id="pp-meter"><div id="pp-fill"></div></div>
+      <div class="pp-row">SCOPE <b id="pp-pc">12</b><b>%</b> &nbsp; LINES <b id="pp-lines">40</b></div>
+      <div class="pp-row"><span class="pp-sw" id="pp-i1">INTERACTIVE <b>OFF</b></span><span class="pp-sw" id="pp-i2">INTERACTIVE <b style="color:#ec8796">ON · DRAG ME</b></span></div>
+    </div>
+    <div id="pp-day" class="pp-glass"><i class="pp-k"></i>
+      <span class="pp-tm" style="left:20px">09:00</span><span class="pp-tm" style="right:20px">21:00</span>
+      <div id="pp-line"></div><div id="pp-sun"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const O = 58.3, at = (g) => g - O;
+      const tl = gsap.timeline({ paused: true });
+      const num = (id, from, to, t0, dur, ease = "power2.out") => {
+        const el = document.getElementById(id), o = { n: from };
+        tl.fromTo(o, { n: from }, { n: to, duration: dur, ease, onUpdate: () => { el.textContent = Math.round(o.n).toLocaleString("en-US"); } }, at(t0));
+      };
+      const inCard = (id, t) => tl.fromTo(id, { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.35, ease: "expo.out" }, at(t));
+      const outCard = (id, t) => tl.to(id, { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, at(t) - 0.2);
+      const sw = (a, b, t) => { if (a) tl.to(a, { opacity: 0, duration: 0.12 }, at(t) - 0.12); tl.fromTo(b, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, at(t)); };
+      // shot 13 network card
+      inCard("#pp-net", 58.45);
+      num("pp-n1", 0, 42, 58.5, 0.8);
+      num("pp-n2", 0, 120, 59.3, 0.8);
+      sw(null, "#pp-st1", 58.7); sw("#pp-st1", "#pp-st2", 61.2);
+      outCard("#pp-net", 62.95);
+      // shot 14 complexity meter
+      inCard("#pp-cx", 63.2);
+      tl.fromTo("#pp-fill", { scaleX: 0.12, backgroundColor: "#f6b04a" }, { scaleX: 0.97, backgroundColor: "#ec8796", duration: 6.0, ease: "power1.in" }, at(63.3));
+      // one clock drives both readouts so out-of-order seeks never fight over the text
+      const pc = document.getElementById("pp-pc"), ln = document.getElementById("pp-lines"), ck = { t: 63.3 };
+      tl.fromTo(ck, { t: 63.3 }, { t: 70.4, duration: 7.1, ease: "none", onUpdate: () => {
+        const up = Math.pow(Math.min(1, Math.max(0, (ck.t - 63.3) / 6)), 2), dn = 1 - Math.pow(1 - Math.min(1, Math.max(0, (ck.t - 69.85) / 0.45)), 3);
+        pc.textContent = Math.round((12 + 85 * up) * (1 - dn) + 8 * dn);
+        ln.textContent = Math.round((40 + 4772 * up) * (1 - dn) + 24 * dn).toLocaleString("en-US");
+      } }, at(63.3));
+      tl.to("#pp-fill", { scaleX: 0.08, backgroundColor: "#9cc2ff", duration: 0.45, ease: "expo.out" }, at(69.85));
+      sw(null, "#pp-i1", 63.5); sw("#pp-i1", "#pp-i2", 71.6);
+      outCard("#pp-cx", 72.7);
+      // shot 16 day bar
+      inCard("#pp-day", 79.0);
+      tl.fromTo("#pp-sun", { x: 0 }, { x: 378, duration: 2.2, ease: "power2.inOut" }, at(79.2));
+      outCard("#pp-day", 81.5);
+      window.__timelines["people"] = tl;
+    })();
+  </script>
+</template>

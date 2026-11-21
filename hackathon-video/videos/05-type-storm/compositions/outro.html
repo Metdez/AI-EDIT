@@ -1,0 +1,24 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #outro-logo { position: absolute; left: 380px; top: 345px; width: 620px; height: 182px; }
+    #outro-line { position: absolute; left: 190px; width: 1000px; top: 640px; text-align: center; }
+    #outro-line .m { display: block; overflow: hidden; }
+    #outro-line .w { display: inline-block; font-family: "Archivo Black", sans-serif; font-size: 58px; line-height: 1.2; color: #fff; }
+    #outro-line .a { color: #ec8796; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
+    <img id="outro-logo" class="clip" src="assets/sundai-logo.png" alt="Sundai" data-start="0" data-duration="4.95" data-track-index="0" />
+    <div id="outro-line" class="clip" data-start="2.1" data-duration="2.85" data-track-index="1">
+      <span class="m"><span class="w">EXCITED TO SEE</span></span>
+      <span class="m"><span class="w a">WHAT YOU COME UP WITH</span></span>
+    </div>
+  </div>
+  <script>
+    // logo lands on "Sundai" (88.6 s); the last line slides up on "I'm really excited" (90.66 s) and holds to the end
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#outro-logo", { scale: 0.75, opacity: 0, filter: "blur(10px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.12);
+    tl.fromTo("#outro-line .w", { yPercent: 110 }, { yPercent: 0, duration: 0.4, ease: "power3.out", stagger: 0.12 }, 2.2);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

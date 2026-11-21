@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three/three.module.min.js", "three/addons/": "./lib/three/addons/" } }
+    </script>
+    <style>
+      :root { --ground: #0a1022; --ink: #9cc2ff; --pink: #ec8796; --orange: #f6b04a; --purple: #8f7fd6; --bone: #ede6da; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1920px; height: 1080px; font-family: "Space Mono", monospace; color: #fff; }
+      #gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      /* bubble: wrapper moved by GSAP x/y/scale only */
+      #bubble { position: absolute; left: 0; top: 0; width: 300px; height: 300px; z-index: 40; }
+      #bubble-mask { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #111827;
+        box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 0 5px rgba(10,16,34,.9); }
+      #avatar { width: 100%; height: 100%; object-fit: cover; }
+      #bubble-ring { position: absolute; inset: -14px; width: 328px; height: 328px; }
+      #bubble-tag { position: absolute; left: 50%; top: 300px; margin-left: -130px; width: 260px; white-space: nowrap; margin-top: 12px; text-align: center;
+        font: 700 26px "Space Mono", monospace; letter-spacing: .14em; color: #fff; background: rgba(10,16,34,.82);
+        border: 1px solid rgba(156,194,255,.35); padding: 4px 0; }
+      #bubble-tag b { color: var(--pink); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="93.4" data-width="1920" data-height="1080">
+      <canvas id="gl" width="1920" height="1080" data-layout-ignore></canvas>
+
+      <div id="hud" style="z-index: 30" data-composition-id="hud" data-composition-src="compositions/hud.html" data-start="0" data-duration="93.4" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="intro" data-composition-id="intro" data-composition-src="compositions/intro.html" data-start="0" data-duration="16" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="theme" data-composition-id="theme" data-composition-src="compositions/theme.html" data-start="16" data-duration="7.5" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="examples" data-composition-id="examples" data-composition-src="compositions/examples.html" data-start="23.5" data-duration="16" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="ai" data-composition-id="ai" data-composition-src="compositions/ai.html" data-start="43.4" data-duration="14.9" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="people" data-composition-id="people" data-composition-src="compositions/people.html" data-start="58.3" data-duration="27.3" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="85.6" data-duration="7.8" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="93.4" data-track-index="3" data-track-kind="captions" data-width="1920" data-height="1080"></div>
+
+      <div id="bubble" data-layout-allow-occlusion>
+        <div id="bubble-mask">
+          <video id="avatar" class="clip" src="assets/avatar_square.mp4" muted playsinline data-start="0" data-duration="93.4" data-track-index="4"></video>
+        </div>
+        <svg id="bubble-ring" viewBox="0 0 328 328" data-layout-ignore>
+          <circle cx="164" cy="164" r="160" fill="none" stroke="#9cc2ff" stroke-width="2" stroke-dasharray="4 10" opacity=".8" />
+          <path d="M164 2 v14 M164 312 v14 M2 164 h14 M312 164 h14" stroke="#ec8796" stroke-width="3" />
+        </svg>
+        <div id="bubble-tag"><b>●</b> HOST · LIVE</div>
+      </div>
+
+      <audio id="voice" class="clip" src="assets/voice.m4a" data-start="0" data-duration="93.4" data-volume="1" data-track-index="5"></audio>
+      <audio id="bed" class="clip" src="assets/bgm/bed.m4a" data-start="0" data-duration="93.4" data-volume="1" data-track-index="6"></audio>
+      <audio id="sfx-t10-6" class="clip" src="assets/sfx/whoosh.mp3" data-start="10.47" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t16-0" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="15.87" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-t23-2" class="clip" src="assets/sfx/whoosh.mp3" data-start="23.07" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t30-4" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="30.27" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-t33-35" class="clip" src="assets/sfx/whoosh.mp3" data-start="33.22" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t35-15" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="35.02" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-t36-75" class="clip" src="assets/sfx/whoosh.mp3" data-start="36.62" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t39-15" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="39.02" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-t54-1" class="clip" src="assets/sfx/whoosh.mp3" data-start="53.97" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t58-3" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="58.17" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-t63-0" class="clip" src="assets/sfx/whoosh.mp3" data-start="62.87" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t72-75" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="72.62" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-t78-0" class="clip" src="assets/sfx/whoosh.mp3" data-start="77.87" data-duration="0.57" data-volume="0.32" data-track-index="7"></audio>
+      <audio id="sfx-t85-6" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="85.47" data-duration="0.57" data-volume="0.26" data-track-index="7"></audio>
+      <audio id="sfx-logo1" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="7.2" data-duration="2.1" data-volume="0.55" data-track-index="7"></audio>
+      <audio id="sfx-flash" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="43.36" data-duration="2.1" data-volume="0.6" data-track-index="7"></audio>
+      <audio id="sfx-logo2" class="clip" src="assets/sfx/impact-bass-2.mp3" data-start="86.644" data-duration="2.59" data-volume="0.5" data-track-index="8"></audio>
+      <audio id="sfx-chk0" class="clip" src="assets/sfx/pop.mp3" data-start="82.56" data-duration="0.7" data-volume="0.45" data-track-index="8"></audio>
+      <audio id="sfx-chk1" class="clip" src="assets/sfx/pop.mp3" data-start="83.92" data-duration="0.7" data-volume="0.45" data-track-index="8"></audio>
+      <audio id="sfx-chk2" class="clip" src="assets/sfx/pop.mp3" data-start="85.22" data-duration="0.7" data-volume="0.45" data-track-index="8"></audio>
+      <audio id="sfx-type0" class="clip" src="assets/sfx/typing.mp3" data-start="20.63" data-duration="1.54" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-type1" class="clip" src="assets/sfx/typing.mp3" data-start="30.25" data-duration="1.54" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-type2" class="clip" src="assets/sfx/typing.mp3" data-start="43.3" data-duration="1.2" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-type3" class="clip" src="assets/sfx/typing.mp3" data-start="44.55" data-duration="1.54" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-type4" class="clip" src="assets/sfx/typing.mp3" data-start="46.1" data-duration="1.54" data-volume="0.22" data-track-index="9"></audio>
+      <audio id="sfx-press" class="clip" src="assets/sfx/click-soft.mp3" data-start="71.56" data-duration="0.36" data-volume="0.5" data-track-index="8"></audio>
+      <audio id="sfx-run" class="clip" src="assets/sfx/click-soft.mp3" data-start="48.67" data-duration="0.36" data-volume="0.5" data-track-index="8"></audio>
+      <audio id="sfx-rise" class="clip" src="assets/sfx/riser.mp3" data-start="39.93" data-duration="3.6" data-volume="0.45" data-track-index="10"></audio>
+    </div>
+
+    <script type="module">
+      import * as THREE from "three";
+      import * as grid from "./scenes/grid.js";
+      import * as build from "./scenes/build.js";
+      import * as web from "./scenes/web.js";
+      import * as ball from "./scenes/ball.js";
+      import * as traffic from "./scenes/traffic.js";
+      import * as weather from "./scenes/weather.js";
+      import * as solar from "./scenes/solar.js";
+      import * as particles from "./scenes/particles.js";
+      import * as gravity from "./scenes/gravity.js";
+      import * as simple from "./scenes/simple.js";
+      import * as network from "./scenes/network.js";
+
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1); renderer.setSize(1920, 1080, false);
+      renderer.localClippingEnabled = true;
+      const all = [grid, build, web, ball, traffic, weather, solar, particles, gravity, simple, network];
+      all.forEach((s) => s.init(THREE, renderer));
+
+      // [scene, start, end, wipe-in kind]  kinds: L (bar moves left->right), R, U (bottom->top), cut
+      const SHOTS = [
+        [grid, 0, 10.6, "cut"],
+        [build, 10.6, 16.0, "L"],
+        [web, 16.0, 23.4, "U"],
+        [ball, 23.4, 30.4, "cut"],     // browser frame zooms through (HTML)
+        [traffic, 30.4, 33.35, "L"],
+        [weather, 33.35, 35.15, "R"],
+        [solar, 35.15, 36.75, "L"],
+        [particles, 36.75, 43.4, "U"],
+        [gravity, 43.4, 54.1, "cut"],  // white flash cut
+        [simple, 54.1, 58.3, "R"],
+        [network, 58.3, 63.0, "L"],
+        [simple, 63.0, 72.75, "U"],
+        [network, 72.75, 78.0, "R"],
+        [build, 78.0, 85.6, "L"],
+        [grid, 85.6, 93.4, "U"],
+      ];
+      const W = 0.5; // wipe length (s)
+      const bar = new THREE.Color("#ec8796"), core = new THREE.Color("#ffffff");
+      function rect(x, y, w, h, col) { renderer.setScissor(x, y, w, h); renderer.setClearColor(col, 1); renderer.clear(true, false, false); }
+      const ease = (p) => (p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
+
+      function renderAt(t) {
+        let i = SHOTS.findIndex((s) => t < s[2]);
+        if (i < 0) i = SHOTS.length - 1;
+        const cur = SHOTS[i], nxt = SHOTS[i + 1];
+        renderer.setScissorTest(false);
+        // wipe window straddles the boundary: [end - W/2, end + W/2]
+        let from = null, to = cur, p = 1, kind = "cut";
+        if (nxt && t > cur[2] - W / 2 && nxt[3] !== "cut") { from = cur; to = nxt; p = (t - (cur[2] - W / 2)) / W; kind = nxt[3]; }
+        else if (i > 0 && t < cur[1] + W / 2 && cur[3] !== "cut") { from = SHOTS[i - 1]; to = cur; p = (t - (cur[1] - W / 2)) / W; kind = cur[3]; }
+        if (!from) { to[0].render(t); return; }
+        p = ease(Math.min(1, Math.max(0, p)));
+        renderer.setScissorTest(true);
+        if (kind === "U") {
+          const Y = Math.round(p * 1080);
+          renderer.setScissor(0, 0, 1920, Y); to[0].render(t);
+          renderer.setScissor(0, Y, 1920, 1080 - Y); from[0].render(t);
+          rect(0, Y - 9, 1920, 18, bar); rect(0, Y - 2, 1920, 4, core);
+        } else {
+          const X = Math.round((kind === "L" ? p : 1 - p) * 1920);
+          const left = kind === "L" ? to : from, right = kind === "L" ? from : to;
+          renderer.setScissor(0, 0, X, 1080); left[0].render(t);
+          renderer.setScissor(X, 0, 1920 - X, 1080); right[0].render(t);
+          rect(X - 9, 0, 18, 1080, bar); rect(X - 2, 0, 4, 1080, core);
+        }
+        renderer.setScissorTest(false);
+      }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+      renderAt(0);
+
+      // bubble choreography: [time, centreX, centreY, diameter]
+      const B = [
+        [5.0, 1600, 270, 280], [10.5, 300, 820, 260], [15.95, 1620, 260, 240], [23.35, 290, 830, 250],
+        [29.0, 1520, 820, 220], [39.1, 300, 270, 260], [43.3, 1650, 820, 230], [53.9, 470, 540, 340],
+        [58.2, 1600, 800, 260], [62.9, 1600, 270, 240], [72.6, 960, 540, 300], [78.5, 300, 820, 250],
+        [85.5, 1340, 480, 460],
+      ];
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#bubble", { x: 1420 - 150, y: 520 - 150, scale: 0 }, { x: 1420 - 150, y: 520 - 150, scale: 470 / 300, duration: 0.5, ease: "expo.out" }, 0.1);
+      B.forEach(([at, cx, cy, d]) => tl.to("#bubble", { x: cx - 150, y: cy - 150, scale: d / 300, duration: 0.6, ease: "power3.inOut" }, at));
+      tl.fromTo("#bubble-ring", { rotation: 0 }, { rotation: 360, duration: 93.4, ease: "none" }, 0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

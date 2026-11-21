@@ -1,0 +1,59 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .cap { position: absolute; left: 0; right: 0; bottom: 120px; text-align: center; visibility: hidden; }
+    .cap .box { display: inline-block; background: rgba(8, 8, 8, 0.84); padding: 12px 26px 8px; border-radius: 8px; }
+    .cap .m { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 0.04em; }
+    .cap .w { display: inline-block; font-family: "Archivo Black", sans-serif; font-size: 56px; line-height: 1.18; color: #fff; }
+    .cap .w.a { color: #ec8796; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
+    <div class="cap" id="cap-0" data-s="4.22" data-e="5.05"><div class="box"><span class="m"><span class="w">SUPER</span></span> <span class="m"><span class="w a">EXCITED</span></span></div></div>
+    <div class="cap" id="cap-1" data-s="5.14" data-e="6.1"><div class="box"><span class="m"><span class="w">EVERYONE</span></span> <span class="m"><span class="w">HERE</span></span></div></div>
+    <div class="cap" id="cap-2" data-s="11.32" data-e="12.15"><div class="box"><span class="m"><span class="w">SOMETHING</span></span> <span class="m"><span class="w a">COOL</span></span></div></div>
+    <div class="cap" id="cap-3" data-s="13.16" data-e="14.6"><div class="box"><span class="m"><span class="w">NEW</span></span> <span class="m"><span class="w a">IDEAS</span></span></div></div>
+    <div class="cap" id="cap-4" data-s="18.62" data-e="19.5"><div class="box"><span class="m"><span class="w">SIMULATIONS</span></span></div></div>
+    <div class="cap" id="cap-5" data-s="19.72" data-e="20.85"><div class="box"><span class="m"><span class="w">ON</span></span> <span class="m"><span class="w">THE</span></span> <span class="m"><span class="w a">WEB</span></span></div></div>
+    <div class="cap" id="cap-6" data-s="23.46" data-e="24.45"><div class="box"><span class="m"><span class="w">PRETTY</span></span> <span class="m"><span class="w">SIMPLE</span></span></div></div>
+    <div class="cap" id="cap-7" data-s="26.46" data-e="27.12"><div class="box"><span class="m"><span class="w">REAL</span></span> <span class="m"><span class="w a">WORLD</span></span></div></div>
+    <div class="cap" id="cap-8" data-s="27.18" data-e="28.7"><div class="box"><span class="m"><span class="w">HOW</span></span> <span class="m"><span class="w">IT</span></span> <span class="m"><span class="w a">WORKS</span></span></div></div>
+    <div class="cap" id="cap-9" data-s="28.78" data-e="29.8"><div class="box"><span class="m"><span class="w">BRING</span></span> <span class="m"><span class="w">IT</span></span> <span class="m"><span class="w">TO</span></span> <span class="m"><span class="w a">LIFE</span></span></div></div>
+    <div class="cap" id="cap-10" data-s="29.86" data-e="30.45"><div class="box"><span class="m"><span class="w">IN</span></span> <span class="m"><span class="w">YOUR</span></span> <span class="m"><span class="w a">BROWSER</span></span></div></div>
+    <div class="cap" id="cap-11" data-s="32.72" data-e="33.7"><div class="box"><span class="m"><span class="w a">BOSTON</span></span></div></div>
+    <div class="cap" id="cap-12" data-s="34.26" data-e="35.35"><div class="box"><span class="m"><span class="w">CRAZY</span></span> <span class="m"><span class="w a">WEATHER</span></span></div></div>
+    <div class="cap" id="cap-13" data-s="35.6" data-e="36.75"><div class="box"><span class="m"><span class="w">SOLAR</span></span> <span class="m"><span class="w">SYSTEM</span></span></div></div>
+    <div class="cap" id="cap-14" data-s="39.22" data-e="40.6"><div class="box"><span class="m"><span class="w">WHATEVER</span></span> <span class="m"><span class="w">IT</span></span> <span class="m"><span class="w">IS</span></span></div></div>
+    <div class="cap" id="cap-15" data-s="43.64" data-e="44.7"><div class="box"><span class="m"><span class="w a">AI</span></span> <span class="m"><span class="w">CODING</span></span> <span class="m"><span class="w">TOOLS</span></span></div></div>
+    <div class="cap" id="cap-16" data-s="45.42" data-e="46.8"><div class="box"><span class="m"><span class="w">DON'T</span></span> <span class="m"><span class="w">SPEND</span></span> <span class="m"><span class="w a">HOURS</span></span></div></div>
+    <div class="cap" id="cap-17" data-s="50.76" data-e="52.05"><div class="box"><span class="m"><span class="w">MAKE</span></span> <span class="m"><span class="w">THEM</span></span> <span class="m"><span class="w a">HAPPEN</span></span></div></div>
+    <div class="cap" id="cap-18" data-s="52.82" data-e="54.15"><div class="box"><span class="m"><span class="w">DON'T</span></span> <span class="m"><span class="w">WORRY</span></span></div></div>
+    <div class="cap" id="cap-19" data-s="55.76" data-e="56.6"><div class="box"><span class="m"><span class="w">TOTALLY</span></span> <span class="m"><span class="w a">FINE</span></span></div></div>
+    <div class="cap" id="cap-20" data-s="59.3" data-e="60.6"><div class="box"><span class="m"><span class="w">MEET</span></span> <span class="m"><span class="w a">COOL</span></span> <span class="m"><span class="w">PEOPLE</span></span></div></div>
+    <div class="cap" id="cap-21" data-s="61.72" data-e="62.95"><div class="box"><span class="m"><span class="w">DIDN'T</span></span> <span class="m"><span class="w">THINK</span></span> <span class="m"><span class="w">YOU</span></span> <span class="m"><span class="w">COULD</span></span></div></div>
+    <div class="cap" id="cap-22" data-s="65.38" data-e="66.6"><div class="box"><span class="m"><span class="w">DON'T</span></span> <span class="m"><span class="w a">OVERTHINK</span></span> <span class="m"><span class="w">IT</span></span></div></div>
+    <div class="cap" id="cap-23" data-s="67.64" data-e="69.6"><div class="box"><span class="m"><span class="w">MOST</span></span> <span class="m"><span class="w">COMPLICATED</span></span> <span class="m"><span class="w">PROJECT</span></span></div></div>
+    <div class="cap" id="cap-24" data-s="69.76" data-e="71.1"><div class="box"><span class="m"><span class="w">START</span></span> <span class="m"><span class="w a">SIMPLE</span></span></div></div>
+    <div class="cap" id="cap-25" data-s="72.46" data-e="73.4"><div class="box"><span class="m"><span class="w">SEE</span></span> <span class="m"><span class="w">WHERE</span></span> <span class="m"><span class="w">IT</span></span> <span class="m"><span class="w">GOES</span></span></div></div>
+    <div class="cap" id="cap-26" data-s="74.0" data-e="74.9"><div class="box"><span class="m"><span class="w">THE</span></span> <span class="m"><span class="w">PEOPLE</span></span> <span class="m"><span class="w">AROUND</span></span> <span class="m"><span class="w">YOU</span></span></div></div>
+    <div class="cap" id="cap-27" data-s="74.98" data-e="75.9"><div class="box"><span class="m"><span class="w a">SHARE</span></span> <span class="m"><span class="w">IDEAS</span></span></div></div>
+    <div class="cap" id="cap-28" data-s="75.96" data-e="76.9"><div class="box"><span class="m"><span class="w">ASK</span></span> <span class="m"><span class="w a">QUESTIONS</span></span></div></div>
+    <div class="cap" id="cap-29" data-s="77.18" data-e="78.05"><div class="box"><span class="m"><span class="w">DON'T</span></span> <span class="m"><span class="w">BE</span></span> <span class="m"><span class="w">AFRAID</span></span></div></div>
+    <div class="cap" id="cap-30" data-s="78.88" data-e="80.5"><div class="box"><span class="m"><span class="w">BY</span></span> <span class="m"><span class="w">THE</span></span> <span class="m"><span class="w">END</span></span> <span class="m"><span class="w">OF</span></span> <span class="m"><span class="w">TODAY</span></span></div></div>
+    <div class="cap" id="cap-31" data-s="80.7" data-e="81.95"><div class="box"><span class="m"><span class="w">WALK</span></span> <span class="m"><span class="w">AWAY</span></span> <span class="m"><span class="w">WITH</span></span></div></div>
+    <div class="cap" id="cap-32" data-s="85.64" data-e="87.3"><div class="box"><span class="m"><span class="w">THAT'S</span></span> <span class="m"><span class="w">PRETTY</span></span> <span class="m"><span class="w">MUCH</span></span> <span class="m"><span class="w">IT</span></span></div></div>
+  </div>
+  <script>
+    // one group at a time: box opens, words slide up 60 ms apart, leave by sliding up, then a hard kill
+    const tl = gsap.timeline({ paused: true });
+    document.querySelectorAll("#captions .cap, [data-composition-id='captions'] .cap").forEach((g) => {
+      const s = +g.dataset.s, e = +g.dataset.e, box = g.querySelector(".box"), ws = g.querySelectorAll(".w");
+      tl.set(g, { visibility: "visible" }, s);
+      tl.fromTo(box, { scaleX: 0.3, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.2, ease: "expo.out" }, s);
+      tl.fromTo(ws, { yPercent: 110 }, { yPercent: 0, duration: 0.32, ease: "power3.out", stagger: 0.06 }, s + 0.04);
+      tl.to(ws, { yPercent: -110, duration: 0.16, ease: "power3.in", stagger: 0.02 }, e - 0.2);
+      tl.to(box, { opacity: 0, duration: 0.12, ease: "power2.in" }, e - 0.12);
+      tl.set(g, { visibility: "hidden" }, e);
+    });
+    window.__timelines["captions"] = tl;
+  </script>
+</template>

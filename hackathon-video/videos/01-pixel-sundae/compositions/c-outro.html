@@ -1,0 +1,23 @@
+<template>
+  <style>
+    @font-face { font-family: "VT323"; src: url("assets/fonts/VT323-Regular.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #out-logo { position: absolute; left: 990px; top: 760px; width: 640px; height: auto; }
+    #out-start { position: absolute; left: 196px; top: 920px; font-family: "Space Mono", monospace; font-size: 28px; letter-spacing: 0.2em; color: #f6b04a; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="c-outro" data-width="1920" data-height="1080">
+    <img id="out-logo" src="assets/sundai-logo.png" alt="Sundai" />
+    <div id="out-start">&gt; PRESS START TO BUILD<span id="out-cur">_</span></div>
+  </div>
+  <script>
+    (function () {
+      const S = '[data-composition-id="c-outro"] ';
+      const tl = gsap.timeline({ paused: true }); // local t = abs - 85.6
+      tl.fromTo(S + "#out-logo", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.24, ease: "steps(4)" }, 3.0);
+      tl.fromTo(S + "#out-start", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 5.25);
+      tl.fromTo(S + "#out-cur", { opacity: 1 }, { opacity: 0, duration: 0.3, ease: "steps(1)", yoyo: true, repeat: 7 }, 5.5);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["c-outro"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Space Mono", monospace; color: #fff; }
+    #ou-card { position: absolute; left: 192px; top: 240px; width: 600px; height: 230px; background: rgba(10,16,34,.84); backdrop-filter: blur(18px);
+      border: 1px solid rgba(156,194,255,.22); }
+    .ou-k { position: absolute; inset: -7px;
+      background:
+        linear-gradient(#9cc2ff,#9cc2ff) left top / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left top / 3px 24px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right top / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right top / 3px 24px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) left bottom / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left bottom / 3px 24px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right bottom / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right bottom / 3px 24px no-repeat; }
+    #ou-logo { position: absolute; left: 40px; top: 28px; width: 400px; height: auto; }
+    #ou-url { position: absolute; left: 44px; bottom: 20px; font-size: 24px; font-weight: 700; letter-spacing: .16em; color: #9cc2ff; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
+    <div id="ou-card"><i class="ou-k"></i><img id="ou-logo" src="assets/sundai-logo.png" alt="Sundai" /><div id="ou-url">SUNDAI.CLUB</div></div>
+  </div>
+  <script>
+    (function () {
+      const O = 85.6, at = (g) => g - O;
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#ou-card", { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "expo.out" }, at(88.5));
+      tl.fromTo("#ou-logo", { opacity: 0, filter: "blur(10px)", scale: 0.92 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.45, ease: "expo.out" }, at(88.6));
+      tl.fromTo("#ou-url", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, at(88.95));
+      window.__timelines["outro"] = tl;
+    })();
+  </script>
+</template>

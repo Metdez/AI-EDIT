@@ -1,0 +1,123 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; overflow: visible; }
+    .cap-g { position: absolute; visibility: hidden; opacity: 0; }
+    .cap-g.c { left: 0; width: 1920px; text-align: center; }
+    .cap-g.r { text-align: right; }
+    .cap-s { position: relative; display: inline-block; padding: 16px 34px 20px; background: rgba(10,16,34,.76); backdrop-filter: blur(18px);
+      border: 1px solid rgba(156,194,255,.22); text-align: left; }
+    .cap-g.r .cap-s { text-align: right; }
+    .cap-g.c .cap-s { text-align: center; }
+    .cap-k { position: absolute; inset: -7px; pointer-events: none;
+      background:
+        linear-gradient(#9cc2ff,#9cc2ff) left top / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left top / 3px 24px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right top / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right top / 3px 24px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) left bottom / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left bottom / 3px 24px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right bottom / 24px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right bottom / 3px 24px no-repeat; }
+    .cap-l { display: block; font-family: "Inter", sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.02; color: #fff; white-space: nowrap; }
+    .cap-m { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0 0.04em 0.06em; margin-bottom: -0.06em; }
+    .cap-w { display: inline-block; }
+    .cap-w.a1 { color: #f6b04a; } .cap-w.a2 { color: #ec8796; } .cap-w.a3 { color: #9cc2ff; }
+    .cap-tag { display: block; font: 700 22px "Space Mono", monospace; letter-spacing: .16em; color: #9cc2ff; margin-bottom: 6px; }
+    .cap-strike { position: absolute; left: 24px; right: 24px; top: 52%; height: 10px; background: #ec8796; transform-origin: 0 50%; transform: scaleX(0); }
+    .cap-s.chat { border-color: rgba(236,135,150,.6); border-radius: 0 28px 28px 28px; }
+    .cap-s.chat.tr { border-radius: 28px 0 28px 28px; }
+    .cap-box { display: inline-block; width: 0.62em; height: 0.62em; margin-right: 0.3em; border: 4px solid #9cc2ff; vertical-align: 0.02em; position: relative; }
+    .cap-box i { position: absolute; inset: 4px; background: #f6b04a; transform: scale(0); }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080"></div>
+  <script>
+    (function () {
+      // [start, end, align, x, y, size, lines, opts]  lines: [[word, time, accent]...] per line
+      // accent: 1 orange, 2 pink, 3 ink. align: l / r / c. x is the left edge (l) or right edge (r).
+      const G = [
+        [0.25, 2.75, "l", 192, 330, 104, [[["What's", 0.25], ["up,", 0.5]], [["everyone?", 1.24, 2]]]],
+        [2.8, 5.05, "l", 192, 330, 100, [[["Welcome", 2.86], ["to", 3.1], ["the", 3.38]], [["Hackathon", 3.5, 1]]]],
+        [6.2, 7.15, "c", 0, 760, 92, [[["Huge", 6.24], ["shout", 6.54], ["out", 6.88, 2]]]],
+        [7.8, 9.3, "c", 0, 740, 84, [[["Bringing", 7.86], ["us", 8.12], ["together", 8.48, 1]]]],
+        [10.78, 12.15, "r", 1728, 690, 100, [[["Build", 10.78], ["something", 11.32]], [["cool", 11.62, 2]]]],
+        [12.24, 14.4, "r", 1728, 690, 96, [[["Experiment", 12.24, 1]], [["with", 12.78], ["new", 13.16], ["ideas", 13.3]]]],
+        [14.74, 15.95, "r", 1728, 800, 110, [[["Have", 15.04], ["fun", 15.28, 2]]]],
+        [16.48, 18.0, "c", 0, 820, 76, [[["Today's", 16.92], ["theme", 16.92, 3]]]],
+        [18.1, 19.55, "c", 0, 800, 110, [[["3D", 18.1, 1], ["simulations", 18.62]]]],
+        [19.6, 21.0, "c", 0, 820, 96, [[["On", 19.6], ["the", 19.66], ["web", 19.72, 3]]]],
+        [21.08, 23.3, "c", 0, 820, 96, [[["three.js", 21.08, 1], ["+", 21.88], ["AI", 22.26, 2]]]],
+        [23.9, 25.3, "c", 0, 820, 92, [[["Pretty", 23.92], ["simple", 24.12, 1]]]],
+        [26.38, 27.15, "c", 0, 820, 96, [[["Real", 26.46, 1], ["world", 26.7]]]],
+        [27.18, 28.7, "c", 0, 820, 96, [[["How", 27.86], ["it", 28.06], ["works", 28.24, 3]]]],
+        [28.78, 30.35, "l", 330, 800, 84, [[["Life", 29.36], ["in", 29.6], ["your", 29.74], ["browser", 29.86, 2]]]],
+        [31.56, 33.25, "r", 1620, 190, 68, [[["Traffic", 31.88], ["in", 32.46], ["Boston", 32.72, 1]]], { tag: "SIM 01" }],
+        [33.92, 35.1, "r", 1620, 190, 68, [[["Crazy", 33.92, 2], ["weather", 34.26]]], { tag: "SIM 02" }],
+        [35.44, 36.7, "r", 1620, 190, 68, [[["Solar", 35.6, 1], ["system", 35.84]]], { tag: "SIM 03" }],
+        [36.9, 39.1, "r", 1620, 190, 68, [[["1,000", 36.9, 1], ["particles", 37.22]]], { tag: "SIM 04" }],
+        [39.22, 40.4, "c", 0, 820, 92, [[["Whatever", 39.22], ["it", 39.6], ["is", 39.88]]]],
+        [40.5, 41.8, "c", 0, 800, 116, [[["Be", 40.78], ["creative", 40.88, 1]]]],
+        [42.24, 43.35, "c", 0, 820, 92, [[["Here's", 42.24], ["the", 42.52], ["cool", 42.6, 2], ["part", 42.82]]]],
+        [43.64, 44.9, "r", 1728, 130, 80, [[["AI", 43.64, 2], ["coding", 43.92], ["tools", 44.22]]]],
+        [44.98, 46.8, "r", 1728, 130, 80, [[["Don't", 44.98], ["spend", 45.42], ["hours", 45.66, 1]]]],
+        [46.95, 48.6, "r", 1728, 130, 80, [[["Physics", 47.06], ["+", 47.48], ["math", 48.0]]], { strike: 48.25 }],
+        [49.1, 50.6, "r", 1728, 130, 80, [[["Focus", 49.2], ["on", 49.82], ["ideas", 50.14, 1]]]],
+        [50.7, 52.15, "r", 1728, 130, 80, [[["Make", 50.76], ["them", 51.08], ["happen", 51.38, 2]]]],
+        [53.4, 55.25, "r", 1728, 130, 80, [[["Never", 53.72], ["worked", 53.92], ["with", 54.24], ["3D?", 54.4, 1]]]],
+        [55.34, 56.95, "r", 1728, 800, 104, [[["Totally", 55.76], ["fine", 56.1, 2]]]],
+        [57.3, 59.2, "l", 192, 820, 84, [[["Learn.", 57.84, 1], ["Try", 58.64], ["new", 58.64], ["things", 58.78]]]],
+        [59.25, 60.45, "l", 192, 820, 84, [[["Meet", 59.3], ["cool", 59.46], ["people", 59.68, 2]]]],
+        [60.9, 62.95, "l", 192, 760, 84, [[["Build", 61.1, 1], ["what", 61.44], ["you", 61.72]], [["didn't", 61.9], ["think", 62.1], ["you", 62.28], ["could", 62.44, 2]]]],
+        [65.3, 66.6, "l", 192, 820, 92, [[["Don't", 65.38], ["overthink", 65.96, 2], ["it", 66.38]]]],
+        [67.3, 69.6, "l", 192, 760, 84, [[["Not", 67.4], ["the", 67.64], ["most", 67.78]], [["complicated", 67.94, 3]]]],
+        [69.76, 71.15, "l", 192, 820, 100, [[["Start", 69.76], ["simple", 70.66, 1]]]],
+        [71.26, 72.7, "l", 192, 820, 92, [[["Make", 71.26], ["it", 71.42], ["interactive", 71.6, 2]]]],
+        [73.48, 78.5, "l", 300, 190, 72, [[["Talk", 73.48, 1]]], { chat: "tl" }],
+        [74.98, 78.5, "r", 1620, 230, 72, [[["Share", 74.98], ["ideas", 75.3, 2]]], { chat: "tr" }],
+        [75.96, 78.5, "l", 300, 760, 72, [[["Ask", 75.96], ["questions", 76.32, 3]]], { chat: "tl" }],
+        [77.6, 78.5, "r", 1620, 790, 72, [[["Experiment", 77.7, 1]]], { chat: "tr" }],
+        [78.88, 81.5, "l", 192, 140, 80, [[["By", 78.88], ["end", 79.36], ["of", 79.56], ["today", 79.68, 1]]]],
+        [82.2, 85.55, "r", 1728, 330, 60, [[["Something", 82.4, 0, "box"], ["built", 82.4, 1]], [["Something", 83.4, 0, "box"], ["learned", 83.76, 3]], [["New", 84.72, 0, "box"], ["friends", 85.06, 2]]], { tag: "WALK AWAY WITH" }],
+        [87.4, 88.5, "l", 192, 480, 96, [[["Huge", 87.46], ["thanks", 87.88, 1]]]],
+        [89.2, 90.6, "l", 192, 480, 96, [[["&", 89.26], ["all", 89.42], ["of", 89.58], ["you", 89.72, 2]]]],
+        [91.0, 94.0, "l", 192, 700, 100, [[["What", 91.04], ["will", 91.22], ["you", 91.56]], [["build?", 91.82, 1]]]],
+      ];
+      const root = document.querySelector('[data-composition-id="captions"]');
+      const tl = gsap.timeline({ paused: true });
+      G.forEach(([s, e, al, x, y, size, lines, o = {}], gi) => {
+        const g = document.createElement("div");
+        g.id = "cap-" + gi; g.className = "cap-g " + al;
+        g.style.top = y + "px";
+        if (al === "l") g.style.left = x + "px";
+        if (al === "r") g.style.right = 1920 - x + "px";
+        const slab = document.createElement("div");
+        slab.className = "cap-s" + (o.chat ? " chat " + o.chat : "");
+        slab.innerHTML = '<i class="cap-k"></i>' + (o.tag ? '<span class="cap-tag">' + o.tag + "</span>" : "");
+        const words = [];
+        lines.forEach((ln) => {
+          const L = document.createElement("span"); L.className = "cap-l"; L.style.fontSize = size + "px";
+          ln.forEach(([w, t, acc, box], wi) => {
+            const m = document.createElement("span"); m.className = "cap-m";
+            const inner = document.createElement("span"); inner.className = "cap-w" + (acc ? " a" + acc : "");
+            inner.innerHTML = (box ? '<span class="cap-box"><i></i></span>' : "") + w;
+            m.appendChild(inner); L.appendChild(m);
+            if (wi < ln.length - 1) L.appendChild(document.createTextNode(" "));
+            words.push([inner, Math.max(s + 0.08, t - 0.05)]);
+          });
+          slab.appendChild(L);
+        });
+        if (o.strike) { const k = document.createElement("i"); k.className = "cap-strike"; k.id = "cap-st-" + gi; slab.appendChild(k); }
+        g.appendChild(slab); root.appendChild(g);
+        s = Math.max(s, lines[0][0][1] - 0.12); // slab opens just before its first word
+        const orig = al === "r" ? "100% 50%" : al === "c" ? "50% 50%" : "0% 50%";
+        tl.set(g, { visibility: "visible", opacity: 1 }, s);
+        tl.fromTo(slab, { clipPath: al === "r" ? "inset(0 0 0 100%)" : al === "c" ? "inset(0 50% 0 50%)" : "inset(0 100% 0 0)" },
+          { clipPath: "inset(0 0% 0 0%)", duration: 0.32, ease: "expo.out" }, s);
+        words.forEach(([w, t]) => {
+          tl.fromTo(w, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "power3.out" }, t);
+          const b = w.querySelector(".cap-box i");
+          if (b) tl.fromTo(b, { scale: 0 }, { scale: 1, duration: 0.2, ease: "power3.out" }, t + 0.25);
+        });
+        if (o.strike) tl.fromTo("#cap-st-" + gi, { scaleX: 0 }, { scaleX: 1, duration: 0.3, ease: "power2.inOut" }, o.strike);
+        tl.to(g, { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power2.in" }, e - 0.18);
+        tl.set(g, { visibility: "hidden", filter: "blur(0px)" }, e);
+      });
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

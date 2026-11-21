@@ -1,0 +1,286 @@
+start	end	text
+0	13580	Claude can now make videos like this for you with any product.
+14060	19400	So in today's video, I'm going to teach you the entire process so you can do this for your videos.
+19740	22460	Claude is now a full-blown motion graphics designer,
+22840	26680	SaaS animator, and full-blown ad maker for your business.
+26680	31040	So in today's video, we'll break down how you can use Claude for each of those use cases.
+31500	35860	And what we've done is we've broken it down into three layers of complexity for you.
+36000	40580	The first one is just prompting with Claude and getting your video straight back from Claude.
+40800	44920	The second one is actually giving Claude access to different AI tools,
+45300	50280	like AI voices, so you can have your own voiceover inside your motion graphic video.
+50580	54560	And the last phase is actually giving Claude access to 3D tools like Blender.
+54560	58120	And I have never opened Blender in my life,
+58180	62780	but I was able to create entire videos that look as good as this.
+62940	65880	Now, it is mind-blowing how good this is getting now.
+66180	70100	Claude can build 3D models of any product, put the lighting onto it,
+70220	74500	put the textures onto it, and make it look and feel like a premium SaaS animation.
+74880	78940	And this video was made in 30 minutes for $2, and I didn't even need to lift a finger.
+79240	82960	We've done a ton of research into this for you, so you can just learn everything.
+82960	86500	And we've even created a free Claude skill that's going to help you create
+86500	88840	higher quality animations with Claude.
+89140	91840	And we spent so long putting this together for you.
+91880	93980	So I think it's going to be an incredible resource.
+94320	96620	No fluff, no BS, no sponsors in this video.
+96940	97900	Let's get right into it.
+98000	102800	So every single one of these videos that you're seeing is made in four simple steps.
+103060	105440	So the first one is that you give Claude the ingredients.
+105780	108140	It then gives you a storyboard that you can approve,
+108140	113060	and Claude goes away and builds that physical storyboard into a sequence for you.
+113320	116960	Then it adds the sound design, the music, and the voiceover.
+117240	122100	Now we're going to show you a few different examples that get more and more advanced as we go.
+122300	127160	So this Spotify example is the easiest level of using Claude to create motion graphics.
+127460	129100	And just look how clean this is.
+129100	150640	The logo builds itself.
+150780	152080	It turns into a music player.
+152220	153580	The player turns into a playlist.
+153920	155220	And we land on the phone.
+155220	160840	So the first thing we need to do to create something of this quality is you need to make a folder.
+161160	163120	So this is going to be our Spotify folder.
+163520	165040	So in this folder goes the skill.
+165200	168440	And I'll leave a link in the description to that skill so you can go and download it.
+168600	170280	And you're just going to want to upload it in here.
+170520	175980	Now this skill has all of the knowledge that we have built up over the last two weeks of testing this
+175980	177860	to help us get to the best results.
+178180	182300	The next thing is a high resolution image of your logo and any other assets.
+182300	187300	And then you can also upload any of the screenshots of maybe inside the app and the user interface.
+187540	191020	Tip number one is use real high quality asset references.
+191340	197000	Reason being is quality that you input into the model equals quality of the output that you're going to get.
+197160	202660	If you don't give quality references to Claude, Claude will then go and create a fake version
+202660	204580	that just looks like a fake app.
+204660	206820	And we obviously don't want that look for your brand.
+207020	208780	And if you don't upload a high quality logo,
+208780	212740	it will try to create that logo from scratch by creating shape layers.
+212960	216920	And a lot of the time it can look pretty close, but it's never actually the exact logo.
+217100	222580	And it's important that you have a proper high resolution image of the logo so it can custom animate it.
+222820	225600	So now we're going to give Claude access to this file.
+225840	227340	And you can do that by just clicking here.
+227440	228900	And then you can select the file.
+229260	232100	And now Claude is talking to that file.
+232240	234220	It understands what is inside it.
+234340	237560	Now this is a critical part of your motion graphics with Claude.
+237560	242720	Before you go and animate anything, you need to ask Claude to create a numbered storyboard
+242720	248020	that basically breaks out the sequence of all of the things that are going to happen in the video.
+248340	252440	Then you can go in and approve that before anything happens.
+252760	257440	Otherwise, you're just going to waste your credits going through and having Claude build animations for you
+257440	259380	when you're not approving the process.
+259600	262680	So you can see here Claude has now built this storyboard for us.
+262820	267040	Now we can go back and forth with Claude and ask for specific tweaks and changes
+267040	269660	so that we can get the exact kind of storyboard that we want.
+269820	273280	And this is where you start directing it before Claude starts to do any animations.
+273640	274860	This is my third tip for you.
+274900	276100	And this is also a critical one.
+276280	278520	So once you're happy with your storyboard and you've got that locked in,
+278760	281300	before you click enter and let Claude go away and do the animation,
+281760	287300	you want to instruct Claude that every shot should transform into the next one.
+287300	292640	So each of the storyboard frames should seamlessly transition into the next frame.
+292780	297300	That way you get one seamless motion where it's all tied together very creatively.
+297740	302520	And it doesn't feel like you then just got like individual shots stacked on top of each other.
+302640	307420	If you don't direct this, Claude will basically create those individual shots.
+307540	311400	And then to blend them together, it will do something called a cross dissolve.
+311400	316280	And I'll show on screen right here what a cross dissolve actually looks like.
+316340	317560	And you can see it looks cheap.
+317660	318560	It doesn't look impressive.
+318840	324600	But then if you actually instruct it to not use cross dissolves and have it seamlessly transition,
+324940	327360	you get way more impressive results like this over here.
+327440	330980	So we want to specifically say like there should be no cross dissolves in here.
+331280	333320	There should always be some sort of motion,
+333520	336620	whether that is an object or a shape transforming into one another,
+336620	341440	because then it keeps the viewer's eye looking at something on the screen.
+341620	345380	And as a byproduct, keeps your viewer engaged, which then makes higher quality videos.
+345560	348300	So when you're looking at your storyboard, you want to ask yourself the question,
+348440	350620	how can I turn this shape into this shape?
+350740	353020	And then describe how you want that to happen.
+353120	355540	And maybe describe how you want the transitions to work.
+355860	358320	And Claude can then direct off of your feedback.
+358380	361300	Once you're happy with it and approved, you can click enter.
+361560	364320	And then Claude will go and start making that animation for you.
+364320	366680	And this one took about eight to ten minutes to come through.
+367020	369640	Just look how like these three lines join up into a circle.
+369780	373520	The circle then becomes a square and the square opens up into the music player.
+373740	379240	Now, pro tip number four, we want to tell Claude to keep whatever is happening in the center of the frame.
+379440	381660	And when I say center, I mean the dead center.
+382020	384540	So your eyes, when you're watching the motion graphic,
+384820	389300	never has to like look and bounce around the screen to understand what's going on.
+389300	395620	It allows you to keep your eyes locked in in a certain position and all the effects happen around it.
+395700	397800	This is going to improve the quality of your animations a lot.
+397960	403540	Now, tip number five, with motion graphics, there should always be some sort of motion happening that you can see here, for example.
+403840	410780	It doesn't need to be crazy or over the top action, but there should at least be some camera motion or something moving in the frame.
+410920	412580	Otherwise, it can feel a bit stale and slow.
+412840	413700	Now, give this a watch.
+413700	418680	One of these versions has no sound on the left, and now we have sound on the right.
+428780	430120	Massive difference, right?
+430580	436920	So we can tell Claude where your sound designs are on your computer if you've downloaded any in the past,
+437060	442800	and it can use those sound effects that you've downloaded to actually go and create the sound design for your videos.
+442800	450100	All you need to do is just select all your sound effects that you've got downloaded on your computer and upload them inside the Spotify folder.
+450400	455540	Then you can instruct Claude to go inside the folder, look at the sound effects that you've uploaded in there,
+455780	458780	and ask it to go and place them in in the exact correct moments.
+459040	460100	And this is the same with music.
+460300	462280	You can upload a music file in here as well.
+462540	466120	Now, from all the testing that we've had our researchers at the company working on,
+466120	472600	we found that using a pre-existing sound effects pack like Ocular Sound, which we're not affiliated with in any way,
+472860	479200	we just genuinely recommend them so much because they have the highest quality of sound design, I think, of any company publicly available.
+479520	485400	So we spent around £500 buying all of their sound effects and giving Claude access to it,
+485460	488660	and then it can create the most unbelievable sound design on our projects.
+488860	492540	Now, you could do this with platforms like Artlist, which are much cheaper and have like a subscription,
+492540	494940	where you can just go and download a bunch of sound effects.
+495160	500820	You know, you can literally search on the Artlist platform like SAS Animation and go and download a bunch of sound effects
+500820	506860	and just upload that into your Spotify folder, and it will then build out the sound design for you with all of those sound effects.
+506860	509120	So that leads me to tip number six.
+509400	514980	Do your visuals first and the sound last, because if you change the animation during any point,
+515120	517960	it can mess up your sound design across the project.
+518160	522040	So once you're happy with your visuals first that Claude has produced for you,
+522040	523680	then go and do your sound design.
+523840	527360	Now, before we progress onto the exciting second complex tier,
+527740	531660	I'm going to show you another example that we were able to create directly inside Claude,
+531720	533380	without any influence elsewhere.
+545800	548060	And this was a Candy Crush advert.
+548060	552880	It's the same workflow and the same level of effort that we did for the previous Spotify video.
+553080	556240	But this is a great example of why you need those high quality images,
+556240	560980	because in this version, it just cropped out the logo from a screenshot that we'd given it,
+561040	562040	and it looked awful.
+562360	568500	So we went and got high quality references, and we also prompted it to have more interesting camera movement.
+569020	571840	And bear in mind, this is all done inside of Claude.
+571840	574060	This isn't Blender or anything like that.
+574260	578520	So the way we made it look high quality and cinematic, and this is tip number seven for you,
+578860	582620	is prompting for a specific shallow depth of field.
+582860	585840	And this is something that you can use, which will blur the background in your video,
+586040	588760	and it gives that look that it was shot on an actual camera.
+589020	590660	Now, these are obviously mobile apps.
+590880	594360	So at the end of these animations, we're doing our call to action at the end of it.
+594620	596260	And yes, obviously, this is a spec ad.
+596500	596900	Congratulations.
+596900	600940	We're now moving on to level two, and this is where things get very exciting.
+601240	603740	And this is where we're adding in an AI voiceover.
+603940	604920	Got AI skills?
+605380	606820	Brands are looking for you.
+607280	607940	Show your work.
+608300	608900	Get matched.
+609240	609940	Get hired.
+610520	613480	Gen HQ, where AI creatives get hired.
+614540	619180	So this version that you're seeing right here is pretty much the same process that we did for the Spotify
+619180	620660	and all the other videos that you've seen.
+620860	624160	We give it the brand assets and the sort of illustration style.
+624360	625780	But here's what's different in this one.
+625780	630480	So everything in the previous examples we made inside of Claude from scratch,
+630580	637100	whereas this is using images that we've already made for Gen HQ that are AI images.
+637440	643960	So what it's done is it's cut out the characters and then it's used the puppet tool so it can add motion onto them
+643960	646060	and then bring them a little bit of life.
+646180	649860	So if you already have assets for your brand, this is a great way that you can use them.
+649980	654800	Now, when it comes to animating text inside your animations, this is tip number nine.
+654800	658340	You want to say no bouncing, no letters fading in.
+658540	661940	Each word just slides up in place one after the other.
+662100	665580	This is a very premium, currently like trending style for animation.
+666120	669160	Now, for the voiceover, you could either just go to Eleven Labs website,
+669420	672900	type in something in the website like this and hope for the best.
+673040	674680	You're kind of guessing how long it's going to be.
+674920	679620	But if the client's asked specifically for a 15 second or a 30 second ad spot,
+679740	682840	then you're probably going to want to use the method that we're about to teach here.
+682840	687180	So what we do is we use the Eleven Labs connector inside of Claude.
+687340	688880	Now, why is that better?
+689140	690900	Well, it's because Claude built the video.
+691120	694180	So it already knows exactly how long the video is.
+694220	699420	So if you instruct Claude to create the animation for 15 seconds and it's gone away and built it,
+699640	703520	what we can do instead is say, OK, Claude, here is our 15 second animation.
+703900	708480	I now want you to create a voiceover that fits inside this 15 second animation.
+708480	715580	So then Claude writes the precise words that fits your shots and it makes the right voiceover for those moments
+715580	719660	and then makes the voice directly in the chat using Eleven Labs connector.
+719900	723280	Honestly, this came in clutch and was hugely helpful.
+723560	725300	So that is tip number 10 for you.
+725440	728240	Now, for this one, we did make custom music with Suno.
+728380	733580	So we asked Claude to write us a Suno prompt that was the exact length of the video that we needed it to be.
+733580	739040	So like a 30 second or a 15 second, for example, and then we generated a backing track in Suno.
+739300	741720	So it fits the exact vibe and the length perfectly.
+742000	747160	Then we just gave Claude that audio track and added it in for us and even adjusted the volume too.
+747360	752720	And by the way, if you are looking to turn AI into your full time career or make money using AI,
+752720	757400	then we have built GenHQ, which is the most comprehensive AI program on the market
+757400	762360	that helps you get from zero all the way to a full time career in the AI space.
+762360	769640	We've had students who've gone through the program and now work at Meta as AI creatives who had zero experience in AI.
+769880	773340	We've helped generate over a million dollars for our students in documented revenue.
+773560	779340	And I've also built a hiring platform that helps put humans in the job positions that we need to create
+779340	781040	because AI is taking a lot of jobs.
+781360	787520	And it is my mission to create 100,000 jobs to creatives through upskilling and training them in the new workflows with AI.
+787880	790760	So if you're looking to get hired, you can check out GenHQ in the description.
+790760	794440	We have the education part of the program where you can go and learn and upskill,
+794600	799640	where we have everything that you could possibly need to become a creative professional in the age of AI.
+799900	803140	And then if you want to find the jobs, we've also got a link to GenHQ.io,
+803340	806080	which you can find in the description and find jobs already.
+806260	812300	There's over half a million dollars worth of jobs ready to be taken right now on the platform that you can go and apply to.
+812400	813160	Back to the video.
+813400	814220	So that's level two.
+814220	819020	We've done prompting inside of Claude, added in AI tools, including AI images,
+819480	823340	and Claude has gone and built our own custom animation from that.
+823520	827180	Now, this is where things truly get mind-blowing.
+827560	829300	Moving on to level three.
+829560	834640	Even if you have no skills in 3D experience, I'm going to blow your mind.
+834640	841100	So this right here is an example of a Claude animation that we tried to do that had no Blender involved.
+841220	842780	And you can see the lighting looks flat.
+842940	843600	It looks fake.
+843720	847140	It looks not real because it's built all of this based on shapes.
+847300	850260	It doesn't have any context of what the product actually looks like.
+850360	852200	And the lighting, frankly, looks awful.
+852460	858020	And then this right here is an example of what Claude made with Blender.
+858380	861120	The dramatic difference is insane.
+861120	869600	So we're going to teach you how you can actually use Blender with Claude without ever even needing to open the app or know anything about it,
+869680	872120	but still create high quality content like this.
+872280	875400	So Blender is a totally free 3D program.
+875400	876860	So you can go and download it.
+876880	879600	And I'll leave a link in the description so you can go and download that too.
+879720	881460	So you'll need to go away and install that.
+881520	883780	But you don't even ever have to even open it.
+883860	884660	So don't panic.
+885000	886900	Claude will run it in the background for you.
+887020	889220	So the interface for you is the exact same.
+889220	892240	You're just dealing with Claude in the Claude code chat.
+892400	895720	Now, if we're building something from scratch here, like this AirPods commercial,
+896020	901240	then what we want to do is still go through the same process that we've done for step one and step two.
+901540	905940	But what we're going to do is create our storyboard first, go through the process of approving it.
+906080	909060	And you can see our storyboard for this entire commercial right here.
+909180	912760	So what is the difference between these two different styles of videos here?
+913220	918120	You can see the main reason one looks cinematic in comparison to the other is obviously the lighting that I mentioned earlier.
+918120	924040	On Blender, it uses a single lighting reference point, whereas this one has lighting everywhere.
+924220	926160	So that is tip number 11 for you.
+926280	930580	So this is our prompt that we use to actually get the full animation of this video.
+930800	933920	But we wanted to go an extra step further with this one,
+934040	938840	where it actually transitioned into real footage that I had filmed on my camera.
+939000	942060	So it went from animation into real footage.
+942060	952040	Now, to do this, all I had to do was provide it with a single AI reference image that I had created of myself in this Apple style with the AirPod in.
+952360	957000	And then I instructed Claude that, yes, go away and build all this nice animation over here.
+957120	963640	But then when you're finished, the end of the animation needs to end with the exact reference frame that I had provided,
+963900	966580	with the outline of me with the AirPod in my ear.
+966580	970920	That way, Blender can go away and it can go and do all the fancy animations.
+971420	972740	Claude can put it all together.
+973000	977000	And then it's going to guarantee that it ends at a certain animation point.
+977240	978280	And look at that.
+978440	979900	That is very, very cool.
+980100	981640	Now, it didn't get it right first time around.
+981760	985140	The first case that came back didn't look like the AirPod's case.
+985460	989260	And the stems on the actual AirPod were cutting straight through it.
+989320	991820	And at one point, I actually put the wrong AirPods in my ear.
+991820	996840	Now, my next tip for you is compare your actual animation to the real physical product.
+997140	1001360	So have the actual product in front of you so you can look at it and be like,
+1001500	1004520	are all of those details there inside the animation?
+1004800	1008880	And if it's not, you can simply instruct Claude to go away and fix that.
+1009040	1012480	And honestly, that is a huge skill now moving into the AI space.
+1012600	1016580	If you give it a short generic prompt, you're going to get a generic output.
+1016880	1020620	So we want to make sure we're using all the principles that we've learned in this video.
+1020620	1024620	Otherwise, you're going to get the equivalent of the generic ChatGPT poster,
+1025020	1026020	but for motion graphics.
+1026320	1028600	You want to make sure you're giving it all the artistic direction,
+1028780	1031000	creating really cool ideas for your storyboards,
+1031140	1033980	and then even using things like Blender and cool transitions
+1033980	1037720	to allow your Claude to have the best chance to create something unique and compelling.
+1038040	1041820	And the free skill in the description is a huge step in the right direction for you.
+1041960	1046100	And just know none of these actually use any AI image or video generation,
+1046100	1050980	but you can upload your own AI image and video generation into your folders
+1050980	1054240	when you're creating your adverts if you wanted to.
+1054440	1057580	So this is where you started today, and this is where you've ended up.
+1057760	1059700	And if you want to turn AI into your full-time career,
+1059780	1060940	then you can check out GenHQ.
+1061020	1062120	It's the first link in the description.
+1062540	1063520	We'd love to see you over there.
+1063580	1066260	We have full-time support staff, four live calls a week,
+1066380	1069780	and two new modules a week with all of the relevant information that you need
+1069780	1072120	in order to stay up-to-date in the AI industry.
+1072120	1074100	I promise you, you'll be in good hands.
+1074260	1076260	If you enjoyed this video, please leave a like and subscribe,
+1076560	1078280	and I'll see you guys in the next one.

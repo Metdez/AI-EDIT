@@ -1,0 +1,42 @@
+<template>
+  <style>
+    @font-face { font-family: "VT323"; src: url("assets/fonts/VT323-Regular.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #pipe-steps { position: absolute; left: 230px; top: 112px; display: flex; align-items: center; gap: 18px; font-family: "VT323", monospace; font-size: 46px; color: #fff; }
+    #pipe-steps .chip { padding: 6px 20px 2px; background: rgba(11, 15, 30, 0.88); border: 4px solid #8f7fd6; white-space: nowrap; }
+    #pipe-steps .arr { color: #8f7fd6; }
+    #pipe-formula { position: absolute; left: 230px; top: 380px; width: 470px; padding: 22px 28px; background: rgba(11, 15, 30, 0.9); border: 4px solid #f6b04a; color: #fff; }
+    #pipe-formula .k { font-family: "Space Mono", monospace; font-size: 28px; letter-spacing: 0.1em; color: #f6b04a; }
+    #pipe-formula .f { font-family: "VT323", monospace; font-size: 64px; line-height: 1.05; }
+    .win { position: absolute; border: 6px solid #fff4e6; background: transparent; }
+    .win .bar { position: absolute; left: -6px; right: -6px; top: -64px; height: 64px; background: #fff4e6; display: flex; align-items: center; gap: 14px; padding: 0 20px; }
+    .win .dot { width: 18px; height: 18px; } .win .d1 { background: #ec8796; } .win .d2 { background: #f6b04a; } .win .d3 { background: #8f7fd6; }
+    .win .url { flex: 1; margin-left: 12px; height: 36px; background: #111827; color: #fff; font-family: "Space Mono", monospace; font-size: 28px; line-height: 36px; padding: 0 16px; }
+    #pipe-win { left: 560px; top: 300px; width: 800px; height: 500px; }
+  </style>
+  <div id="root" data-composition-id="c-pipe" data-width="1920" data-height="1080">
+    <div id="pipe-steps">
+      <span id="pipe-s1" class="chip">1 REAL WORLD</span><span class="arr">&gt;</span>
+      <span id="pipe-s2" class="chip">2 HOW IT WORKS</span><span class="arr">&gt;</span>
+      <span id="pipe-s3" class="chip">3 BROWSER</span>
+    </div>
+    <div id="pipe-formula"><div class="k">GRAVITY</div><div class="f">y = y0 - &frac12;gt&sup2;</div><div class="f" style="color:#ec8796">g = 9.8 m/s&sup2;</div></div>
+    <div id="pipe-win" class="win"><div class="bar"><i class="dot d1"></i><i class="dot d2"></i><i class="dot d3"></i><div class="url">localhost:5173/apple</div></div></div>
+  </div>
+  <script>
+    (function () {
+      const S = '[data-composition-id="c-pipe"] ';
+      const tl = gsap.timeline({ paused: true }); // local t = abs - 23.5
+      tl.fromTo(S + "#pipe-steps", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.24, ease: "steps(4)" }, 0.15);
+      [["#pipe-s1", 2.8], ["#pipe-s2", 3.68], ["#pipe-s3", 5.28]].forEach(([id, t]) =>
+        tl.fromTo(S + id, { backgroundColor: "rgba(11,15,30,0.88)", color: "#ffffff", borderColor: "#8f7fd6" }, { backgroundColor: "#ec8796", color: "#111827", borderColor: "#fff4e6", duration: 0.01 }, t));
+      tl.fromTo(S + "#pipe-formula", { x: -80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.24, ease: "steps(4)" }, 3.75);
+      tl.to(S + "#pipe-formula", { x: -80, opacity: 0, duration: 0.15, ease: "steps(3)" }, 5.12);
+      tl.fromTo(S + "#pipe-win", { scale: 2.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.32, ease: "steps(5)" }, 5.3);
+      tl.to(S + "#pipe-win", { scale: 3.2, opacity: 0, duration: 0.3, ease: "power3.in" }, 7.0);
+      tl.to(S + "#pipe-steps", { y: -60, opacity: 0, duration: 0.2, ease: "steps(3)" }, 7.0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["c-pipe"] = tl;
+    })();
+  </script>
+</template>

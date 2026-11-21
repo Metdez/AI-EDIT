@@ -1,0 +1,35 @@
+<template>
+  <style>
+    @font-face { font-family: "VT323"; src: url("assets/fonts/VT323-Regular.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #boot-term { position: absolute; left: 1150px; top: 118px; width: 578px; padding: 18px 24px 20px; background: rgba(11, 15, 30, 0.88);
+      border: 5px solid #8f7fd6; font-family: "VT323", monospace; color: #fff; font-size: 40px; line-height: 1.05; }
+    #boot-term .l { display: block; white-space: nowrap; }
+    #boot-term .k { color: #f6b04a; }
+    #boot-bar { display: flex; gap: 6px; margin-top: 12px; }
+    #boot-bar i { display: block; width: 44px; height: 22px; background: #2a3150; }
+    #boot-ready { color: #7bd88f; }
+  </style>
+  <div id="root" data-composition-id="c-boot" data-width="1920" data-height="1080">
+    <div id="boot-term">
+      <span class="l" id="boot-l1"><span class="k">SUNDAI</span> OS v3.0</span>
+      <span class="l" id="boot-l2">&gt; LOADING HACKATHON...</span>
+      <div id="boot-bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="l" id="boot-ready">&gt; READY. PRESS START</span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const S = '[data-composition-id="c-boot"] ';
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(S + "#boot-term", { y: -40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.24, ease: "steps(4)" }, 0.05);
+      tl.fromTo(S + "#boot-l1", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "steps(14)" }, 0.2);
+      tl.fromTo(S + "#boot-l2", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "steps(21)" }, 0.65);
+      document.querySelectorAll(S + "#boot-bar i").forEach((b, k) => tl.fromTo(b, { backgroundColor: "#2a3150" }, { backgroundColor: k % 2 ? "#f6b04a" : "#ec8796", duration: 0.01 }, 1.1 + k * 0.12));
+      tl.fromTo(S + "#boot-ready", { opacity: 0 }, { opacity: 1, duration: 0.01 }, 2.25);
+      tl.to(S + "#boot-term", { y: -40, opacity: 0, duration: 0.2, ease: "steps(3)" }, 2.62);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["c-boot"] = tl;
+    })();
+  </script>
+</template>

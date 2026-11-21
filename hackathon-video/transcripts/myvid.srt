@@ -1,0 +1,76 @@
+1
+00:00:00,000 --> 00:00:05,140
+Yo, what's up? How's everyone doing today? First off, welcome to the hackathon. Super excited to
+
+2
+00:00:05,140 --> 00:00:10,780
+see everyone here and huge shout out to Sunday for bringing us all together. So today is all about
+
+3
+00:00:10,780 --> 00:00:15,940
+building something cool, experimenting with new ideas, and honestly just having fun with it.
+
+4
+00:00:16,020 --> 00:00:23,460
+The theme for today's hackathon is 3D simulations on the web using tools like 3.js and AI. And the
+
+5
+00:00:23,460 --> 00:00:28,640
+idea is pretty simple. Think about something that happens in the real world, figure out how it works,
+
+6
+00:00:28,640 --> 00:00:34,260
+and bring it to life in your browser. Maybe you want to simulate traffic in Boston, create a crazy
+
+7
+00:00:34,260 --> 00:00:38,920
+weather system, build a solar system, or have a thousand particles flying around your screen.
+
+8
+00:00:39,220 --> 00:00:44,620
+Whatever it is, you get to be creative with it. And here's the cool part. With AI coding tools,
+
+9
+00:00:44,840 --> 00:00:49,480
+you don't have to spend hours figuring out all the complicated physics and math. You can focus
+
+10
+00:00:49,480 --> 00:00:54,240
+more on your ideas and actually making them happen. Also, don't worry if you've never worked
+
+11
+00:00:54,240 --> 00:00:58,160
+with 3D before. That's totally fine. This is a place to learn,
+
+12
+00:00:58,640 --> 00:01:02,900
+try new things, meet cool people, and maybe even build something you didn't think you could build.
+
+13
+00:01:03,100 --> 00:01:07,940
+And one thing I really want to emphasize is don't overthink it. You don't need to build the most
+
+14
+00:01:07,940 --> 00:01:12,660
+complicated project in the room. Start with something simple, make it interactive, and see
+
+15
+00:01:12,660 --> 00:01:18,020
+where it goes. Talk to the people around you, share ideas, ask questions, and don't be afraid
+
+16
+00:01:18,020 --> 00:01:22,400
+to experiment. By the end of today, hopefully everyone walks away with something cool they've
+
+17
+00:01:22,400 --> 00:01:27,320
+built, something new they've learned, and maybe a few new friends. So yeah, that's pretty much it.
+
+18
+00:01:27,460 --> 00:01:28,620
+Huge thanks again to Sunday for bringing us all together. And I'll see you next time.
+
+19
+00:01:28,640 --> 00:01:33,140
+Thanks to Sunday and to all of you for showing up. I'm really excited to see what everyone comes up with.
+

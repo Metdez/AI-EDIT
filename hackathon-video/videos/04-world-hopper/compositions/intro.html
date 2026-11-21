@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #in-kicker { position: absolute; left: 0; right: 0; top: 190px; text-align: center; font: 700 28px "Space Mono", monospace; letter-spacing: .2em; color: #d9d4ff; opacity: 0; }
+    #in-kicker b { color: #f6b04a; font-weight: 700; }
+    #in-logo-wrap { position: absolute; left: 610px; top: 410px; width: 700px; height: 260px; display: flex; align-items: center; justify-content: center; opacity: 0;
+      border-radius: 30px; background: radial-gradient(closest-side, rgba(8,9,20,.92), rgba(8,9,20,.75) 70%, rgba(8,9,20,0)); }
+    #in-logo { width: 620px; height: auto; display: block; }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1920" data-height="1080">
+    <div id="in-kicker">SUNDAI HACK <b>/</b> 3D SIMULATIONS ON THE WEB</div>
+    <div id="in-logo-wrap"><img id="in-logo" src="assets/sundai-logo.png" alt="Sundai" /></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#in-kicker", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 0.5);
+      tl.to("#in-kicker", { opacity: 0, filter: "blur(6px)", duration: 0.2, ease: "power2.in" }, 4.7);
+      // the logo grows out of the gate's centre, then returns into it
+      tl.fromTo("#in-logo-wrap", { opacity: 0, scale: 0.15 }, { opacity: 1, scale: 1, duration: 0.55, ease: "expo.out" }, 7.24);
+      tl.to("#in-logo-wrap", { opacity: 0, scale: 0.12, duration: 0.4, ease: "power3.in" }, 10.2);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["intro"] = tl;
+    })();
+  </script>
+</template>

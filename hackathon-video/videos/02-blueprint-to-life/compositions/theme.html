@@ -1,0 +1,43 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Space Mono", monospace; color: #fff; }
+    #th-frame { position: absolute; left: 600px; top: 200px; width: 720px; height: 590px; border: 2px solid rgba(156,194,255,.7);
+      box-shadow: 0 0 0 3000px rgba(6,10,22,.84), 0 30px 80px rgba(0,0,0,.6); }
+    #th-bar { position: absolute; left: 0; right: 0; top: 0; height: 46px; background: rgba(17,24,39,.96); border-bottom: 1px solid rgba(156,194,255,.3); }
+    #th-bar i { position: absolute; top: 16px; width: 14px; height: 14px; border-radius: 50%; }
+    #th-url { position: absolute; left: 110px; right: 18px; top: 8px; height: 30px; background: rgba(10,16,34,.9); border: 1px solid rgba(156,194,255,.25);
+      font-size: 20px; line-height: 28px; padding-left: 14px; color: #9cc2ff; letter-spacing: .04em; white-space: nowrap; overflow: hidden; }
+    #th-code { position: absolute; left: 16px; right: 16px; bottom: 16px; padding: 10px 16px; background: rgba(10,16,34,.86); border: 1px solid rgba(156,194,255,.22);
+      font-size: 22px; line-height: 1.45; white-space: pre; color: #ede6da; min-height: 84px; }
+    #th-code .k { color: #ec8796; } #th-code .s { color: #f6b04a; } #th-code .c { color: #8f7fd6; }
+  </style>
+  <div id="root" data-composition-id="theme" data-width="1920" data-height="1080">
+    <div id="th-frame">
+      <div id="th-bar"><i style="left:18px;background:#ec8796"></i><i style="left:42px;background:#f6b04a"></i><i style="left:66px;background:#8f7fd6"></i>
+        <div id="th-url">localhost:5173 &nbsp;·&nbsp; my-first-sim</div></div>
+      <div id="th-code"><span id="th-l1"></span>
+<span id="th-l2"></span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      const L1 = 'import * as THREE from "three";', L2 = '// AI: "make the satellites orbit"';
+      const typed = (id, text, cls, t0, dur) => {
+        const el = document.getElementById(id), o = { n: 0 };
+        tl.fromTo(o, { n: 0 }, { n: text.length, duration: dur, ease: "none", onUpdate: () => {
+          const s = text.slice(0, Math.round(o.n));
+          el.innerHTML = cls(s) + (o.n < text.length ? '<span style="color:#ec8796">▍</span>' : "");
+        } }, t0);
+      };
+      // local times: this scene starts at 16.0
+      tl.fromTo("#th-frame", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.55, ease: "expo.out" }, 3.55);
+      typed("th-l1", L1, (s) => s.replace("import", '<span class="k">import</span>').replace(/"three(";?)?/, (m) => '<span class="s">' + m + "</span>"), 5.08, 0.6);
+      typed("th-l2", L2, (s) => '<span class="c">' + s + "</span>", 6.26, 0.7);
+      // zoom through the browser window into the next shot
+      tl.to("#th-frame", { scale: 3.4, duration: 0.42, ease: "power3.in" }, 6.98);
+      tl.set("#th-frame", { opacity: 0 }, 7.42);
+      window.__timelines["theme"] = tl;
+    })();
+  </script>
+</template>

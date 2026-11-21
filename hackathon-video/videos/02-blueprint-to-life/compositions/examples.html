@@ -1,0 +1,146 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Space Mono", monospace; color: #fff; }
+    .ex-glass { position: absolute; background: rgba(10,16,34,.82); backdrop-filter: blur(18px); border: 1px solid rgba(156,194,255,.22); }
+    .ex-k { position: absolute; inset: -7px;
+      background:
+        linear-gradient(#9cc2ff,#9cc2ff) left top / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left top / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right top / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right top / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) left bottom / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left bottom / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right bottom / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right bottom / 3px 22px no-repeat; }
+    /* step tracker */
+    #ex-track { position: absolute; left: 0; width: 1920px; top: 182px; text-align: center; white-space: nowrap; }
+    .ex-step { display: inline-block; font-size: 28px; font-weight: 700; letter-spacing: .12em; color: rgba(156,194,255,.62); padding: 10px 22px;
+      border-bottom: 4px solid rgba(156,194,255,.2); background: rgba(10,16,34,.7); }
+    .ex-step em { font-style: normal; color: rgba(246,176,74,.65); margin-right: 10px; }
+    .ex-arrow { display: inline-block; font-size: 28px; color: rgba(156,194,255,.5); margin: 0 18px; }
+    /* physics card */
+    #ex-phys { left: 1330px; top: 300px; width: 400px; padding: 22px 28px; }
+    .ex-h { font-size: 24px; font-weight: 700; letter-spacing: .16em; color: #9cc2ff; margin-bottom: 10px; white-space: nowrap; }
+    .ex-row { font-size: 30px; font-weight: 700; line-height: 1.55; white-space: nowrap; }
+    .ex-row b { color: #f6b04a; } .ex-row .p { color: #ec8796; }
+    /* browser frame */
+    #ex-frame { position: absolute; left: 260px; top: 120px; width: 1400px; height: 840px; border: 2px solid rgba(156,194,255,.7);
+      box-shadow: 0 0 0 3000px rgba(6,10,22,.86), 0 30px 80px rgba(0,0,0,.6); }
+    #ex-bar { position: absolute; left: 0; right: 0; top: 0; height: 48px; background: rgba(17,24,39,.96); border-bottom: 1px solid rgba(156,194,255,.3); }
+    #ex-bar > i { position: absolute; top: 17px; width: 14px; height: 14px; border-radius: 50%; }
+    #ex-url { position: absolute; left: 110px; width: 760px; top: 8px; height: 32px; background: rgba(10,16,34,.9); border: 1px solid rgba(156,194,255,.25); }
+    #ex-url span { position: absolute; left: 14px; top: 0; font-size: 22px; line-height: 30px; color: #9cc2ff; white-space: nowrap; opacity: 0; }
+    #ex-url span b { color: #fff; font-weight: 700; }
+    /* sim cards */
+    .ex-card { left: 290px; top: 190px; width: 500px; padding: 20px 26px; }
+    .ex-card .ex-row { font-size: 28px; line-height: 1.5; }
+    #ex-code { left: 290px; top: 768px; width: 780px; height: 160px; padding: 16px 22px; }
+    #ex-code .ex-h { margin-bottom: 6px; }
+    .ex-cl { position: absolute; left: 22px; top: 52px; font-size: 24px; line-height: 1.5; white-space: pre; color: #ede6da; }
+    .ex-cl .k { color: #ec8796; } .ex-cl .n { color: #f6b04a; } .ex-cl .c { color: #8f7fd6; }
+  </style>
+  <div id="root" data-composition-id="examples" data-width="1920" data-height="1080">
+    <div id="ex-track">
+      <span class="ex-step" id="ex-s1"><em>01</em>REAL WORLD</span><span class="ex-arrow">→</span>
+      <span class="ex-step" id="ex-s2"><em>02</em>HOW IT WORKS</span><span class="ex-arrow">→</span>
+      <span class="ex-step" id="ex-s3"><em>03</em>YOUR BROWSER</span>
+    </div>
+    <div id="ex-phys" class="ex-glass"><i class="ex-k"></i>
+      <div class="ex-h">BOUNCE · MODEL</div>
+      <div class="ex-row">h&nbsp; <b id="ex-h">0.00</b> m</div>
+      <div class="ex-row"><span class="p">v</span>&nbsp; <b id="ex-v">0.0</b> m/s</div>
+      <div class="ex-row">g&nbsp; <b>9.81</b> m/s²</div>
+      <div class="ex-row" style="font-size:24px;color:#9cc2ff">y = v₀t − ½gt²</div>
+    </div>
+    <div id="ex-frame">
+      <div id="ex-bar"><i style="left:18px;background:#ec8796"></i><i style="left:42px;background:#f6b04a"></i><i style="left:66px;background:#8f7fd6"></i>
+        <div id="ex-url">
+          <span id="ex-u0">localhost:5173/<b>bounce</b></span><span id="ex-u1">localhost:5173/<b>boston-traffic</b></span>
+          <span id="ex-u2">localhost:5173/<b>weather</b></span><span id="ex-u3">localhost:5173/<b>solar-system</b></span>
+          <span id="ex-u4">localhost:5173/<b>particles</b></span>
+        </div>
+      </div>
+    </div>
+    <div id="ex-c1" class="ex-glass ex-card"><i class="ex-k"></i><div class="ex-h">BOSTON · DOWNTOWN GRID</div>
+      <div class="ex-row">VEHICLES <b data-v="260">0</b></div><div class="ex-row">FLOW <b data-v="38">0</b> CARS/MIN</div><div class="ex-row">AVG SPEED <b data-v="17">0</b> MPH</div></div>
+    <div id="ex-c2" class="ex-glass ex-card"><i class="ex-k"></i><div class="ex-h">STORM CELL · LIVE</div>
+      <div class="ex-row">WIND <b data-v="64">0</b> KM/H</div><div class="ex-row">RAIN <b data-v="22">0</b> MM/H</div><div class="ex-row">PRESSURE <b data-v="982">0</b> hPa</div></div>
+    <div id="ex-c3" class="ex-glass ex-card"><i class="ex-k"></i><div class="ex-h">ORBITAL PERIODS</div>
+      <div class="ex-row">EARTH <b data-v="365.25" data-d="2">0</b> d</div><div class="ex-row">MARS <b data-v="687">0</b> d</div><div class="ex-row">JUPITER <b data-v="4333">0</b> d</div></div>
+    <div id="ex-c4" class="ex-glass ex-card"><i class="ex-k"></i><div class="ex-h">POINT CLOUD</div>
+      <div class="ex-row">COUNT <b data-v="1000" data-from="36.9" data-dur="1.0">0</b></div><div class="ex-row">SEED <b data-v="1000">0</b></div><div class="ex-row">DRAW CALLS <b data-v="1">0</b></div></div>
+    <div id="ex-code" class="ex-glass"><i class="ex-k"></i><div class="ex-h">main.js</div>
+      <div class="ex-cl" id="ex-code1"></div><div class="ex-cl" id="ex-code2"></div><div class="ex-cl" id="ex-code3"></div><div class="ex-cl" id="ex-code4"></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const O = 23.5; // this scene's start on the main timeline; all times below are written global and shifted
+      const tl = gsap.timeline({ paused: true });
+      const at = (g) => g - O;
+      const fmt = (n) => Math.round(n).toLocaleString("en-US");
+      // step tracker
+      tl.fromTo("#ex-track", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, at(24.6));
+      [[1, 26.46], [2, 27.86], [3, 29.36]].forEach(([i, g]) => {
+        tl.fromTo("#ex-s" + i, { color: "rgba(156,194,255,.62)", borderBottomColor: "rgba(156,194,255,.2)" }, { color: "#ffffff", borderBottomColor: "#ec8796", duration: 0.2, ease: "power2.out" }, at(g));
+        tl.fromTo("#ex-s" + i + " em", { color: "rgba(246,176,74,.65)" }, { color: "#f6b04a", duration: 0.2 }, at(g));
+      });
+      tl.to("#ex-track", { opacity: 0, y: -16, duration: 0.2, ease: "power2.in" }, at(30.2));
+      // live physics card during the blueprint
+      const ph = { t: 0 }, hEl = document.getElementById("ex-h"), vEl = document.getElementById("ex-v");
+      tl.fromTo("#ex-phys", { opacity: 0, clipPath: "inset(0 0 0 100%)" }, { opacity: 1, clipPath: "inset(0 0 0 0%)", duration: 0.35, ease: "expo.out" }, at(27.35));
+      tl.fromTo(ph, { t: 27.35 }, { t: 29.0, duration: 29.0 - 27.35, ease: "none", onUpdate: () => {
+        const s = ph.t - 23.4, u = s - Math.floor(s);
+        hEl.textContent = (1.75 * 4 * u * (1 - u)).toFixed(2);
+        const vy = 7.0 * (1 - 2 * u); vEl.textContent = Math.sqrt(0.36 + vy * vy).toFixed(1);
+      } }, at(27.35));
+      tl.to("#ex-phys", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, at(28.9));
+      // the browser frame lands around the ball and stays as the stage for every sim
+      tl.fromTo("#ex-frame", { opacity: 0, scale: 2.4 }, { opacity: 1, scale: 1, duration: 0.6, ease: "expo.out" }, at(28.95));
+      const U = [[29.0, 30.4], [30.4, 33.35], [33.35, 35.15], [35.15, 36.75], [36.75, 39.4]];
+      U.forEach(([a, b], i) => {
+        tl.fromTo("#ex-u" + i, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out", immediateRender: false }, at(a));
+        tl.set("#ex-u" + i, { opacity: 0 }, at(b));
+      });
+      tl.to("#ex-frame", { scale: 3.2, duration: 0.36, ease: "power3.in" }, at(39.0));
+      tl.set("#ex-frame", { opacity: 0 }, at(39.38));
+      // sim cards: in on the blueprint, numbers count up as the sim fills in
+      const C = [["#ex-c1", 30.6, 33.25], ["#ex-c2", 33.5, 35.1], ["#ex-c3", 35.25, 36.7], ["#ex-c4", 36.85, 39.0]];
+      C.forEach(([id, a, b]) => {
+        tl.fromTo(id, { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "expo.out" }, at(a));
+        document.querySelectorAll(id + " b[data-v]").forEach((el, k) => {
+          const v = +el.dataset.v, d = +(el.dataset.d || 0), o = { n: 0 };
+          const from = el.dataset.from ? +el.dataset.from : a + 0.25 + k * 0.1, dur = el.dataset.dur ? +el.dataset.dur : 0.7;
+          tl.fromTo(o, { n: 0 }, { n: v, duration: dur, ease: el.dataset.from ? "power2.out" : "power2.out", onUpdate: () => { el.textContent = d ? o.n.toFixed(d) : fmt(o.n); } }, at(from));
+        });
+        tl.to(id, { opacity: 0, duration: 0.12, ease: "power2.in" }, at(b) - 0.12);
+      });
+      // code panel types the lines that drive each sim
+      const CODE = [
+        ["ex-code1", 30.7, ['<span class="k">const</span> cars = <span class="k">new</span> InstancedMesh(box, mat, <span class="n">260</span>);', "car.x = lane.at(offset + speed * t);"]],
+        ["ex-code2", 33.55, ["rain.y = top - fract(seed + <span class=\"n\">1.9</span> * t) * <span class=\"n\">4.6</span>;", '<span class="k">if</span> (strike) light.intensity = <span class="n">2.6</span>;']],
+        ["ex-code3", 35.3, ["planet.angle = phase + t * k * r ** <span class=\"n\">-1.5</span>;", 'sun.add(<span class="k">new</span> PointLight(<span class="n">0xffd9a0</span>));']],
+        ["ex-code4", 36.9, ['<span class="k">const</span> pts = <span class="k">new</span> Points(geo, mat); <span class="c">// 1,000</span>', "p.x = Math.sin(a * t + phase) * r;"]],
+      ];
+      const strip = (h) => h.replace(/<[^>]+>/g, "");
+      // reveal HTML lines by visible character count, keeping syntax colour
+      function cut(html, n) {
+        let out = "", seen = 0, i = 0;
+        while (i < html.length && seen < n) {
+          if (html[i] === "<") { const j = html.indexOf(">", i); out += html.slice(i, j + 1); i = j + 1; continue; }
+          out += html[i]; seen++; i++;
+        }
+        const open = (out.match(/<span/g) || []).length - (out.match(/<\/span>/g) || []).length;
+        return out + "</span>".repeat(Math.max(0, open));
+      }
+      CODE.forEach(([id, a, lines], ci) => {
+        const el = document.getElementById(id), o = { n: 0 };
+        const full = lines.join("\n"), total = strip(full).length;
+        tl.fromTo(o, { n: 0 }, { n: total, duration: Math.min(1.1, C[ci][2] - a - 0.4), ease: "none", onUpdate: () => {
+          el.innerHTML = cut(full, Math.round(o.n)) + (o.n < total ? '<span style="color:#ec8796">▍</span>' : "");
+        } }, at(a));
+        tl.set("#" + id, { opacity: 1 }, at(a));
+        tl.set("#" + id, { opacity: 0 }, at(C[ci][2]));
+      });
+      tl.fromTo("#ex-code", { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "expo.out" }, at(30.6));
+      tl.to("#ex-code", { opacity: 0, duration: 0.12, ease: "power2.in" }, at(38.95));
+      window.__timelines["examples"] = tl;
+    })();
+  </script>
+</template>

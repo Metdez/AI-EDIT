@@ -1,0 +1,26 @@
+<template>
+  <style>
+    @font-face { font-family: "VT323"; src: url("assets/fonts/VT323-Regular.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .sp { position: absolute; padding: 4px 18px 0; background: #fff4e6; color: #111827; font-family: "VT323", monospace; font-size: 48px; border: 4px solid #111827; opacity: 0; white-space: nowrap; }
+    .sp::after { content: ""; position: absolute; left: 22px; bottom: -22px; width: 18px; height: 18px; background: #fff4e6; }
+    #tk-1 { left: 560px; top: 240px; } #tk-2 { left: 880px; top: 196px; } #tk-3 { left: 1160px; top: 252px; }
+  </style>
+  <div id="root" data-composition-id="c-talk" data-width="1920" data-height="1080">
+    <div id="tk-1" class="sp">hi!</div>
+    <div id="tk-2" class="sp">what are you building?</div>
+    <div id="tk-3" class="sp">ooh, cool</div>
+  </div>
+  <script>
+    (function () {
+      const S = '[data-composition-id="c-talk"] ';
+      const tl = gsap.timeline({ paused: true }); // local t = abs - 73.0
+      [["#tk-1", 0.35], ["#tk-2", 0.6], ["#tk-3", 1.0]].forEach(([id, t]) => {
+        tl.fromTo(S + id, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.15, ease: "steps(3)" }, t);
+        tl.to(S + id, { opacity: 0, duration: 0.1, ease: "steps(2)" }, 1.98);
+      });
+      window.__timelines = window.__timelines || {};
+      window.__timelines["c-talk"] = tl;
+    })();
+  </script>
+</template>

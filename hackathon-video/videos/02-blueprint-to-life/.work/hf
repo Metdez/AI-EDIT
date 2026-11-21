@@ -1,0 +1,2 @@
+#!/bin/sh
+exec node /Users/zackhanna/.claude/skills/hyperframes/scripts/plugin-cli.mjs "$@"

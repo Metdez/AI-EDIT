@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three/three.module.min.js", "three/addons/": "./lib/three/addons/", "@sparkjsdev/spark": "./lib/spark/spark.module.js" } }
+    </script>
+    <style>
+      :root { --ground: #0b0d1a; --ink: #ffffff; --pink: #ec8796; --orange: #f6b04a; --purple: #8f7fd6; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: "Space Mono", monospace; color: var(--ink); background: var(--ground); }
+      /* the "device": canvas + browser chrome, scaled by GSAP for the "in your browser" beat */
+      #device { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; z-index: 1; }
+      #gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      #chrome { position: absolute; left: -3px; right: -3px; top: -76px; height: 76px; background: #1b1e2c; border: 3px solid #3a3f58; border-bottom: 0;
+        border-radius: 26px 26px 0 0; display: flex; align-items: center; gap: 16px; padding: 0 30px; opacity: 0; }
+      #chrome i { width: 20px; height: 20px; border-radius: 50%; display: block; }
+      #chrome .url { margin-left: 30px; flex: 1; height: 44px; border-radius: 22px; background: #0e1018; display: flex; align-items: center; padding: 0 26px;
+        font: 400 30px "Space Mono", monospace; color: #c9cbe0; }
+      #chrome .url b { color: var(--orange); font-weight: 400; }
+      /* the Gaussian-splat shot, pre-rendered from scenes/splat.js (see BAKE below); masked by the portals */
+      #splatwrap { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; z-index: 1; visibility: hidden; }
+      #splatvid { width: 100%; height: 100%; display: block; }
+      #frame { position: absolute; inset: 0 -3px -3px -3px; border: 3px solid #3a3f58; border-top: 0; border-radius: 0 0 22px 22px; opacity: 0; }
+      #scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 360px; z-index: 2; pointer-events: none;
+        background: linear-gradient(to top, rgba(5,6,14,.68), rgba(5,6,14,.38) 45%, rgba(5,6,14,0)); }
+      /* bubble: wrapper is positioned by GSAP x/y/scale only */
+      #bubble { position: absolute; left: 0; top: 0; width: 480px; height: 480px; border-radius: 50%; overflow: hidden; z-index: 30;
+        border: 9px solid #fff; box-shadow: 0 0 0 5px rgba(236,135,150,.85), 0 22px 60px rgba(0,0,0,.6); background: #222; }
+      #avatar { width: 100%; height: 100%; object-fit: cover; display: block; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="93.4" data-width="1920" data-height="1080">
+      <div id="device">
+        <canvas id="gl" width="1920" height="1080" data-layout-ignore></canvas>
+        <div id="frame" data-layout-ignore></div>
+        <div id="chrome" data-layout-allow-overflow><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i>
+          <div class="url">localhost:5173/<b>my-world</b></div></div>
+      </div>
+      <div id="splatwrap" data-layout-ignore><video id="splatvid" class="clip" src="assets/splat_bake.mp4" muted playsinline data-start="17.8" data-duration="15.2" data-track-index="7"></video></div>
+      <div id="scrim" data-layout-ignore></div>
+
+      <div id="intro" data-composition-id="intro" data-composition-src="compositions/intro.html" data-start="0" data-duration="16.2" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:10"></div>
+      <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="16" data-duration="17" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:10"></div>
+      <div id="code" data-composition-id="code" data-composition-src="compositions/code.html" data-start="43" data-duration="11.4" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:10"></div>
+      <div id="blocks" data-composition-id="blocks" data-composition-src="compositions/blocks.html" data-start="54.4" data-duration="18.6" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:10"></div>
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="85.6" data-duration="7.8" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:10"></div>
+      <div id="prompt" data-composition-id="prompt" data-composition-src="compositions/prompt.html" data-start="0" data-duration="93.4" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:12"></div>
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="93.4" data-track-index="3" data-track-kind="captions" data-width="1920" data-height="1080" style="z-index:14"></div>
+      <div id="sfx" data-composition-id="sfx" data-composition-src="compositions/sfx.html" data-start="0" data-duration="93.4" data-track-index="5" data-width="1920" data-height="1080"></div>
+
+      <div id="bubble" data-layout-allow-occlusion>
+        <video id="avatar" class="clip" src="assets/avatar_square.mp4" muted playsinline data-start="0" data-duration="93.4" data-track-index="4"></video>
+      </div>
+      <audio id="voice" class="clip" src="assets/voice.m4a" data-start="0" data-duration="93.4" data-volume="1" data-track-index="6"></audio>
+    </div>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+      import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
+      import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+      import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+      import * as hub from "./scenes/hub.js";
+      import * as city from "./scenes/city.js";
+      import * as storm from "./scenes/storm.js";
+      import * as solar from "./scenes/solar.js";
+      import * as particles from "./scenes/particles.js";
+      import * as blocks from "./scenes/blocks.js";
+
+      // BAKE = true renders only the splat world, overlays hidden, for `snapshot` to dump frames 17.8-33.0 s into
+      // assets/splat_bake.mp4. Spark's async worker sort stalls the deterministic render engine, so the film plays
+      // that baked clip instead of running Spark live. Snapshot mode renders it correctly (verified bit-identical).
+      const BAKE = false;
+      const splat = BAKE ? await import("./scenes/splat.js") : { init() {}, render() {} };
+      if (BAKE) document.head.insertAdjacentHTML("beforeend", "<style>#root > :not(#device), #chrome, #frame, #splatwrap { display: none !important; }</style>");
+      const W = 1920, H = 1080;
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: false, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1); renderer.setSize(W, H, false);
+      renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.0;
+      const mkRT = (w, h, s = 4) => new THREE.WebGLRenderTarget(w, h, { type: THREE.HalfFloatType, samples: s });
+      const rtA = mkRT(W, H), rtB = mkRT(W, H), prev = [0, 1, 2, 3].map(() => mkRT(512, 288, 0));
+
+      const S = { hub, splat, city, storm, solar, particles, blocks };
+      hub.init(THREE, renderer, { previews: prev.map((r) => r.texture) });
+      for (const k of ["splat", "city", "storm", "solar", "particles", "blocks"]) S[k].init(THREE, renderer);
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      if (BAKE) window.__hf.buildReady.splat = splat.ready;
+
+      // portals are the transitions. r0 = opening size (the hub gate's on-screen radius when it opens there)
+      const PORTALS = [
+        { at: 17.85, dur: 1.25, from: "hub", to: "splat", gate: true },
+        { at: 32.15, dur: 0.8, from: "splat", to: "city", r0: 210, cy: 560 },
+        { at: 34.0, dur: 0.5, from: "city", to: "storm", r0: 170 },
+        { at: 35.3, dur: 0.5, from: "storm", to: "solar", r0: 170 },
+        { at: 36.55, dur: 0.5, from: "solar", to: "particles", r0: 170 },
+        { at: 39.2, dur: 0.8, from: "particles", to: "hub", r0: 200 },
+        { at: 43.1, dur: 0.9, from: "hub", to: "solar", gate: true },
+        { at: 54.0, dur: 0.7, from: "solar", to: "blocks", r0: 200 },
+        { at: 72.7, dur: 0.8, from: "blocks", to: "hub", r0: 200 },
+        { at: 78.7, dur: 0.7, from: "hub", to: "city", gate: true },
+        { at: 82.5, dur: 0.5, from: "city", to: "solar", r0: 180 },
+        { at: 83.9, dur: 0.6, from: "solar", to: "hub", r0: 180 },
+      ];
+      PORTALS.forEach((p) => { if (p.gate) p.r0 = hub.gateRadiusPx(p.at + p.dur * 0.35); });
+      const portalR = (p, u) => p.r0 * (1 - Math.pow(1 - Math.min(1, u / 0.35), 3)) + 2500 * Math.pow(Math.max(0, (u - 0.35) / 0.65), 2.2);
+
+      function plan(t) {
+        if (BAKE) return { a: "splat", b: null, r: 0, cx: 960, cy: 540 };
+        let cur = "hub";
+        for (const p of PORTALS) {
+          if (t >= p.at && t < p.at + p.dur) return { a: p.from, b: p.to, r: portalR(p, (t - p.at) / p.dur), cx: 960, cy: p.cy || 540 };
+          if (t >= p.at + p.dur) cur = p.to;
+        }
+        return { a: cur, b: null, r: 0, cx: 960, cy: 540 };
+      }
+
+      const portalPass = new ShaderPass({
+        uniforms: { tA: { value: rtA.texture }, tB: { value: rtB.texture }, uC: { value: new THREE.Vector2(960, 540) }, uR: { value: 0 }, uTime: { value: 0 },
+          pink: { value: new THREE.Color(0xec8796) }, orange: { value: new THREE.Color(0xf6b04a) }, purple: { value: new THREE.Color(0x8f7fd6) } },
+        vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
+        fragmentShader: `uniform sampler2D tA, tB; uniform vec2 uC; uniform float uR, uTime; uniform vec3 pink, orange, purple; varying vec2 vUv;
+          void main(){ vec2 res = vec2(${W}., ${H}.); vec2 p = vUv*res; vec2 dv = p-uC; float d = length(dv); vec3 col;
+            if (uR < 0.5) { col = texture2D(tA, vUv).rgb; }
+            else {
+              float inside = 1.-smoothstep(uR-1.5, uR+1.5, d);
+              // destination: lens-bulged near the rim; source: pulled toward the hole
+              vec2 pb = uC + dv*(1. - 0.18*exp(-(uR-d)/90.)*inside);
+              vec2 pa = p - dv/max(d,1.)*min(60., 0.10*uR)*exp(-max(d-uR,0.)/160.);
+              vec3 A = texture2D(tA, clamp(pa/res, 0., 1.)).rgb, Bc = texture2D(tB, clamp(pb/res, 0., 1.)).rgb;
+              col = mix(A, Bc, inside);
+              float a = atan(dv.y, dv.x);
+              vec3 rc = mix(pink, orange, .5+.5*sin(a*3.+uTime*9.)); rc = mix(rc, purple, .5+.5*sin(a*7.-uTime*13.));
+              float ring = exp(-pow((d-uR)/9., 2.)), halo = exp(-abs(d-uR)/38.)*0.45;
+              float sparks = pow(.5+.5*sin(a*23.+uTime*20.), 12.)*exp(-pow((d-uR-12.)/16.,2.));
+              col += rc*(ring*3.2 + halo + sparks*2.);
+            }
+            float v = smoothstep(1.25, 0.45, length((vUv-.5)*vec2(1.6,1.)));
+            gl_FragColor = vec4(col*mix(0.78, 1., v), 1.); }`,
+      });
+      // ShaderPass clones uniforms and cannot clone render-target textures: bind them after construction
+      portalPass.uniforms.tA.value = rtA.texture; portalPass.uniforms.tB.value = rtB.texture;
+      const composer = new EffectComposer(renderer);
+      composer.setPixelRatio(1); composer.setSize(W, H);
+      composer.addPass(portalPass);
+      composer.addPass(new UnrealBloomPass(new THREE.Vector2(W, H), 0.55, 0.45, 0.82));
+      composer.addPass(new OutputPass());
+
+      function draw(name, t, rt) { renderer.setRenderTarget(rt); renderer.clear(); return S[name].render(t); }
+      function finish(pl, t) {
+        const u = portalPass.uniforms; u.uR.value = pl.r; u.uTime.value = t; u.uC.value.set(pl.cx, H - pl.cy);
+        renderer.setRenderTarget(null); composer.render();
+      }
+      function renderAt(t) { // pure function of t; returns a promise only when the splat world is in frame
+        const pl = plan(t);
+        if ((pl.a === "hub" || pl.b === "hub") && t > 10.4) ["city", "storm", "solar", "particles"].forEach((n, i) => draw(n, t, prev[i]));
+        const ra = draw(pl.a, t, rtA);
+        const second = () => { if (!pl.b) return finish(pl, t); const rb = draw(pl.b, t, rtB); return rb && rb.then ? rb.then(() => finish(pl, t)) : finish(pl, t); };
+        return ra && ra.then ? ra.then(second) : second();
+      }
+      // the baked splat clip sits above the canvas: a circle growing with the portal (T1), then a hole (T2)
+      const wrap = document.getElementById("splatwrap"), T1 = PORTALS[0], T2 = PORTALS[1];
+      function splatMask(t) {
+        const on = !BAKE && t >= T1.at && t < T2.at + T2.dur;
+        wrap.style.visibility = on ? "visible" : "hidden";
+        if (!on) return;
+        // follow the #device "browser" scale without a CSS transform (the engine's video-frame layer would apply it twice);
+        // same curves as the device tweens below: power3.inOut 28.7-29.5, power3.in 32.15-32.9
+        const q = (x) => Math.min(1, Math.max(0, x)), u1 = q((t - 28.7) / 0.8), u2 = q((t - 32.15) / 0.75);
+        const k1 = u1 < 0.5 ? 8 * u1 ** 4 : 1 - (-2 * u1 + 2) ** 4 / 2, k2 = u2 ** 4;
+        const sc = 1 - 0.2 * k1 + 0.2 * k2, dy = 34 * k1 - 34 * k2;
+        Object.assign(wrap.style, { left: `${960 - 960 * sc}px`, top: `${540 - 540 * sc + dy}px`, width: `${1920 * sc}px`, height: `${1080 * sc}px` });
+        let clip = "none", mask = "none";
+        if (t < T1.at + T1.dur) clip = `circle(${Math.max(0, portalR(T1, (t - T1.at) / T1.dur) - 5).toFixed(1)}px at 960px 540px)`;
+        else if (t >= T2.at) { const r = (portalR(T2, (t - T2.at) / T2.dur) + 5) * sc; mask = `radial-gradient(circle at ${960 * sc}px ${T2.cy * sc}px, transparent ${r.toFixed(1)}px, #000 ${(r + 1).toFixed(1)}px)`; }
+        wrap.style.clipPath = clip; wrap.style.webkitMaskImage = mask; wrap.style.maskImage = mask;
+      }
+      window.addEventListener("hf-seek", (e) => { splatMask(e.detail.time); const p = renderAt(e.detail.time); if (p && p.then && e.detail.waitUntil) e.detail.waitUntil(p); });
+      splatMask(0); renderAt(0);
+
+      // ---------- root timeline: bubble + device ----------
+      const tl = gsap.timeline({ paused: true });
+      const at = (cx, cy, d) => ({ x: cx - 240, y: cy - 240, scale: d / 480 });
+      const HOME = [1690, 300, 240];
+      const move = (t, cx, cy, d, dur = 0.65, ease = "power3.inOut") => tl.to("#bubble", { ...at(cx, cy, d), duration: dur, ease }, t);
+      const dive = (t, cx = 960, cy = 540) => { move(t, cx, cy, 150, 0.32, "power2.in"); tl.to("#bubble", { scale: 0.004, duration: 0.28, ease: "power3.in" }, t + 0.32); };
+      const emerge = (t, cx, cy, d) => tl.fromTo("#bubble", { ...at(960, 540, 2) }, { ...at(cx, cy, d), duration: 0.7, ease: "expo.out", immediateRender: false }, t);
+      const pulse = (t, d = 240) => { tl.to("#bubble", { scale: (d * 0.84) / 480, duration: 0.14, ease: "power2.out" }, t); tl.to("#bubble", { scale: d / 480, duration: 0.3, ease: "power2.inOut" }, t + 0.14); };
+
+      tl.fromTo("#bubble", { ...at(960, 540, 300) }, { ...at(960, 540, 440), duration: 0.6, ease: "expo.out" }, 0);
+      move(4.95, ...HOME, 0.7);
+      dive(17.95); emerge(19.25, ...HOME);
+      move(28.7, 1716, 892, 210, 0.8);
+      dive(32.05, 960, 560); emerge(32.95, ...HOME);
+      pulse(34.0); pulse(35.3); pulse(36.55); pulse(39.2);
+      dive(42.95); emerge(43.95, 1704, 276, 220);
+      move(54.05, ...HOME, 0.6);
+      move(72.85, 960, 540, 230, 0.7);
+      dive(78.55); emerge(79.35, ...HOME);
+      pulse(82.5); pulse(83.9);
+      move(85.6, 960, 430, 420, 0.9);
+
+      // "in your browser": the whole world shrinks into a browser window, then we zoom back in through it
+      if (!BAKE) tl.fromTo("#device", { scale: 1, y: 0 }, { scale: 0.8, y: 34, duration: 0.8, ease: "power3.inOut" }, 28.7);
+      tl.fromTo(["#chrome", "#frame"], { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 28.85);
+      if (!BAKE) tl.to("#device", { scale: 1, y: 0, duration: 0.75, ease: "power3.in" }, 32.15);
+      tl.to(["#chrome", "#frame"], { opacity: 0, duration: 0.2, ease: "power2.in" }, 32.75);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

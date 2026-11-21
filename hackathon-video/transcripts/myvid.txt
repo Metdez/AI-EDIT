@@ -1,0 +1,19 @@
+Yo, what's up? How's everyone doing today? First off, welcome to the hackathon. Super excited to
+see everyone here and huge shout out to Sunday for bringing us all together. So today is all about
+building something cool, experimenting with new ideas, and honestly just having fun with it.
+The theme for today's hackathon is 3D simulations on the web using tools like 3.js and AI. And the
+idea is pretty simple. Think about something that happens in the real world, figure out how it works,
+and bring it to life in your browser. Maybe you want to simulate traffic in Boston, create a crazy
+weather system, build a solar system, or have a thousand particles flying around your screen.
+Whatever it is, you get to be creative with it. And here's the cool part. With AI coding tools,
+you don't have to spend hours figuring out all the complicated physics and math. You can focus
+more on your ideas and actually making them happen. Also, don't worry if you've never worked
+with 3D before. That's totally fine. This is a place to learn,
+try new things, meet cool people, and maybe even build something you didn't think you could build.
+And one thing I really want to emphasize is don't overthink it. You don't need to build the most
+complicated project in the room. Start with something simple, make it interactive, and see
+where it goes. Talk to the people around you, share ideas, ask questions, and don't be afraid
+to experiment. By the end of today, hopefully everyone walks away with something cool they've
+built, something new they've learned, and maybe a few new friends. So yeah, that's pretty much it.
+Huge thanks again to Sunday for bringing us all together. And I'll see you next time.
+Thanks to Sunday and to all of you for showing up. I'm really excited to see what everyone comes up with.

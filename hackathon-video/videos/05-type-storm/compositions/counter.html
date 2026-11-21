@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #counter-card { position: absolute; left: 610px; top: 330px; width: 700px; height: 330px; border-radius: 22px;
+      background: rgba(5, 5, 5, 0.72); border: 2px solid rgba(255, 255, 255, 0.16); text-align: center; }
+    #counter-num { display: block; margin-top: 34px; font-family: "Archivo Black", sans-serif; font-size: 190px; line-height: 1; color: #fff; }
+    #counter-lbl { display: block; margin-top: 24px; font-family: "Space Mono", monospace; font-weight: 700; font-size: 34px; letter-spacing: 0.32em; color: #ec8796; }
+  </style>
+  <div id="root" data-composition-id="counter" data-width="1920" data-height="1080">
+    <div id="counter-card" class="clip" data-start="0" data-duration="2.3" data-track-index="0">
+      <span id="counter-num">0</span><span id="counter-lbl">PARTICLES</span>
+    </div>
+  </div>
+  <script>
+    // counts 0 -> 1,000 over 36.9-38.4 s, the same window the 3D scene spawns its 1,000 points
+    const tl = gsap.timeline({ paused: true });
+    const num = document.getElementById("counter-num");
+    const v = { n: 0 };
+    tl.fromTo("#counter-card", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 0.05);
+    tl.fromTo(v, { n: 0 }, { n: 1000, duration: 1.65, ease: (p) => Math.min(1, Math.max(0, (p * 1.65 - 0.15) / 1.5)),
+      onUpdate: () => { num.textContent = Math.round(v.n).toLocaleString("en-US"); } }, 0);
+    tl.to("#counter-card", { opacity: 0, scale: 1.08, duration: 0.18, ease: "power3.in" }, 2.08);
+    window.__timelines["counter"] = tl;
+  </script>
+</template>

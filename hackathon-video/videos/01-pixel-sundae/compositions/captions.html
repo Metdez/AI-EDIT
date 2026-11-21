@@ -1,0 +1,106 @@
+<template>
+  <style>
+    @font-face { font-family: "VT323"; src: url("assets/fonts/VT323-Regular.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .cap { position: absolute; left: 0; right: 0; bottom: 116px; text-align: center; opacity: 0; }
+    .cap .card { display: inline-block; font-family: "VT323", monospace; font-size: 104px; line-height: 0.92; color: #fff;
+      text-transform: uppercase; letter-spacing: 0.02em; padding: 10px 34px 4px; background: rgba(11, 15, 30, 0.86);
+      border: 5px solid #ec8796;
+      box-shadow: 10px 10px 0 rgba(5, 7, 15, 0.75); }
+    .cap .t { display: inline-block; }
+    .cap b { font-weight: 400; color: #f6b04a; }
+    .cap.alt .card { border-color: #8f7fd6; }
+    .cap.alt b { color: #ec8796; }
+    /* right column (beside the big bubble at the start) */
+    .cap.r { left: 800px; right: 192px; bottom: auto; top: 410px; }
+    .cap.r .card { font-size: 120px; }
+    .cap.rt { left: 800px; right: 192px; bottom: auto; top: 250px; }
+    .cap.rt .card { font-size: 72px; }
+    /* bottom-left under the big bubble at the end */
+    .cap.bl { left: 192px; right: auto; bottom: 190px; text-align: left; }
+    .cap.bl .card { font-size: 84px; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
+    <!-- data-in / data-out are seconds; data-e = step | type | blur (entrance) -->
+    <div id="cap-yo" class="cap r" data-in="0.15" data-out="2.05" data-e="type"><span class="card"><span class="t">YO! <b>WHAT'S UP?</b></span></span></div>
+    <div id="cap-welcome" class="cap rt alt" data-in="2.86" data-out="5.0" data-e="step"><span class="card"><span class="t">WELCOME TO THE</span></span></div>
+    <div id="cap-shout" class="cap" data-in="6.2" data-out="7.15" data-e="blur"><span class="card"><span class="t">HUGE <b>SHOUT OUT</b></span></span></div>
+    <div id="cap-together" class="cap alt" data-in="8.45" data-out="10.6" data-e="step"><span class="card"><span class="t">ALL <b>TOGETHER</b></span></span></div>
+    <div id="cap-build" class="cap" data-in="10.8" data-out="12.15" data-e="type"><span class="card"><span class="t">BUILD SOMETHING <b>COOL</b></span></span></div>
+    <div id="cap-exp" class="cap alt" data-in="12.24" data-out="13.85" data-e="blur"><span class="card"><span class="t"><b>EXPERIMENT</b></span></span></div>
+    <div id="cap-fun" class="cap" data-in="15.0" data-out="15.95" data-e="step"><span class="card"><span class="t">HAVE <b>FUN</b></span></span></div>
+    <div id="cap-theme" class="cap alt" data-in="16.45" data-out="18.0" data-e="type"><span class="card"><span class="t">TODAY'S <b>THEME</b></span></span></div>
+    <div id="cap-3d" class="cap" data-in="18.1" data-out="19.6" data-e="step"><span class="card"><span class="t"><b>3D</b> SIMULATIONS</span></span></div>
+    <div id="cap-web" class="cap alt" data-in="19.72" data-out="21.0" data-e="blur"><span class="card"><span class="t">ON THE <b>WEB</b></span></span></div>
+    <div id="cap-three" class="cap" data-in="21.08" data-out="22.2" data-e="type"><span class="card"><span class="t"><b>THREE.JS</b></span></span></div>
+    <div id="cap-ai" class="cap alt" data-in="22.26" data-out="23.4" data-e="step"><span class="card"><span class="t">+ <b>AI</b></span></span></div>
+    <div id="cap-simple" class="cap" data-in="23.92" data-out="25.4" data-e="blur"><span class="card"><span class="t">PRETTY <b>SIMPLE</b></span></span></div>
+    <div id="cap-real" class="cap alt" data-in="26.3" data-out="27.12" data-e="step"><span class="card"><span class="t"><b>REAL</b> WORLD</span></span></div>
+    <div id="cap-how" class="cap" data-in="27.18" data-out="28.72" data-e="type"><span class="card"><span class="t">HOW IT <b>WORKS</b></span></span></div>
+    <div id="cap-browser" class="cap alt" data-in="28.78" data-out="30.6" data-e="step"><span class="card"><span class="t">IN YOUR <b>BROWSER</b></span></span></div>
+    <div id="cap-traffic" class="cap" data-in="31.6" data-out="33.2" data-e="blur"><span class="card"><span class="t">TRAFFIC IN <b>BOSTON</b></span></span></div>
+    <div id="cap-weather" class="cap alt" data-in="33.9" data-out="35.05" data-e="step"><span class="card"><span class="t">CRAZY <b>WEATHER</b></span></span></div>
+    <div id="cap-solar" class="cap" data-in="35.55" data-out="36.4" data-e="type"><span class="card"><span class="t"><b>SOLAR</b> SYSTEM</span></span></div>
+    <div id="cap-thousand" class="cap alt" data-in="36.9" data-out="39.05" data-e="step"><span class="card"><span class="t"><b>1,000</b> PARTICLES</span></span></div>
+    <div id="cap-whatever" class="cap" data-in="39.22" data-out="40.8" data-e="blur"><span class="card"><span class="t">WHATEVER <b>IT IS</b></span></span></div>
+    <div id="cap-creative" class="cap alt" data-in="40.88" data-out="41.8" data-e="step"><span class="card"><span class="t">BE <b>CREATIVE</b></span></span></div>
+    <div id="cap-cool" class="cap" data-in="42.24" data-out="43.2" data-e="type"><span class="card"><span class="t">THE <b>COOL</b> PART</span></span></div>
+    <div id="cap-aitools" class="cap alt" data-in="43.64" data-out="45.3" data-e="step"><span class="card"><span class="t"><b>AI</b> CODING TOOLS</span></span></div>
+    <div id="cap-hours" class="cap" data-in="45.42" data-out="46.95" data-e="blur"><span class="card"><span class="t">SKIP THE <b>HOURS</b></span></span></div>
+    <div id="cap-physics" class="cap alt" data-in="47.06" data-out="48.6" data-e="type"><span class="card"><span class="t"><b>PHYSICS</b> + MATH</span></span></div>
+    <div id="cap-ideas" class="cap" data-in="49.2" data-out="50.65" data-e="step"><span class="card"><span class="t">YOUR <b>IDEAS</b></span></span></div>
+    <div id="cap-happen" class="cap alt" data-in="50.76" data-out="52.1" data-e="blur"><span class="card"><span class="t">MAKE THEM <b>HAPPEN</b></span></span></div>
+    <div id="cap-never" class="cap" data-in="53.6" data-out="54.9" data-e="type"><span class="card"><span class="t">NEVER DONE <b>3D?</b></span></span></div>
+    <div id="cap-fine" class="cap alt" data-in="55.34" data-out="56.55" data-e="step"><span class="card"><span class="t">TOTALLY <b>FINE</b></span></span></div>
+    <div id="cap-learn" class="cap" data-in="57.16" data-out="58.55" data-e="blur"><span class="card"><span class="t">A PLACE TO <b>LEARN</b></span></span></div>
+    <div id="cap-try" class="cap alt" data-in="58.64" data-out="59.25" data-e="step"><span class="card"><span class="t">TRY <b>NEW</b> THINGS</span></span></div>
+    <div id="cap-meet" class="cap" data-in="59.3" data-out="60.45" data-e="type"><span class="card"><span class="t">MEET COOL <b>PEOPLE</b></span></span></div>
+    <div id="cap-bigger" class="cap alt" data-in="60.54" data-out="62.9" data-e="step"><span class="card"><span class="t">BUILD <b>BIGGER</b></span></span></div>
+    <div id="cap-one" class="cap" data-in="63.5" data-out="65.3" data-e="blur"><span class="card"><span class="t"><b>ONE</b> THING</span></span></div>
+    <div id="cap-over" class="cap alt" data-in="65.4" data-out="67.3" data-e="type"><span class="card"><span class="t">DON'T <b>OVERTHINK</b> IT</span></span></div>
+    <div id="cap-complex" class="cap" data-in="67.8" data-out="69.65" data-e="step"><span class="card"><span class="t">NOT THE MOST <b>COMPLEX</b></span></span></div>
+    <div id="cap-start" class="cap alt" data-in="69.76" data-out="71.5" data-e="blur"><span class="card"><span class="t">START <b>SIMPLE</b></span></span></div>
+    <div id="cap-inter" class="cap" data-in="71.6" data-out="72.95" data-e="step"><span class="card"><span class="t">MAKE IT <b>INTERACTIVE</b></span></span></div>
+    <div id="cap-talk" class="cap alt" data-in="73.48" data-out="74.9" data-e="type"><span class="card"><span class="t"><b>TALK</b> TO PEOPLE</span></span></div>
+    <div id="cap-share" class="cap" data-in="74.98" data-out="75.9" data-e="step"><span class="card"><span class="t">SHARE <b>IDEAS</b></span></span></div>
+    <div id="cap-ask" class="cap alt" data-in="75.96" data-out="77.15" data-e="blur"><span class="card"><span class="t">ASK <b>QUESTIONS</b></span></span></div>
+    <div id="cap-exp2" class="cap" data-in="77.7" data-out="78.95" data-e="step"><span class="card"><span class="t"><b>EXPERIMENT!</b></span></span></div>
+    <div id="cap-end" class="cap alt" data-in="79.3" data-out="81.5" data-e="type"><span class="card"><span class="t">BY THE END OF <b>TODAY</b></span></span></div>
+    <div id="cap-built" class="cap" data-in="81.58" data-out="82.85" data-e="step"><span class="card"><span class="t">SOMETHING <b>BUILT</b></span></span></div>
+    <div id="cap-learned" class="cap alt" data-in="82.92" data-out="84.15" data-e="blur"><span class="card"><span class="t">SOMETHING <b>LEARNED</b></span></span></div>
+    <div id="cap-friends" class="cap" data-in="84.38" data-out="85.5" data-e="step"><span class="card"><span class="t">NEW <b>FRIENDS</b></span></span></div>
+    <div id="cap-thanks" class="cap bl" data-in="87.46" data-out="90.5" data-e="type"><span class="card"><span class="t">THANKS, <b>SUNDAI!</b></span></span></div>
+    <div id="cap-see" class="cap bl alt" data-in="90.66" data-out="93.4" data-e="step"><span class="card"><span class="t">SEE WHAT YOU <b>BUILD</b></span></span></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      document.querySelectorAll('[data-composition-id="captions"] .cap').forEach((el) => {
+        const tin = +el.dataset.in, tout = +el.dataset.out, e = el.dataset.e, t = el.querySelector(".t"), card = el.querySelector(".card");
+        tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.01 }, tin);
+        if (e === "type") { // pixel type-on: letters switch on one by one (split once at load)
+          const letters = [];
+          const walk = document.createTreeWalker(t, NodeFilter.SHOW_TEXT), nodes = [];
+          while (walk.nextNode()) nodes.push(walk.currentNode); // document order, so bold words type in place
+          nodes.forEach((cn) => { const frag = document.createDocumentFragment();
+            [...cn.textContent].forEach((ch) => { const sp = document.createElement("span"); sp.textContent = ch; frag.appendChild(sp); letters.push(sp); });
+            cn.replaceWith(frag); });
+          const step = Math.min(0.03, 0.42 / letters.length);
+          letters.forEach((sp, k) => tl.fromTo(sp, { opacity: 0 }, { opacity: 1, duration: 0.01 }, tin + k * step));
+        } else if (e === "blur") {
+          tl.fromTo(card, { filter: "blur(10px)", y: 14 }, { filter: "blur(0px)", y: 0, duration: 0.18, ease: "power3.out" }, tin);
+          tl.set(card, { filter: "none" }, tin + 0.2);
+        } else { // 8-bit step up
+          tl.fromTo(card, { y: 48 }, { y: 0, duration: 0.2, ease: "steps(4)" }, tin);
+        }
+        if (tout < 93.39) {
+          tl.to(card, { y: -16, duration: 0.12, ease: "steps(2)" }, tout - 0.12);
+          tl.to(el, { opacity: 0, duration: 0.12, ease: "power2.in" }, tout - 0.12);
+          tl.set(el, { opacity: 0, visibility: "hidden" }, tout);
+        }
+      });
+      window.__timelines = window.__timelines || {};
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

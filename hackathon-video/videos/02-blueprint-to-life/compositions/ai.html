@@ -1,0 +1,87 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Space Mono", monospace; color: #fff; }
+    .ai-glass { position: absolute; background: rgba(10,16,34,.84); backdrop-filter: blur(18px); border: 1px solid rgba(156,194,255,.22); }
+    .ai-k { position: absolute; inset: -7px;
+      background:
+        linear-gradient(#9cc2ff,#9cc2ff) left top / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left top / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right top / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right top / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) left bottom / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) left bottom / 3px 22px no-repeat,
+        linear-gradient(#9cc2ff,#9cc2ff) right bottom / 22px 3px no-repeat, linear-gradient(#9cc2ff,#9cc2ff) right bottom / 3px 22px no-repeat; }
+    #ai-panel { left: 150px; top: 200px; width: 700px; height: 680px; }
+    #ai-head { position: absolute; left: 0; right: 0; top: 0; height: 56px; border-bottom: 1px solid rgba(156,194,255,.25); padding: 12px 24px;
+      font-size: 24px; font-weight: 700; letter-spacing: .14em; color: #9cc2ff; }
+    #ai-head b { color: #ec8796; }
+    #ai-prompt { position: absolute; left: 24px; right: 24px; top: 80px; font-size: 26px; line-height: 1.4; color: #fff; min-height: 74px; white-space: pre-wrap; }
+    #ai-code { position: absolute; left: 24px; right: 20px; top: 180px; font-size: 23px; line-height: 1.55; color: #ede6da; white-space: pre; }
+    #ai-code .k { color: #ec8796; } #ai-code .n { color: #f6b04a; } #ai-code .c { color: #8f7fd6; }
+    #ai-run { position: absolute; left: 24px; right: 24px; bottom: 22px; height: 56px; border: 2px solid #f6b04a; font-size: 24px; font-weight: 700;
+      letter-spacing: .12em; line-height: 52px; padding-left: 18px; color: #f6b04a; white-space: nowrap; }
+    .ai-eq { position: absolute; font-family: "Space Mono", monospace; font-weight: 700; font-size: 34px; color: #fff; padding: 8px 18px;
+      background: rgba(10,16,34,.8); border-left: 4px solid #f6b04a; white-space: nowrap; }
+    .ai-eq small { display: block; font-size: 20px; letter-spacing: .14em; color: #9cc2ff; }
+    #ai-first { left: 192px; top: 140px; padding: 16px 24px; font-size: 28px; white-space: nowrap; }
+    #ai-first .ai-h { font-size: 22px; letter-spacing: .16em; color: #9cc2ff; font-weight: 700; margin-bottom: 4px; }
+    #ai-first .k { color: #ec8796; } #ai-first .n { color: #f6b04a; }
+  </style>
+  <div id="root" data-composition-id="ai" data-width="1920" data-height="1080">
+    <div id="ai-panel" class="ai-glass"><i class="ai-k"></i>
+      <div id="ai-head"><b>●</b> AI CODING AGENT</div>
+      <div id="ai-prompt"></div>
+      <div id="ai-code"></div>
+      <div id="ai-run"></div>
+    </div>
+    <div class="ai-eq" id="ai-e1" style="left:960px;top:330px"><small>GRAVITY</small>F = G·m₁m₂ / r²</div>
+    <div class="ai-eq" id="ai-e2" style="left:1440px;top:470px"><small>NEWTON</small>a = F / m</div>
+    <div class="ai-eq" id="ai-e3" style="left:1010px;top:800px"><small>KEPLER</small>ω = √(GM / r³)</div>
+    <div id="ai-first" class="ai-glass"><i class="ai-k"></i><div class="ai-h">YOUR FIRST LINE OF 3D</div><span id="ai-box"></span></div>
+  </div>
+  <script>
+    (function () {
+      const O = 43.4, at = (g) => g - O;
+      const tl = gsap.timeline({ paused: true });
+      function cut(html, n) {
+        let out = "", seen = 0, i = 0;
+        while (i < html.length && seen < n) {
+          if (html[i] === "<") { const j = html.indexOf(">", i); out += html.slice(i, j + 1); i = j + 1; continue; }
+          if (html[i] === "&") { const j = html.indexOf(";", i); out += html.slice(i, j + 1); i = j + 1; seen++; continue; }
+          out += html[i]; seen++; i++;
+        }
+        const open = (out.match(/<span/g) || []).length - (out.match(/<\/span>/g) || []).length;
+        return out + "</span>".repeat(Math.max(0, open));
+      }
+      const count = (h) => h.replace(/<[^>]+>/g, "").replace(/&[a-z#0-9]+;/g, "x").length;
+      function typed(id, html, t0, dur, caret = true) {
+        const el = document.getElementById(id), o = { n: 0 }, total = count(html);
+        tl.fromTo(o, { n: 0 }, { n: total, duration: dur, ease: "none", onUpdate: () => {
+          el.innerHTML = cut(html, Math.round(o.n)) + (caret && o.n < total ? '<span style="color:#ec8796">▍</span>' : "");
+        } }, at(t0));
+      }
+      tl.fromTo("#ai-panel", { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.4, ease: "expo.out" }, at(43.55));
+      typed("ai-prompt", '<span style="color:#ec8796">&gt;</span> make 1,500 bodies orbit a sun with real gravity', 43.75, 0.95);
+      typed("ai-code", [
+        '<span class="k">const</span> G = <span class="n">6.674e-11</span>;',
+        '<span class="c">// F = G·m₁m₂ / r²</span>',
+        '<span class="k">const</span> a = G * M / (r * r);',
+        'v.addScaledVector(dir, a * dt);',
+        'x.addScaledVector(v, dt);',
+        '<span class="c">// ω = √(GM / r³)  Kepler</span>',
+        'body.angle = phase + t * Math.sqrt(GM / r ** <span class="n">3</span>);',
+      ].join("\n"), 45.0, 3.4);
+      tl.fromTo("#ai-run", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, at(48.55));
+      typed("ai-run", "▶ RUN &nbsp;·&nbsp; 1,500 BODIES &nbsp;·&nbsp; 60 FPS", 48.6, 0.45, false);
+      tl.fromTo("#ai-run", { backgroundColor: "rgba(246,176,74,0)" }, { backgroundColor: "rgba(246,176,74,.18)", duration: 0.15, ease: "power2.out" }, at(48.7));
+      tl.to("#ai-panel", { opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power2.in" }, at(53.75));
+      // the math floats in as blueprint labels, then is cleared away once the AI's code runs
+      [["#ai-e1", 46.0], ["#ai-e2", 46.6], ["#ai-e3", 47.2]].forEach(([id, t]) => {
+        tl.fromTo(id, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, at(t));
+        tl.to(id, { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, at(48.75));
+      });
+      // shot 12: the first line of 3D
+      tl.fromTo("#ai-first", { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.3, ease: "expo.out" }, at(55.3));
+      typed("ai-box", '<span class="k">new</span> THREE.BoxGeometry(<span class="n">1</span>, <span class="n">1</span>, <span class="n">1</span>)', 55.4, 0.8);
+      tl.to("#ai-first", { opacity: 0, duration: 0.15, ease: "power2.in" }, at(58.1));
+      window.__timelines["ai"] = tl;
+    })();
+  </script>
+</template>

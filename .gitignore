@@ -1,0 +1,20 @@
+# Own repo (hunterh37/sundai-3dworlds)
+sundai-3dworlds/
+# Media stays local: too big for git
+*.mp4
+*.mov
+*.MOV
+*.m4a
+*.wav
+*.mp3
+*.spz
+Phoebe/
+Phoebe final videos/
+Solid final videos/
+drive-download-*/
+# Generated / local
+node_modules/
+out/
+.hyperframes/
+.DS_Store
+*.log

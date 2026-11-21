@@ -1,0 +1,84 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    .cap { position: absolute; left: 0; right: 0; bottom: 118px; text-align: center; font-family: "Archivo Black", sans-serif; font-size: 92px;
+      line-height: 1; letter-spacing: -0.01em; color: #fff; text-transform: uppercase; visibility: hidden; text-shadow: 0 4px 24px rgba(0,0,0,.55); }
+    .cap .wm { display: inline-block; overflow: hidden; vertical-align: bottom; padding: 0.06em 0.02em 0.08em; margin: 0 0.12em; }
+    .cap .w { display: inline-block; }
+    .cap .pink { color: #ec8796; } .cap .orange { color: #f6b04a; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080" data-layout-allow-overlap></div>
+  <script>
+    (function () {
+      // [start, end, text, accent word index, accent colour] — times from assets/words.json
+      const C = [
+        [0.08, 1.9, "Yo, what's up", 0, "orange"],
+        [2.86, 4.85, "Welcome to the hackathon", 3, "pink"],
+        [6.24, 7.15, "Huge shout-out", 1, "orange"],
+        [7.86, 9.05, "Bringing us together", 2, "pink"],
+        [10.78, 12.1, "Build something cool", 2, "orange"],
+        [12.24, 13.85, "Experiment", 0, "pink"],
+        [14.12, 15.9, "Have fun", 1, "orange"],
+        [16.48, 17.9, "Today's theme", 1, "pink"],
+        [18.1, 19.5, "3D simulations", 0, "orange"],
+        [19.62, 20.95, "On the web", 2, "pink"],
+        [21.08, 22.85, "three.js + AI", 2, "orange"],
+        [26.46, 27.1, "Real world", 0, "orange"],
+        [27.18, 28.6, "How it works", 2, "pink"],
+        [28.78, 30.5, "In your browser", 2, "orange"],
+        [32.72, 34.12, "Boston traffic", 0, "orange"],
+        [34.26, 35.5, "Crazy weather", 1, "pink"],
+        [35.6, 36.8, "Solar system", 0, "orange"],
+        [36.9, 39.1, "1,000 particles", 0, "pink"],
+        [39.88, 41.6, "Be creative", 1, "orange"],
+        [41.84, 43.15, "Here's the cool part", 2, "pink"],
+        [43.64, 45.3, "AI coding tools", 0, "orange"],
+        [45.42, 47.35, "Skip the hours", 2, "pink"],
+        [47.48, 48.95, "Physics + math", 0, "orange"],
+        [49.2, 50.65, "Focus on ideas", 2, "pink"],
+        [50.76, 52.15, "Make them happen", 2, "orange"],
+        [52.82, 55.2, "Never done 3D?", 2, "pink"],
+        [55.34, 57.3, "Totally fine", 1, "orange"],
+        [57.42, 58.55, "Learn", 0, "pink"],
+        [58.64, 59.22, "Try new things", 2, "orange"],
+        [59.3, 60.45, "Meet people", 1, "pink"],
+        [60.54, 62.9, "Build what you couldn't", 3, "orange"],
+        [65.38, 66.95, "Don't overthink it", 1, "pink"],
+        [67.4, 69.6, "No need for complicated", 3, "orange"],
+        [69.76, 71.15, "Start simple", 1, "pink"],
+        [71.26, 72.95, "Make it interactive", 2, "orange"],
+        [73.48, 74.9, "Talk to people", 2, "pink"],
+        [74.98, 75.9, "Share ideas", 1, "orange"],
+        [75.96, 76.95, "Ask questions", 1, "pink"],
+        [77.6, 78.85, "Experiment", 0, "orange"],
+        [79.36, 81.45, "By the end of today", 3, "pink"],
+        [81.58, 82.85, "Something built", 1, "orange"],
+        [82.92, 84.2, "Something learned", 1, "pink"],
+        [84.38, 85.55, "New friends", 1, "orange"],
+        [87.46, 88.5, "Huge thanks", 1, "pink"],
+        [89.26, 90.6, "Thanks for showing up", 3, "orange"],
+        [91.0, 93.4, "Can't wait to see what you build", 6, "pink"],
+      ];
+      const root = document.querySelector('[data-composition-id="captions"]');
+      const tl = gsap.timeline({ paused: true });
+      C.forEach(([s, e, text, acc, color], i) => {
+        const cap = document.createElement("div"); cap.className = "cap"; cap.id = "cap-" + i;
+        const words = text.split(" ");
+        cap.innerHTML = words.map((w, k) => `<span class="wm"><span class="w${k === acc ? " " + color : ""}">${w}</span></span>`).join("");
+        root.appendChild(cap);
+        const fit = window.__hyperframes && window.__hyperframes.fitTextFontSize
+          ? window.__hyperframes.fitTextFontSize(text.toUpperCase(), { fontFamily: "Archivo Black", fontWeight: 400, maxWidth: 1440 }) : null;
+        cap.style.fontSize = Math.min(92, Math.max(56, fit && fit.fontSize ? fit.fontSize : 92 - Math.max(0, text.length - 18) * 2.6)) + "px";
+        const ws = cap.querySelectorAll(".w");
+        tl.set(cap, { visibility: "visible", opacity: 1, filter: "blur(0px)" }, s);
+        tl.fromTo(ws, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "expo.out", stagger: 0.07 }, s);
+        if (e < 93.3) {
+          tl.to(cap, { opacity: 0, filter: "blur(6px)", duration: 0.16, ease: "power2.in" }, e - 0.16);
+          tl.set(cap, { opacity: 0, visibility: "hidden" }, e);
+        }
+      });
+      window.__timelines = window.__timelines || {};
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script type="importmap">
+      { "imports": { "three": "./lib/three/three.module.min.js", "three/addons/": "./lib/three/addons/" } }
+    </script>
+    <style>
+      :root { --ink: #ffffff; --pink: #ec8796; --orange: #f6b04a; --purple: #8f7fd6; --navy: #111827; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #04050b; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; font-family: "Space Mono", monospace; color: var(--ink); }
+      /* the "desk" the browser window sits on; only seen when the picture pulls back into the window */
+      #desk { position: absolute; inset: 0; z-index: 0;
+        background: radial-gradient(1200px 700px at 70% 45%, rgba(143,127,214,.28), transparent 70%),
+                    radial-gradient(900px 600px at 20% 80%, rgba(236,135,150,.18), transparent 70%),
+                    radial-gradient(circle at 1px 1px, rgba(255,255,255,.07) 1px, transparent 1.6px) 0 0 / 28px 28px,
+                    linear-gradient(160deg, #161c33, #0b0e1c 60%, #090b16); }
+      /* stage = browser window: GSAP scales it; at scale 1 the chrome bar sits just above the frame */
+      #stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; z-index: 1; transform-origin: 960px 540px; }
+      #chrome { position: absolute; left: 0; top: -66px; width: 1920px; height: 66px; background: #1d2133; border-radius: 26px 26px 0 0;
+        display: flex; align-items: center; gap: 14px; padding: 0 28px; box-shadow: 0 -1px 0 rgba(255,255,255,.08) inset; }
+      #chrome .dot { width: 20px; height: 20px; border-radius: 50%; }
+      #chrome .url { margin-left: 34px; height: 42px; width: 760px; border-radius: 21px; background: #0e1120; color: #c9cde0;
+        font: 400 24px/42px "Space Mono", monospace; padding-left: 26px; }
+      #view { position: absolute; inset: 0; overflow: hidden; box-shadow: 0 40px 120px rgba(0,0,0,.6); }
+      #gl { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+      #haze { position: absolute; inset: 0; background: #101a30; opacity: 0; }
+      #vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.42) 100%); }
+      #scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 370px; z-index: 4;
+        background: linear-gradient(to bottom, rgba(3,4,10,0), rgba(3,4,10,.62)); }
+      /* bubble: wrapper is positioned by GSAP x/y/scale only (never left/top) */
+      #bubble { position: absolute; left: 0; top: 0; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; z-index: 10;
+        border: 5px solid var(--ink); box-shadow: 0 0 0 2px rgba(236,135,150,.55), 0 14px 44px rgba(0,0,0,.55); background: #111; }
+      #avatar { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="93.4" data-width="1920" data-height="1080">
+      <div id="desk" data-layout-ignore></div>
+      <div id="stage" data-layout-ignore>
+        <div id="chrome"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="url">localhost:5173 &nbsp;·&nbsp; my-first-sim</span></div>
+        <div id="view">
+          <canvas id="gl" width="1920" height="1080"></canvas>
+          <div id="haze"></div>
+          <div id="vignette"></div>
+        </div>
+      </div>
+      <div id="scrim" data-layout-ignore></div>
+
+      <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" class="clip"
+        data-start="0" data-duration="93.4" data-track-index="1" data-track-kind="captions" data-width="1920" data-height="1080" style="z-index:6"></div>
+      <div id="overlays" data-composition-id="overlays" data-composition-src="compositions/overlays.html" class="clip"
+        data-start="0" data-duration="93.4" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:7"></div>
+
+      <div id="bubble" data-layout-allow-occlusion>
+        <video id="avatar" class="clip" src="assets/avatar_square.mp4" muted playsinline data-start="0" data-duration="93.4" data-track-index="3"></video>
+      </div>
+
+      <audio id="voice" class="clip" src="assets/voice.m4a" data-start="0" data-duration="93.4" data-volume="1" data-track-index="4"></audio>
+      <audio id="music" class="clip" src="assets/bgm/ebab080d.mp3" data-start="5.4" data-duration="88" data-volume="0.1" data-fade-in="1.5" data-fade-out="3" data-track-index="5"></audio>
+      <audio id="sfx-dive" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="28.75" data-duration="5.5" data-volume="0.35" data-track-index="6"></audio>
+      <audio id="sfx-bolt" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="34.22" data-duration="2.1" data-volume="0.22" data-track-index="7"></audio>
+      <audio id="sfx-out" class="clip" src="assets/sfx/whoosh.mp3" data-start="35.12" data-duration="0.57" data-volume="0.4" data-track-index="6"></audio>
+      <audio id="sfx-fling" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="36.85" data-duration="0.57" data-volume="0.35" data-track-index="6"></audio>
+      <audio id="sfx-burst" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="43.25" data-duration="2.1" data-volume="0.22" data-track-index="7"></audio>
+      <audio id="sfx-collapse" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="69.5" data-duration="0.57" data-volume="0.3" data-track-index="6"></audio>
+      <audio id="sfx-climb" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="84.55" data-duration="5.5" data-volume="0.3" data-track-index="7"></audio>
+      <audio id="sfx-logo" class="clip" src="assets/sfx/sparkle.mp3" data-start="88.4" data-duration="1.8" data-volume="0.3" data-track-index="6"></audio>
+    </div>
+
+    <script>
+      // root timeline: bubble path, the browser-window pull-backs and the haze at the fly-through seams
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const B = (cx, cy, s) => ({ x: cx - 150, y: cy - 150, scale: s });
+      const mv = { duration: 0.75, ease: "power3.inOut" };
+      tl.fromTo("#bubble", B(960, 400, 1.6), { ...B(960, 400, 1.6), duration: 0.01 }, 0);
+      tl.to("#bubble", { ...B(1630, 830, 0.7), ...mv }, 5.1);
+      tl.to("#bubble", { ...B(1630, 250, 0.7), ...mv }, 43.0);
+      tl.to("#bubble", { ...B(290, 830, 0.7), ...mv }, 52.9);
+      tl.to("#bubble", { ...B(1630, 250, 0.7), ...mv }, 62.9);
+      tl.to("#bubble", { ...B(1630, 830, 0.7), ...mv }, 72.75);
+      tl.to("#bubble", { ...B(470, 450, 1.55), duration: 0.9, ease: "power3.inOut" }, 85.5);
+
+      // "bring it to life in your browser": pull back into the window, then fly back through it
+      tl.fromTo("#stage", { scale: 1, x: 0, y: 0 }, { scale: 0.72, y: 40, duration: 1.0, ease: "power2.inOut" }, 28.75);
+      tl.to("#stage", { scale: 1, y: 0, duration: 0.6, ease: "power3.in" }, 30.35);
+      tl.fromTo("#view", { borderRadius: 0 }, { borderRadius: "0 0 26px 26px", duration: 1.0, ease: "power2.inOut" }, 28.75);
+      tl.to("#view", { borderRadius: 0, duration: 0.6, ease: "power3.in" }, 30.35);
+      // the sign-off: the whole film was a page in a browser on a desk
+      tl.to("#stage", { scale: 0.52, x: 310, y: -20, duration: 1.3, ease: "power2.inOut" }, 88.1);
+      tl.to("#view", { borderRadius: "0 0 34px 34px", duration: 1.3, ease: "power2.inOut" }, 88.1);
+
+      // haze = flying through atmosphere / cloud / the burst of light at the seams
+      const hz = (t0, color, peak, upDur, downDur) => {
+        tl.set("#haze", { backgroundColor: color }, t0 - 0.001);
+        tl.fromTo("#haze", { opacity: 0 }, { opacity: peak, duration: upDur, ease: "power2.in", immediateRender: false }, t0);
+        tl.to("#haze", { opacity: 0, duration: downDur, ease: "power2.out" }, t0 + upDur);
+      };
+      hz(30.98, "#0d1628", 0.8, 0.22, 0.35);   // Earth atmosphere → Boston
+      hz(34.95, "#2a3142", 0.92, 0.25, 0.3);   // storm cloud → above Earth
+      hz(43.12, "#fff4e6", 0.9, 0.18, 0.4);    // particle point → star
+      hz(78.42, "#05060c", 0.75, 0.18, 0.3);   // grid → street grid match cut, dipped
+      hz(86.7, "#2a3142", 0.92, 0.3, 0.35);    // storm cloud → above Earth (ending)
+      window.__timelines["main"] = tl;
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+      import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+      import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+      import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+      import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+      import * as SPACE from "./scenes/space.js";
+      import * as CITY from "./scenes/city.js";
+      import * as STUDIO from "./scenes/studio.js";
+
+      let ready = false, pending = 0, renderer, composer, renderPass, bloom;
+      // which world the one camera is in at time t (seams are where something fills the frame)
+      const pick = (t) => (t < 31.2 ? SPACE : t < 35.2 ? CITY : t < 43.3 ? SPACE : t < 78.6 ? STUDIO : t < 87.0 ? CITY : SPACE);
+      function renderAt(t) {
+        if (!ready) { pending = t; return; }
+        const { scene, cam } = pick(t).render(t, { bloom });
+        renderPass.scene = scene; renderPass.camera = cam;
+        composer.render();
+      }
+      window.addEventListener("hf-seek", (e) => renderAt(e.detail.time));
+
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      window.__hf.buildReady.three = (async () => {
+        renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: true, preserveDrawingBuffer: true, powerPreference: "high-performance" });
+        renderer.setPixelRatio(1); renderer.setSize(1920, 1080, false);
+        renderer.toneMapping = THREE.NeutralToneMapping; renderer.toneMappingExposure = 1.0; renderer.localClippingEnabled = true;
+        const loader = new THREE.TextureLoader();
+        const s = await SPACE.init(THREE, loader); await CITY.init(THREE); await STUDIO.init(THREE);
+        composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(1920, 1080, { type: THREE.HalfFloatType, samples: 4 }));
+        renderPass = new RenderPass(s.scene, s.cam); bloom = new UnrealBloomPass(new THREE.Vector2(1920, 1080), 0.85, 0.5, 0.72);
+        composer.addPass(renderPass); composer.addPass(bloom); composer.addPass(new OutputPass());
+        // warm up every world once so shader compiles happen during setup, not inside a frame
+        for (const t of [1, 33, 50, 60, 66, 75, 82, 90]) { const r = pick(t).render(t, { bloom }); renderer.compile(r.scene, r.cam); }
+        ready = true; renderAt(pending);
+        const px = new Uint8Array(4); renderer.getContext().readPixels(0, 0, 1, 1, renderer.getContext().RGBA, renderer.getContext().UNSIGNED_BYTE, px);
+      })();
+    </script>
+  </body>
+</html>

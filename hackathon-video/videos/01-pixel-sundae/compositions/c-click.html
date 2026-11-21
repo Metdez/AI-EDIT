@@ -1,0 +1,24 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #ck-cur { position: absolute; left: 0; top: 0; width: 72px; height: 108px; }
+    #ck-cur .o, #ck-cur .i { position: absolute; inset: 0; clip-path: polygon(0 0, 0 78%, 22% 61%, 39% 100%, 56% 92%, 40% 56%, 72% 56%); }
+    #ck-cur .o { background: #111827; }
+    #ck-cur .i { inset: 8px 10px 10px 6px; background: #fff; }
+  </style>
+  <div id="root" data-composition-id="c-click" data-width="1920" data-height="1080">
+    <div id="ck-cur"><div class="o"></div><div class="i"></div></div>
+  </div>
+  <script>
+    (function () {
+      const S = '[data-composition-id="c-click"] ';
+      const tl = gsap.timeline({ paused: true }); // local t = abs - 71.6
+      tl.fromTo(S + "#ck-cur", { x: 1500, y: 860 }, { x: 1010, y: 560, duration: 0.15, ease: "steps(5)" }, 0.0);
+      tl.to(S + "#ck-cur", { scale: 0.8, duration: 0.05, ease: "steps(1)" }, 0.15);
+      tl.to(S + "#ck-cur", { scale: 1, duration: 0.05, ease: "steps(1)" }, 0.27);
+      tl.to(S + "#ck-cur", { x: 1300, y: 760, duration: 0.3, ease: "power3.in" }, 1.0);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["c-click"] = tl;
+    })();
+  </script>
+</template>

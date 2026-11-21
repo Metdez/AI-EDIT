@@ -1,0 +1,285 @@
+Claude can now make videos like this for you with any product.
+So in today's video, I'm going to teach you the entire process so you can do this for your videos.
+Claude is now a full-blown motion graphics designer,
+SaaS animator, and full-blown ad maker for your business.
+So in today's video, we'll break down how you can use Claude for each of those use cases.
+And what we've done is we've broken it down into three layers of complexity for you.
+The first one is just prompting with Claude and getting your video straight back from Claude.
+The second one is actually giving Claude access to different AI tools,
+like AI voices, so you can have your own voiceover inside your motion graphic video.
+And the last phase is actually giving Claude access to 3D tools like Blender.
+And I have never opened Blender in my life,
+but I was able to create entire videos that look as good as this.
+Now, it is mind-blowing how good this is getting now.
+Claude can build 3D models of any product, put the lighting onto it,
+put the textures onto it, and make it look and feel like a premium SaaS animation.
+And this video was made in 30 minutes for $2, and I didn't even need to lift a finger.
+We've done a ton of research into this for you, so you can just learn everything.
+And we've even created a free Claude skill that's going to help you create
+higher quality animations with Claude.
+And we spent so long putting this together for you.
+So I think it's going to be an incredible resource.
+No fluff, no BS, no sponsors in this video.
+Let's get right into it.
+So every single one of these videos that you're seeing is made in four simple steps.
+So the first one is that you give Claude the ingredients.
+It then gives you a storyboard that you can approve,
+and Claude goes away and builds that physical storyboard into a sequence for you.
+Then it adds the sound design, the music, and the voiceover.
+Now we're going to show you a few different examples that get more and more advanced as we go.
+So this Spotify example is the easiest level of using Claude to create motion graphics.
+And just look how clean this is.
+The logo builds itself.
+It turns into a music player.
+The player turns into a playlist.
+And we land on the phone.
+So the first thing we need to do to create something of this quality is you need to make a folder.
+So this is going to be our Spotify folder.
+So in this folder goes the skill.
+And I'll leave a link in the description to that skill so you can go and download it.
+And you're just going to want to upload it in here.
+Now this skill has all of the knowledge that we have built up over the last two weeks of testing this
+to help us get to the best results.
+The next thing is a high resolution image of your logo and any other assets.
+And then you can also upload any of the screenshots of maybe inside the app and the user interface.
+Tip number one is use real high quality asset references.
+Reason being is quality that you input into the model equals quality of the output that you're going to get.
+If you don't give quality references to Claude, Claude will then go and create a fake version
+that just looks like a fake app.
+And we obviously don't want that look for your brand.
+And if you don't upload a high quality logo,
+it will try to create that logo from scratch by creating shape layers.
+And a lot of the time it can look pretty close, but it's never actually the exact logo.
+And it's important that you have a proper high resolution image of the logo so it can custom animate it.
+So now we're going to give Claude access to this file.
+And you can do that by just clicking here.
+And then you can select the file.
+And now Claude is talking to that file.
+It understands what is inside it.
+Now this is a critical part of your motion graphics with Claude.
+Before you go and animate anything, you need to ask Claude to create a numbered storyboard
+that basically breaks out the sequence of all of the things that are going to happen in the video.
+Then you can go in and approve that before anything happens.
+Otherwise, you're just going to waste your credits going through and having Claude build animations for you
+when you're not approving the process.
+So you can see here Claude has now built this storyboard for us.
+Now we can go back and forth with Claude and ask for specific tweaks and changes
+so that we can get the exact kind of storyboard that we want.
+And this is where you start directing it before Claude starts to do any animations.
+This is my third tip for you.
+And this is also a critical one.
+So once you're happy with your storyboard and you've got that locked in,
+before you click enter and let Claude go away and do the animation,
+you want to instruct Claude that every shot should transform into the next one.
+So each of the storyboard frames should seamlessly transition into the next frame.
+That way you get one seamless motion where it's all tied together very creatively.
+And it doesn't feel like you then just got like individual shots stacked on top of each other.
+If you don't direct this, Claude will basically create those individual shots.
+And then to blend them together, it will do something called a cross dissolve.
+And I'll show on screen right here what a cross dissolve actually looks like.
+And you can see it looks cheap.
+It doesn't look impressive.
+But then if you actually instruct it to not use cross dissolves and have it seamlessly transition,
+you get way more impressive results like this over here.
+So we want to specifically say like there should be no cross dissolves in here.
+There should always be some sort of motion,
+whether that is an object or a shape transforming into one another,
+because then it keeps the viewer's eye looking at something on the screen.
+And as a byproduct, keeps your viewer engaged, which then makes higher quality videos.
+So when you're looking at your storyboard, you want to ask yourself the question,
+how can I turn this shape into this shape?
+And then describe how you want that to happen.
+And maybe describe how you want the transitions to work.
+And Claude can then direct off of your feedback.
+Once you're happy with it and approved, you can click enter.
+And then Claude will go and start making that animation for you.
+And this one took about eight to ten minutes to come through.
+Just look how like these three lines join up into a circle.
+The circle then becomes a square and the square opens up into the music player.
+Now, pro tip number four, we want to tell Claude to keep whatever is happening in the center of the frame.
+And when I say center, I mean the dead center.
+So your eyes, when you're watching the motion graphic,
+never has to like look and bounce around the screen to understand what's going on.
+It allows you to keep your eyes locked in in a certain position and all the effects happen around it.
+This is going to improve the quality of your animations a lot.
+Now, tip number five, with motion graphics, there should always be some sort of motion happening that you can see here, for example.
+It doesn't need to be crazy or over the top action, but there should at least be some camera motion or something moving in the frame.
+Otherwise, it can feel a bit stale and slow.
+Now, give this a watch.
+One of these versions has no sound on the left, and now we have sound on the right.
+Massive difference, right?
+So we can tell Claude where your sound designs are on your computer if you've downloaded any in the past,
+and it can use those sound effects that you've downloaded to actually go and create the sound design for your videos.
+All you need to do is just select all your sound effects that you've got downloaded on your computer and upload them inside the Spotify folder.
+Then you can instruct Claude to go inside the folder, look at the sound effects that you've uploaded in there,
+and ask it to go and place them in in the exact correct moments.
+And this is the same with music.
+You can upload a music file in here as well.
+Now, from all the testing that we've had our researchers at the company working on,
+we found that using a pre-existing sound effects pack like Ocular Sound, which we're not affiliated with in any way,
+we just genuinely recommend them so much because they have the highest quality of sound design, I think, of any company publicly available.
+So we spent around £500 buying all of their sound effects and giving Claude access to it,
+and then it can create the most unbelievable sound design on our projects.
+Now, you could do this with platforms like Artlist, which are much cheaper and have like a subscription,
+where you can just go and download a bunch of sound effects.
+You know, you can literally search on the Artlist platform like SAS Animation and go and download a bunch of sound effects
+and just upload that into your Spotify folder, and it will then build out the sound design for you with all of those sound effects.
+So that leads me to tip number six.
+Do your visuals first and the sound last, because if you change the animation during any point,
+it can mess up your sound design across the project.
+So once you're happy with your visuals first that Claude has produced for you,
+then go and do your sound design.
+Now, before we progress onto the exciting second complex tier,
+I'm going to show you another example that we were able to create directly inside Claude,
+without any influence elsewhere.
+And this was a Candy Crush advert.
+It's the same workflow and the same level of effort that we did for the previous Spotify video.
+But this is a great example of why you need those high quality images,
+because in this version, it just cropped out the logo from a screenshot that we'd given it,
+and it looked awful.
+So we went and got high quality references, and we also prompted it to have more interesting camera movement.
+And bear in mind, this is all done inside of Claude.
+This isn't Blender or anything like that.
+So the way we made it look high quality and cinematic, and this is tip number seven for you,
+is prompting for a specific shallow depth of field.
+And this is something that you can use, which will blur the background in your video,
+and it gives that look that it was shot on an actual camera.
+Now, these are obviously mobile apps.
+So at the end of these animations, we're doing our call to action at the end of it.
+And yes, obviously, this is a spec ad.
+Congratulations.
+We're now moving on to level two, and this is where things get very exciting.
+And this is where we're adding in an AI voiceover.
+Got AI skills?
+Brands are looking for you.
+Show your work.
+Get matched.
+Get hired.
+Gen HQ, where AI creatives get hired.
+So this version that you're seeing right here is pretty much the same process that we did for the Spotify
+and all the other videos that you've seen.
+We give it the brand assets and the sort of illustration style.
+But here's what's different in this one.
+So everything in the previous examples we made inside of Claude from scratch,
+whereas this is using images that we've already made for Gen HQ that are AI images.
+So what it's done is it's cut out the characters and then it's used the puppet tool so it can add motion onto them
+and then bring them a little bit of life.
+So if you already have assets for your brand, this is a great way that you can use them.
+Now, when it comes to animating text inside your animations, this is tip number nine.
+You want to say no bouncing, no letters fading in.
+Each word just slides up in place one after the other.
+This is a very premium, currently like trending style for animation.
+Now, for the voiceover, you could either just go to Eleven Labs website,
+type in something in the website like this and hope for the best.
+You're kind of guessing how long it's going to be.
+But if the client's asked specifically for a 15 second or a 30 second ad spot,
+then you're probably going to want to use the method that we're about to teach here.
+So what we do is we use the Eleven Labs connector inside of Claude.
+Now, why is that better?
+Well, it's because Claude built the video.
+So it already knows exactly how long the video is.
+So if you instruct Claude to create the animation for 15 seconds and it's gone away and built it,
+what we can do instead is say, OK, Claude, here is our 15 second animation.
+I now want you to create a voiceover that fits inside this 15 second animation.
+So then Claude writes the precise words that fits your shots and it makes the right voiceover for those moments
+and then makes the voice directly in the chat using Eleven Labs connector.
+Honestly, this came in clutch and was hugely helpful.
+So that is tip number 10 for you.
+Now, for this one, we did make custom music with Suno.
+So we asked Claude to write us a Suno prompt that was the exact length of the video that we needed it to be.
+So like a 30 second or a 15 second, for example, and then we generated a backing track in Suno.
+So it fits the exact vibe and the length perfectly.
+Then we just gave Claude that audio track and added it in for us and even adjusted the volume too.
+And by the way, if you are looking to turn AI into your full time career or make money using AI,
+then we have built GenHQ, which is the most comprehensive AI program on the market
+that helps you get from zero all the way to a full time career in the AI space.
+We've had students who've gone through the program and now work at Meta as AI creatives who had zero experience in AI.
+We've helped generate over a million dollars for our students in documented revenue.
+And I've also built a hiring platform that helps put humans in the job positions that we need to create
+because AI is taking a lot of jobs.
+And it is my mission to create 100,000 jobs to creatives through upskilling and training them in the new workflows with AI.
+So if you're looking to get hired, you can check out GenHQ in the description.
+We have the education part of the program where you can go and learn and upskill,
+where we have everything that you could possibly need to become a creative professional in the age of AI.
+And then if you want to find the jobs, we've also got a link to GenHQ.io,
+which you can find in the description and find jobs already.
+There's over half a million dollars worth of jobs ready to be taken right now on the platform that you can go and apply to.
+Back to the video.
+So that's level two.
+We've done prompting inside of Claude, added in AI tools, including AI images,
+and Claude has gone and built our own custom animation from that.
+Now, this is where things truly get mind-blowing.
+Moving on to level three.
+Even if you have no skills in 3D experience, I'm going to blow your mind.
+So this right here is an example of a Claude animation that we tried to do that had no Blender involved.
+And you can see the lighting looks flat.
+It looks fake.
+It looks not real because it's built all of this based on shapes.
+It doesn't have any context of what the product actually looks like.
+And the lighting, frankly, looks awful.
+And then this right here is an example of what Claude made with Blender.
+The dramatic difference is insane.
+So we're going to teach you how you can actually use Blender with Claude without ever even needing to open the app or know anything about it,
+but still create high quality content like this.
+So Blender is a totally free 3D program.
+So you can go and download it.
+And I'll leave a link in the description so you can go and download that too.
+So you'll need to go away and install that.
+But you don't even ever have to even open it.
+So don't panic.
+Claude will run it in the background for you.
+So the interface for you is the exact same.
+You're just dealing with Claude in the Claude code chat.
+Now, if we're building something from scratch here, like this AirPods commercial,
+then what we want to do is still go through the same process that we've done for step one and step two.
+But what we're going to do is create our storyboard first, go through the process of approving it.
+And you can see our storyboard for this entire commercial right here.
+So what is the difference between these two different styles of videos here?
+You can see the main reason one looks cinematic in comparison to the other is obviously the lighting that I mentioned earlier.
+On Blender, it uses a single lighting reference point, whereas this one has lighting everywhere.
+So that is tip number 11 for you.
+So this is our prompt that we use to actually get the full animation of this video.
+But we wanted to go an extra step further with this one,
+where it actually transitioned into real footage that I had filmed on my camera.
+So it went from animation into real footage.
+Now, to do this, all I had to do was provide it with a single AI reference image that I had created of myself in this Apple style with the AirPod in.
+And then I instructed Claude that, yes, go away and build all this nice animation over here.
+But then when you're finished, the end of the animation needs to end with the exact reference frame that I had provided,
+with the outline of me with the AirPod in my ear.
+That way, Blender can go away and it can go and do all the fancy animations.
+Claude can put it all together.
+And then it's going to guarantee that it ends at a certain animation point.
+And look at that.
+That is very, very cool.
+Now, it didn't get it right first time around.
+The first case that came back didn't look like the AirPod's case.
+And the stems on the actual AirPod were cutting straight through it.
+And at one point, I actually put the wrong AirPods in my ear.
+Now, my next tip for you is compare your actual animation to the real physical product.
+So have the actual product in front of you so you can look at it and be like,
+are all of those details there inside the animation?
+And if it's not, you can simply instruct Claude to go away and fix that.
+And honestly, that is a huge skill now moving into the AI space.
+If you give it a short generic prompt, you're going to get a generic output.
+So we want to make sure we're using all the principles that we've learned in this video.
+Otherwise, you're going to get the equivalent of the generic ChatGPT poster,
+but for motion graphics.
+You want to make sure you're giving it all the artistic direction,
+creating really cool ideas for your storyboards,
+and then even using things like Blender and cool transitions
+to allow your Claude to have the best chance to create something unique and compelling.
+And the free skill in the description is a huge step in the right direction for you.
+And just know none of these actually use any AI image or video generation,
+but you can upload your own AI image and video generation into your folders
+when you're creating your adverts if you wanted to.
+So this is where you started today, and this is where you've ended up.
+And if you want to turn AI into your full-time career,
+then you can check out GenHQ.
+It's the first link in the description.
+We'd love to see you over there.
+We have full-time support staff, four live calls a week,
+and two new modules a week with all of the relevant information that you need
+in order to stay up-to-date in the AI industry.
+I promise you, you'll be in good hands.
+If you enjoyed this video, please leave a like and subscribe,
+and I'll see you guys in the next one.

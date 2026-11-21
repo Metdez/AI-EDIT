@@ -1,0 +1,19 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    #ou-logo { position: absolute; left: 700px; top: 676px; width: 520px; height: auto; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
+    <img id="ou-logo" src="assets/sundai-logo.png" alt="Sundai" />
+  </div>
+  <script>
+    (function () {
+      const O = 85.6, T = (g) => g - O;
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#ou-logo", { opacity: 0, y: 40, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, T(88.6));
+      tl.to({}, { duration: 0.01 }, T(93.39));
+      window.__timelines = window.__timelines || {};
+      window.__timelines["outro"] = tl;
+    })();
+  </script>
+</template>
